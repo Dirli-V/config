@@ -1,0 +1,162 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true
+    },
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "peacock.favoriteColors": [
+        {
+            "name": "Angular Red",
+            "value": "#b52e31"
+        },
+        {
+            "name": "Auth0 Orange",
+            "value": "#eb5424"
+        },
+        {
+            "name": "Azure Blue",
+            "value": "#007fff"
+        },
+        {
+            "name": "C# Purple",
+            "value": "#68217A"
+        },
+        {
+            "name": "Gatsby Purple",
+            "value": "#639"
+        },
+        {
+            "name": "Go Cyan",
+            "value": "#5dc9e2"
+        },
+        {
+            "name": "Java Blue-Gray",
+            "value": "#557c9b"
+        },
+        {
+            "name": "JavaScript Yellow",
+            "value": "#f9e64f"
+        },
+        {
+            "name": "Mandalorian Blue",
+            "value": "#1857a4"
+        },
+        {
+            "name": "Node Green",
+            "value": "#215732"
+        },
+        {
+            "name": "React Blue",
+            "value": "#00b3e6"
+        },
+        {
+            "name": "Something Different",
+            "value": "#832561"
+        },
+        {
+            "name": "Vue Green",
+            "value": "#42b883"
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.useCtrlKeys": false,
+    "vim.handleKeys": {
+        "<C-c>": false
+    },
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": ["ö"],
+            "commands": ["selectNextSuggestion"]
+        },
+        {
+            "before": ["Ö"],
+            "commands": ["selectPrevSuggestion"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "s"],
+            "commands": ["git.sync"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        },
+        {
+            "before": ["<leader>", "g"],
+            "commands": ["workbench.view.scm"]
+        },
+        {
+            "before": ["<leader>", "r"],
+            "commands": ["revealFileInOS"]
+        },
+        {
+            "before": ["<leader>", "z"],
+            "commands": ["workbench.action.toggleZenMode"]
+        },
+        {
+            "before": ["<leader>", "o"],
+            "commands": ["editor.action.openLink"]
+        },
+        {
+            "before": ["ö"],
+            "after": [";"]
+        },
+        {
+            "before": ["Ö"],
+            "after": [","]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["ö"],
+            "after": [";"]
+        },
+        {
+            "before": ["Ö"],
+            "after": [","]
+        }
+    ],
+    "workbench.iconTheme": "material-icon-theme",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.associations": {
+        "*.html": "html"
+    },
+    "[properties]": {},
+    "prettier.printWidth": 140,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "window.zoomLevel": 0,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "prettier.trailingComma": "es5",
+    "prettier.proseWrap": "always",
+    "workbench.startupEditor": "newUntitledFile",
+    "debug.allowBreakpointsEverywhere": true,
+    "php.validate.executablePath": "C:\\laragon\\bin\\php\\php-7.2.19-Win32-VC15-x64\\php.exe",
+    "editor.lineNumbers": "relative",
+    "zenMode.hideLineNumbers": false,
+    "clipboard-manager.moveToTop": false,
+    "clipboard-manager.snippet.enabled": false,
+    "rust-analyzer.updates.askBeforeDownload": false,
+    "editor.formatOnSave": true
+}

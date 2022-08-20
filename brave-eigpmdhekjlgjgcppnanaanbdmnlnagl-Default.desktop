@@ -1,0 +1,34 @@
+[Desktop Action Kalender--ffnen]
+Exec=/usr/lib/brave-browser/brave --profile-directory=Default --app-id=eigpmdhekjlgjgcppnanaanbdmnlnagl --app-launch-url-for-shortcuts-menu-item=https://outlook.live.com/calendar
+Name=Kalender öffnen
+
+[Desktop Action Neue-Nachricht]
+Exec=/usr/lib/brave-browser/brave --profile-directory=Default --app-id=eigpmdhekjlgjgcppnanaanbdmnlnagl --app-launch-url-for-shortcuts-menu-item=https://outlook.live.com/mail/deeplink/compose
+Name=Neue Nachricht
+
+[Desktop Action Neues-Ereignis]
+Exec=/usr/lib/brave-browser/brave --profile-directory=Default --app-id=eigpmdhekjlgjgcppnanaanbdmnlnagl --app-launch-url-for-shortcuts-menu-item=https://outlook.live.com/calendar/deeplink/compose
+Name=Neues Ereignis
+
+[Desktop Entry]
+Actions=Kalender--ffnen;Neue-Nachricht;Neues-Ereignis
+Comment[en_US]=
+Comment=
+Exec=/usr/lib/brave-browser/brave --profile-directory=Default --app-id=eigpmdhekjlgjgcppnanaanbdmnlnagl %U && xdotool search --sync --classname eigpmdhekjlgjgcppnanaanbdmnlnagl set_window --class eigpmdhekjlgjgcppnanaanbdmnlnagl
+GenericName[en_US]=
+GenericName=
+Icon=brave-eigpmdhekjlgjgcppnanaanbdmnlnagl-Default
+MimeType=
+Name[en_US]=Outlook (PWA)
+Name=Outlook (PWA)
+Path=
+StartupNotify=true
+StartupWMClass=crx_eigpmdhekjlgjgcppnanaanbdmnlnagl
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

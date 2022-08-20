@@ -1,0 +1,10 @@
+[Unit]
+Description=Unclutter (hide cursor after 10 secs)
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/bin/unclutter -idle 10 -root
+
+[Install]
+WantedBy=default.target

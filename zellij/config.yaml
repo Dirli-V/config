@@ -1,0 +1,37 @@
+keybinds:
+    unbind: true
+    normal:
+        - action: [SwitchToMode: Locked,]
+          key: [Ctrl: 'z',]
+        - action: [GoToTab: 1,]
+          key: [Alt: '1',]
+        - action: [GoToTab: 2,]
+          key: [Alt: '2',]
+        - action: [GoToTab: 3,]
+          key: [Alt: '3',]
+        - action: [GoToTab: 4,]
+          key: [Alt: '4',]
+        - action: [GoToTab: 5,]
+          key: [Alt: '5',]
+    locked:
+        - action: [SwitchToMode: Normal,]
+          key: [Ctrl: 'z',]
+        - action: [NewTab: ,SwitchToMode: Normal,]
+          key: [Char: 'c',]
+        - action: [Detach: ,SwitchToMode: Normal,]
+          key: [Char: 'd',]
+        - action: [CloseTab: ,SwitchToMode: Normal,]
+          key: [Char: '&',]
+        - action: [Quit: ,SwitchToMode: Normal,]
+          key: [Char: 'q',]
+
+theme: gruvbox
+simplified_ui: false
+pane_frames: false
+plugins:
+    - path: tab-bar
+      tag: tab-bar
+    # - path: status-bar
+    #   tag: status-bar
+    - path: strider
+      tag: strider

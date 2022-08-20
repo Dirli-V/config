@@ -1,0 +1,199 @@
+---
+commands:
+  5120x1440:
+  - name: mid
+    window_positions:
+    - window_names:
+      - brave-browser
+      - eigpmdhekjlgjgcppnanaanbdmnlnagl
+      - pkooggnaalmfkidjmlhoelhdllpphaga
+      position:
+        left: 1283
+        top: -10
+        width: 2552
+        height: 1438
+    - window_names:
+      - dolphin
+      position:
+        left: 1299
+        top: 29
+        width: 2520
+        height: 1367
+    - window_names:
+      - jetbrains-idea-ce
+      - jetbrains-pycharm-ce
+      position:
+        left: 1299
+        top: 0
+        width: 2520
+        height: 1367
+    default:
+      left: 1299
+      top: -29
+      width: 2520
+      height: 1396
+  - name: left
+    window_positions:
+    - window_names:
+      - brave-browser
+      - eigpmdhekjlgjgcppnanaanbdmnlnagl
+      - pkooggnaalmfkidjmlhoelhdllpphaga
+      position:
+        left: -16
+        top: -10
+        width: 1331
+        height: 1482
+    - window_names:
+      - dolphin
+      position:
+        left: 0
+        top: 29
+        width: 1299
+        height: 1411
+    - window_names:
+      - jetbrains-idea-ce
+      - jetbrains-pycharm-ce
+      position:
+        left: 0
+        top: 0
+        width: 1299
+        height: 1411
+    default:
+      left: 0
+      top: -29
+      width: 1299
+      height: 1440
+  - name: right
+    window_positions:
+    - window_names:
+      - brave-browser
+      - eigpmdhekjlgjgcppnanaanbdmnlnagl
+      - pkooggnaalmfkidjmlhoelhdllpphaga
+      position:
+        left: 3803
+        top: -10
+        width: 1333
+        height: 1482
+    - window_names:
+      - dolphin
+      position:
+        left: 3819
+        top: 29
+        width: 1301
+        height: 1411
+    - window_names:
+      - jetbrains-idea-ce
+      - jetbrains-pycharm-ce
+      position:
+        left: 3819
+        top: 0
+        width: 1301
+        height: 1411
+    default:
+      left: 3819
+      top: -29
+      width: 1301
+      height: 1440
+  - name: max
+    window_positions:
+    - window_names:
+      - dota2
+      position:
+        left: 1280
+        top: 0
+        width: 2560
+        height: 1440
+    default:
+      left: 0
+      top: 0
+      width: 0
+      height: 0
+  3440x1440:
+  - name: right
+    window_positions:
+    - window_names:
+      - alacritty
+      - slack
+      - org.wezfurlong.wezterm
+      position:
+        left: 1720
+        top: -29
+        width: 1720
+        height: 1396
+    - window_names:
+      - brave-browser
+      - pkooggnaalmfkidjmlhoelhdllpphaga
+      position:
+        left: 1702
+        top: -10
+        width: 1755
+        height: 1438
+    default:
+      left: 1720
+      top: 29
+      width: 1720
+      height: 1367
+  - name: left
+    window_positions:
+    - window_names:
+      - alacritty
+      - slack
+      - org.wezfurlong.wezterm
+      position:
+        left: 0
+        top: -29
+        width: 1720
+        height: 1396
+    - window_names:
+      - brave-browser
+      - pkooggnaalmfkidjmlhoelhdllpphaga
+      position:
+        left: -20
+        top: -10
+        width: 1755
+        height: 1438
+    default:
+      left: 0
+      top: 29
+      width: 1720
+      height: 1367
+  - name: mid
+    window_positions:
+    - window_names:
+      - alacritty
+      - slack
+      - org.wezfurlong.wezterm
+      position:
+        left: 600
+        top: -29
+        width: 2240
+        height: 1396
+    - window_names:
+      - brave-browser
+      - pkooggnaalmfkidjmlhoelhdllpphaga
+      position:
+        left: -20
+        top: -10
+        width: 3480
+        height: 1438
+    default:
+      left: 600
+      top: 29
+      width: 2240
+      height: 1367
+  - name: max
+    window_positions:
+    - window_names:
+      - alacritty
+      - slack
+      - org.wezfurlong.wezterm
+      position:
+        left: 0
+        top: -29
+        width: 3440
+        height: 1396
+    default:
+      left: 0
+      top: 29
+      width: 3440
+      height: 1367
