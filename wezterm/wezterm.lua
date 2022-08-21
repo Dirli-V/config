@@ -53,6 +53,17 @@ local keys = {
   { key = "z", mods = "LEADER|CTRL", action = wezterm.action.SendKey { key = "z", mods = "CTRL" } },
   { key = "+", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
   { key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
+  { key = "v", mods = "LEADER", action = wezterm.action.SplitPane {
+    direction = "Right",
+  } },
+  { key = "s", mods = "LEADER", action = wezterm.action.SplitPane {
+    direction = "Down",
+  } },
+  { key = "q", mods = "LEADER", action = wezterm.action.CloseCurrentPane { confirm = false } },
+  { key = "w", mods = "LEADER", action = wezterm.action.PaneSelect },
+  { key = "r", mods = "LEADER", action = wezterm.action.PaneSelect {
+    mode = "SwapWithActive",
+  } },
   { key = "0", mods = "CTRL", action = wezterm.action.ResetFontSize },
   { key = "Space", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
   { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("Clipboard") },
