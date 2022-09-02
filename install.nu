@@ -53,3 +53,4 @@ systemctl --user start unclutter.service
 python -m venv ~/debugpy
 ~/debugpy/bin/pip install debugpy
 cargo install cargo-update
+cargo install inlyne
