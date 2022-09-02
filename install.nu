@@ -52,3 +52,4 @@ systemctl --user enable unclutter.service
 systemctl --user start unclutter.service
 python -m venv ~/debugpy
 ~/debugpy/bin/pip install debugpy
+cargo install cargo-update

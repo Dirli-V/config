@@ -6,6 +6,7 @@ let-env config = {
 let-env PROMPT_COMMAND = { starship prompt }
 let-env PROMPT_COMMAND_RIGHT = ""
 let-env JAVA_HOME = "/usr/lib/jvm/default"
+let-env PATH = ($env.PATH | append ("~" | path expand | path join ".cargo/bin"))
 
 source ~/.config/nushell/paru.nu
 source ~/.config/nushell/git.nu
