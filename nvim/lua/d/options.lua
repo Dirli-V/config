@@ -36,6 +36,8 @@ local options = {
   guifont = "monospace:h17",
   title = true,
   formatoptions = "tcro/qw",
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()",
 }
 
 vim.opt.shortmess:append "c"
