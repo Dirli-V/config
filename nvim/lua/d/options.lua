@@ -38,6 +38,7 @@ local options = {
   formatoptions = "tcro/qw",
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
+  foldenable = false,
 }
 
 vim.opt.shortmess:append "c"
