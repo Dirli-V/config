@@ -5,4 +5,5 @@ def aall [] {
   sudo snap refresh
   flatpack update
   cargo install-update -a
+  sudo npm update -g
 }
