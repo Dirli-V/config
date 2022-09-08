@@ -33,6 +33,10 @@ as nerd-fonts-fira-code
 as noto-fonts-emoji
 as iftop
 as unclutter-xfixes-git
+as docker
+sudo usermod -aG docker $env.USER
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 as k9s
 sudo npm install -g cspell
 sudo npm install -g jsonlint
