@@ -1,6 +1,6 @@
 alias ll = ls -l
 alias sc = systemctl
-alias ssc = sudo sc
+alias ssc = sudo systemctl 
 alias sl = journalctl
 
 module completions {
@@ -35,7 +35,7 @@ module completions {
     --type=service
   ]
 
-  export extern "sudo sc" [
+  export extern "sudo systemctl" [
     command: string@list-commands
     ...units: string@list-units
   ]
