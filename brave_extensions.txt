@@ -1,0 +1,6 @@
+1password
+AutoScroll
+Firenvim
+Plasma Integration
+Tabbo
+Vimium
