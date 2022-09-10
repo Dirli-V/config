@@ -31,7 +31,7 @@ as unzip
 as xplr
 as nerd-fonts-fira-code
 as noto-fonts-emoji
-as iftop
+as bandwhich
 as unclutter-xfixes-git
 as docker
 sudo usermod -aG docker $env.USER
