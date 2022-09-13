@@ -10,31 +10,30 @@ table.insert(launch_menu, {
 
 local counter = 2
 local dir_list = io.popen("dir -1 ~/repos")
-if dir_list == nil then
-  return {}
-end
-for dir in dir_list:lines() do
-  if counter == 8 then -- Ctrl + 8 does not work in wezterm
-    table.insert(launch_menu, {
-      label = "Reserved",
-      cwd = "",
-    })
+if dir_list ~= nil then
+  for dir in dir_list:lines() do
+    if counter == 8 then -- Ctrl + 8 does not work in wezterm
+      table.insert(launch_menu, {
+        label = "Reserved",
+        cwd = "",
+      })
+      counter = counter + 1
+    end
+    local prefix = ""
+    if counter <= 9 then
+      prefix = "(" .. counter .. ") "
+    else
+      prefix = "(F" .. (counter - 9) .. ") "
+    end
     counter = counter + 1
-  end
-  local prefix = ""
-  if counter <= 9 then
-    prefix = "(" .. counter .. ") "
-  else
-    prefix = "(F" .. (counter - 9) .. ") "
-  end
-  counter = counter + 1
 
-  table.insert(launch_menu, {
-    label = prefix .. dir,
-    cwd = home_path .. "/repos/" .. dir,
-  })
+    table.insert(launch_menu, {
+      label = prefix .. dir,
+      cwd = home_path .. "/repos/" .. dir,
+    })
+  end
+  dir_list:close()
 end
-dir_list:close()
 
 local keys = {
   { key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
