@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use "ggandor/leap.nvim"
   use "ThePrimeagen/harpoon"
   use "svermeulen/vim-cutlass"
+  use "mg979/vim-visual-multi"
   use "rcarriga/nvim-notify"
   use {
     'glacambre/firenvim',
