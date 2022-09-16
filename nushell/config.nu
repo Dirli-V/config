@@ -1,6 +1,7 @@
 let-env config = {
     edit_mode: vi,
-    shell_integration: true
+    shell_integration: true,
+    show_banner: false,
 }
 
 let-env PROMPT_COMMAND = { starship prompt }
