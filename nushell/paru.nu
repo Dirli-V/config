@@ -3,7 +3,7 @@ alias as = paru -S
 def aall [] {
   paru -Syu
   sudo snap refresh
-  flatpack update
+  flatpak update
   cargo install-update -a
   sudo npm update -g
 }
