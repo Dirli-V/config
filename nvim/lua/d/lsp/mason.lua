@@ -12,6 +12,7 @@ local servers = {
   "sumneko_lua",
   "jsonls",
   "pyright",
+  "prettier",
 }
 
 mason.setup()

@@ -100,6 +100,7 @@ which_key.register({
     i = { "<cmd>Mason<cr>", "Mason Installer" },
     l = { "<cmd>MasonLog<cr>", "Mason Log" },
     S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
+    I = { "<cmd>LspInfo<cr>", "LspInfo" },
   },
 
   d = {

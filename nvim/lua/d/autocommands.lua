@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 local tabs_and_spaces_group = vim.api.nvim_create_augroup("_TabsAndSpaces", {})
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
+  pattern = { "lua", "javascript" },
   group = tabs_and_spaces_group,
   command = "set shiftwidth=2 tabstop=2"
 })

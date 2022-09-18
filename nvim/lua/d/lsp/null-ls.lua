@@ -36,6 +36,7 @@ null_ls.setup({
     code_actions.proselint,
     formatting.autopep8,
     formatting.stylua,
+    formatting.prettier,
   },
   on_attach = require("d.lsp.handlers").on_attach,
 })
