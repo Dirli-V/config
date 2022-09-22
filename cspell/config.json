@@ -49,7 +49,16 @@
     "vsplit",
     "netrw",
     "luasnip",
-    "neotest"
+    "neotest",
+    "winit",
+    "udev",
+    "stdlog",
+    "thiserror",
+    "xcursor",
+    "bitflags",
+    "logind",
+    "elogind",
+    "smithay"
   ],
   "ignorePaths": ["node_modules/**"]
 }
