@@ -33,6 +33,7 @@ which_key.register({
   ["<C-k>"] = { function() trouble.previous({ skip_groups = true, jump = true }) end, "Trouble previous entry" },
 
   ["<C-f>"] = { require('telescope').extensions.live_grep_args.live_grep_args, "Find Text (rg)" },
+  ["<C-s>"] = { ":wa<cr>", "Save all buffers" },
 
   ["<F5>"] = { dap.continue, "Continue" },
   ["<F10>"] = { dap.step_over, "Step over" },
