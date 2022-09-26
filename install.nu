@@ -29,6 +29,7 @@ as python-pip
 as icu
 as unzip
 as xplr
+as just
 as nerd-fonts-fira-code
 as noto-fonts-emoji
 as bandwhich
