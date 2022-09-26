@@ -13,6 +13,7 @@ local servers = {
   "jsonls",
   "pyright",
   "prettier",
+  "yamlls",
 }
 
 mason.setup()
@@ -49,5 +50,16 @@ for _, server in ipairs(servers) do
   if server == "pyright" then
     require("d.lsp.settings.python")
     lsp_config.pyright.setup(opts)
+  end
+
+  if server == "yamlls" then
+    opts["settings"] = {
+      yaml = {
+        schemas = {
+          ["kubernetes"] = "*/deployment/**/*",
+        }
+      }
+    }
+    lsp_config.yamlls.setup(opts)
   end
 end
