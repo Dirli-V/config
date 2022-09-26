@@ -112,6 +112,7 @@ return packer.startup(function(use)
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/nvim-treesitter-context"
   use { "LhKipp/nvim-nu", run = ":TSInstall nu" }
+  use "NoahTheDuke/vim-just"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
