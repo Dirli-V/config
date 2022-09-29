@@ -16,4 +16,5 @@ source ~/.config/nushell/zellij.nu
 source ~/.config/nushell/xplr.nu
 source ~/.config/nushell/bluetooth.nu
 source ~/.config/nushell/systemd.nu
+source ~/.config/nushell/cerebro.nu
 source ~/personal_config/scripts/config.nu
