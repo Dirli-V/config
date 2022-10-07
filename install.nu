@@ -38,6 +38,7 @@ as unclutter-xfixes-git
 as docker
 as qutebrowser
 as python-adblock
+ln -s ~/personal_config/qutebrowser/quickmarks ~/config/qutebrowser/
 sudo usermod -aG docker $env.USER
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
