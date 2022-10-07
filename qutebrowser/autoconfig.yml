@@ -22,3 +22,7 @@ settings:
         K: tab-next
   colors.webpage.preferred_color_scheme:
     global: dark
+  tabs.select_on_remove:
+    global: last-used
+  window.hide_decoration:
+    global: false
