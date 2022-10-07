@@ -36,6 +36,8 @@ as noto-fonts-emoji
 as bandwhich
 as unclutter-xfixes-git
 as docker
+as qutebrowser
+as python-adblock
 sudo usermod -aG docker $env.USER
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service

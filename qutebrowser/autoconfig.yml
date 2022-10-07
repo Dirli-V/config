@@ -22,7 +22,25 @@ settings:
         K: tab-next
   colors.webpage.preferred_color_scheme:
     global: dark
+  content.blocking.method:
+    global: both
+  input.insert_mode.auto_load:
+    global: true
+  qt.highdpi:
+    global: true
+  scrolling.smooth:
+    global: true
+  session.lazy_restore:
+    global: true
+  tabs.mousewheel_switching:
+    global: false
   tabs.select_on_remove:
     global: last-used
+  url.default_page:
+    global: about:blank
+  url.searchengines:
+    global:
+      DEFAULT: https://www.google.com/search?hl=en&q={}
+      wa: https://wiki.archlinux.org/?search={}
   window.hide_decoration:
     global: false
