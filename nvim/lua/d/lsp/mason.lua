@@ -14,6 +14,7 @@ local servers = {
   "pyright",
   "prettier",
   "yamlls",
+  "ltex-ls",
 }
 
 mason.setup()
@@ -61,5 +62,9 @@ for _, server in ipairs(servers) do
       }
     }
     lsp_config.yamlls.setup(opts)
+  end
+
+  if server == "ltex-ls" then
+    lsp_config.ltex.setup(opts)
   end
 end
