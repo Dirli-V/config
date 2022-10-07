@@ -6,6 +6,7 @@ ln -s ~/config/starship.toml ~/.config
 ln -s ~/config/window_mover.yaml ~/.config/window_mover.yaml
 ln -s ~/config/cspell ~/.config/cspell
 ln -s ~/config/codespell ~/.config/codespell
+ln -s ~/config/qutebrowser/ ~/.config
 as make
 as xclip
 as xdotool
