@@ -1,0 +1,83 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+set ignorecase
+set smartcase
+set ideajoin
+set NERDTree
+set commentary
+set highlightedyank
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+set multiple-cursors
+set clipboard+=unnamed
+set surround
+set sneak
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+nnoremap c \"_c
+nnoremap cc \"_S
+nnoremap C \"_C
+nnoremap s \"_s
+vnoremap s \"_s
+xnoremap s \"_s
+nnoremap S \"_S
+vnoremap S \"_S
+xnoremap S \"_S
+nnoremap d \"_d
+vnoremap d \"_d
+xnoremap d \"_d
+nnoremap dd \"_dd
+nnoremap D \"_D
+nnoremap x d
+vnoremap x d
+nnoremap xx dd
+nnoremap X D
+xnoremap p pgvy
+
+let mapleader = " "
+
+nnoremap <leader>si :source ~/.ideavimrc<cr>
+" See :actionlist
+nmap <CR> ciw
+
+map gt <Action>(GotoTest)
+map gi <Action>(GotoImplementation)
+map gs <Action>(GotoSuperMethod)
+map gh <Action>(ShowErrorDescription)
+map gr <Action>(FindUsages)
+
+map gcc <Action>(CommentByLineComment)
+vnoremap gc :action CommentByLineComment<cr>
+xnoremap gc :action CommentByLineComment<cr>
+
+map <leader>gg <Action>(Generate)
+map <leader>gt <Action>(GenerateTestMethod)
+
+map <leader>nc <Action>(NewClass)
+map <leader>nd <Action>(NewDir)
+
+map <leader>rr <Action>(RefactoringMenu)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rc <Action>(IntroduceConstant)
+map <leader>rv <Action>(IntroduceVariable)
+
+map <leader>dd gg<Action>(DebugClass)``
+map <leader>dm <Action>(RunMenu)
+map <leader>db <Action>(ToggleLineBreakpoint)
+map <leader>dB <Action>(Debugger.RemoveAllBreakpointsInFile)
+map <leader>de <Action>(EditBreakpoint)
+map <leader>da <Action>(ToggleBreakpointEnabled)
+
+map <leader>j <Action>(GotoNextError)
+map <leader>k <Action>(GotoPreviousError)
+
+map <leader>e :NERDTreeFocus<cr>
