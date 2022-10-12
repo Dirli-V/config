@@ -22,8 +22,15 @@ settings:
         K: tab-next
   colors.webpage.preferred_color_scheme:
     global: dark
+  content.autoplay:
+    global: false
   content.blocking.method:
     global: both
+  content.headers.user_agent:
+    global: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+      Chrome/105.0.0.0 Safari/537.36
+  content.notifications.enabled:
+    https://www.youtube.com: false
   input.insert_mode.auto_load:
     global: true
   qt.highdpi:

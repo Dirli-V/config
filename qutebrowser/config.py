@@ -50,6 +50,10 @@ config.bind('zol', 'spawn --userscript qute-pass --otp-only')
 config.bind('zpl', 'spawn --userscript qute-pass --password-only')
 config.bind('zul', 'spawn --userscript qute-pass --username-only')
 
+config.bind('<Escape>', 'fake-key <Escape>', mode='normal')
+config.bind('M', 'hint links spawn mpv {hint-url}')
+config.bind('C', 'hint links userscript yank-text.nu')
+
 # Put the download bar at the bottom of the screen
 c.downloads.position = "bottom"
 
