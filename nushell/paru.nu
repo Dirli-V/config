@@ -1,5 +1,6 @@
 alias a = paru
 alias as = paru -S
+alias ar = paru -Rns
 def aall [] {
   paru -Syu
   sudo snap refresh
