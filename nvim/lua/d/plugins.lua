@@ -59,6 +59,7 @@ return packer.startup(function(use)
     'glacambre/firenvim',
     run = function() vim.fn['firenvim#install'](0) end
   }
+  use { "subnut/nvim-ghost.nvim", run = ":call nvim_ghost#installer#install()" }
   use {
     "euclio/vim-markdown-composer",
     run = "cargo build --release",
