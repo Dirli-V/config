@@ -67,6 +67,7 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use "folke/tokyonight.nvim"
+  use { "sonph/onehalf", rtp = "/vim" }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"
