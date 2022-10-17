@@ -158,6 +158,7 @@ which_key.register({
     a = { ":set rnu!<cr>", "Toggle relative line numbers" },
     l = { require('persistence').load, "Load session" },
     i = { "<cmd>LuaCacheProfile<cr>", "Impatient profile" },
+    g = { "<cmd>GhostTextEnable<cr>", "GhostText enable" },
   },
 }, {
   prefix = "<leader>",
