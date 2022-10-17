@@ -159,6 +159,7 @@ which_key.register({
     l = { require('persistence').load, "Load session" },
     i = { "<cmd>LuaCacheProfile<cr>", "Impatient profile" },
     g = { "<cmd>GhostTextEnable<cr>", "GhostText enable" },
+    c = { "<cmd>ComposerStart<cr>", "Start markdown composer" },
   },
 }, {
   prefix = "<leader>",
