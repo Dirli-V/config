@@ -4,3 +4,4 @@ Firenvim
 Plasma Integration
 Tabbo
 Vimium
+GhostText
