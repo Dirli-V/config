@@ -33,11 +33,13 @@ module completions {
     ...units: string@list-units
     --user
     --type=service
+    --now
   ]
 
   export extern "sudo systemctl" [
     command: string@list-commands
     ...units: string@list-units
+    --now
   ]
 }
 
