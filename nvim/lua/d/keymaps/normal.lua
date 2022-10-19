@@ -28,6 +28,8 @@ which_key.register({
   ["xx"] = { "dd", "Cut line" },
   X = { "D", "Cut to end of line" },
 
+  ["gx"] = { ":!brave <cWORD><cr>", "Open URL" },
+
   ["<C-q>"] = { "<cmd>TroubleToggle quickfix<cr>", "Toggle quickfix list" },
   ["<C-j>"] = { function() trouble.next({ skip_groups = true, jump = true }) end, "Trouble next entry" },
   ["<C-k>"] = { function() trouble.previous({ skip_groups = true, jump = true }) end, "Trouble previous entry" },
