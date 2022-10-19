@@ -15,6 +15,7 @@ local servers = {
   "prettier",
   "yamlls",
   "ltex-ls",
+  "typescript-language-server",
 }
 
 mason.setup()
@@ -66,5 +67,9 @@ for _, server in ipairs(servers) do
 
   if server == "ltex-ls" then
     lsp_config.ltex.setup(opts)
+  end
+
+  if server == "typescript-language-server" then
+    lsp_config.tsserver.setup(opts)
   end
 end
