@@ -84,7 +84,7 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig"
   use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
+  use "WhoIsSethDaniel/mason-tool-installer.nvim"
   use "folke/trouble.nvim"
   use "tamago324/nlsp-settings.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
