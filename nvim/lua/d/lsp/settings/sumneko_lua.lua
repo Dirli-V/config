@@ -5,6 +5,9 @@ return {
       diagnostics = {
         globals = { "vim" },
       },
+      disable = {
+        "different-requires",
+      },
       workspace = {
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
