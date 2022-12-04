@@ -98,6 +98,10 @@ return packer.startup(function(use)
   use "rouge8/neotest-rust"
   use "nvim-neotest/neotest-python"
 
+  -- litee plugins
+  use "ldelossa/litee.nvim"
+  use "ldelossa/litee-calltree.nvim"
+
   -- Telescope
   use {
     "nvim-telescope/telescope.nvim",

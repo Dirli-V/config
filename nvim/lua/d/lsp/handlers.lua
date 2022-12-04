@@ -71,6 +71,8 @@ local function lsp_keymaps(bufnr)
     ["<A-l>"] = { vim.lsp.buf.formatting, "Format" },
     ["gS"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     ["gs"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    ["<leader>lt"] = { vim.lsp.buf.incoming_calls, "Calltree Incoming" },
+    ["<leader>lT"] = { vim.lsp.buf.outgoing_calls, "Calltree Outgoing" },
   }, {
     buffer = bufnr,
   })
