@@ -76,6 +76,12 @@ local function lsp_keymaps(bufnr)
   }, {
     buffer = bufnr,
   })
+  which_key.register({
+    ["<c-.>"] = { vim.lsp.buf.code_action, "Open code actions" },
+  }, {
+    buffer = bufnr,
+    mode = "i",
+  })
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
