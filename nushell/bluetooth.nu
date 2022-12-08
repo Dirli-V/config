@@ -24,3 +24,7 @@ def btdisconnect [device: string@list-bt-devices] {
 def btpair [device: string@list-bt-devices] {
     bt pair (get-mac-from-device-name $device)
 }
+
+def btremove [device: string@list-bt-devices] {
+    bt remove (get-mac-from-device-name $device)
+}
