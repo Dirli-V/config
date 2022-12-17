@@ -68,7 +68,7 @@ local function lsp_keymaps(bufnr)
     ["<leader>k"] = { vim.diagnostic.goto_prev, "Goto previous diagnostics" },
     ["gl"] = { vim.diagnostic.open_float, "Show line diagnostics" },
     ["<leader>j"] = { vim.diagnostic.goto_next, "Got previous diagnostics" },
-    ["<A-l>"] = { vim.lsp.buf.formatting, "Format" },
+    ["<A-l>"] = { function() vim.lsp.buf.format { async = true } end, "Format" },
     ["gS"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     ["gs"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     ["<leader>lt"] = { vim.lsp.buf.incoming_calls, "Calltree Incoming" },
@@ -82,7 +82,7 @@ local function lsp_keymaps(bufnr)
     buffer = bufnr,
     mode = "i",
   })
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
 end
 
 local function dap_keymaps(client, bufnr)
@@ -132,7 +132,7 @@ local function server_specific_keymaps(client, bufnr)
   if client.name == "rust_analyzer" then
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
-      callback = vim.lsp.buf.formatting_sync,
+      callback = function() vim.lsp.buf.format() end,
     })
   end
 end
