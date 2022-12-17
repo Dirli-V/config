@@ -48,6 +48,7 @@ cmp.setup {
     ["<Up>"] = cmp.mapping.select_prev_item(),
     ["<Down>"] = cmp.mapping.select_next_item(),
     ["<Tab>"] = cmp.mapping.confirm { select = true },
+    ["<Cr>"] = cmp.mapping.confirm { select = true },
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
