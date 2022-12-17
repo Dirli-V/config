@@ -7,8 +7,8 @@ which_key.register({
   ["<"] = { "<gv", "Decrease indent" },
   [">"] = { ">gv", "Increase indent" },
 
-  ["<A-j>"] = { ":m .+1<CR>==", "Move text down" },
-  ["<A-k>"] = { ":m .-2<CR>==", "Move text up" },
+  ["<A-j>"] = { ":m '>+1<CR>gv=gv", "Move text down" },
+  ["<A-k>"] = { ":m '<-2<CR>gv=gv", "Move text up" },
 
   p = { '"_dP', "Paste" }
 }, { mode = "v" })

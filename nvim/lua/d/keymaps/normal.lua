@@ -16,6 +16,12 @@ which_key.register({
   L = { ":BufMRUPrev<CR>", "Previous buffer" },
   H = { ":BufMRUNext<CR>", "Next buffer" },
 
+  J = { "mzJ`z", "Merge lines" },
+  ["<C-d>"] = { "<C-d>zz", "Half-page down" },
+  ["<C-u>"] = { "<C-u>zz", "Half-page up" },
+  n = { "nzzzv", "Next match" },
+  N = { "Nzzzv", "Previous match" },
+
   ["<A-j>"] = { "<Esc>:m .+1<CR>", "Move line down" },
   ["<A-k>"] = { "<Esc>:m .-2<CR>", "Move line up" },
 
