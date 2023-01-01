@@ -16,6 +16,8 @@ local servers = {
   "yaml-language-server",
   "ltex-ls",
   "typescript-language-server",
+  "rnix-lsp",
+  "taplo",
 }
 
 mason.setup()
@@ -73,5 +75,13 @@ for _, server in ipairs(servers) do
 
   if server == "yaml-language-server" then
     lsp_config.tsserver.setup(opts)
+  end
+
+  if server == "rnix-lsp" then
+    lsp_config.rnix.setup(opts)
+  end
+
+  if server == "taplo" then
+    lsp_config.taplo.setup(opts)
   end
 end
