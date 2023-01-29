@@ -122,9 +122,14 @@ in
       steam-tui
       wine
       _1password-gui
+      helix
     ];
     xdg.configFile.nushell = {
       source = ./nushell;
+      recursive = true;
+    };
+    xdg.configFile.helix = {
+      source = ./helix;
       recursive = true;
     };
     xdg.configFile."starship.toml" = {
