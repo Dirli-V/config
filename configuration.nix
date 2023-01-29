@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 
+let
+  llvm15 = import (builtins.fetchTarball "https://github.com/rrbutani/nixpkgs/tarball/feature/llvm-15") { config = config.nixpkgs.config; };
+in
 {
   imports =
     [
@@ -34,6 +37,10 @@
     };
   };
 
+  services.xserver.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
   time.timeZone = "Europe/Vienna";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -54,12 +61,15 @@
   users.users.dirli = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "video" ];
+    shell = pkgs.nushell;
   };
   security.pam.services.swaylock = {
     text = "auth include login";
   };
   security.polkit.enable = true;
   hardware.opengl.enable = true;
+  hardware.opengl.package = (pkgs.mesa.override { llvmPackages = llvm15.llvmPackages_15; enableOpenCL = false; }).drivers;
+  hardware.bluetooth.enable = true;
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -107,6 +117,11 @@
       inlyne
       rust-analyzer
       spotify
+      steam
+      steamcmd
+      steam-tui
+      wine
+      _1password-gui
     ];
     xdg.configFile.nushell = {
       source = ./nushell;
@@ -117,6 +132,10 @@
     };
     xdg.configFile.wezterm = {
       source = ./wezterm;
+      recursive = true;
+    };
+    xdg.configFile.sway = {
+      source = ./sway;
       recursive = true;
     };
 
@@ -147,6 +166,7 @@
     };
     programs.neovim = {
       enable = true;
+      defaultEditor = true;
     };
 
     programs.fzf.enable = true;
@@ -157,7 +177,6 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    mesa
     htop
     cmake
     gnumake
@@ -171,7 +190,7 @@
     libGL
   ];
 
-  # Keep a list all installed packages in /etc/current-systempackages
+  # Keep a list of all installed packages in /etc/current-systempackages
   environment.etc."current-systempackages".text =
     let
       packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
