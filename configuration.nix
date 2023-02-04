@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  llvm15 = import (builtins.fetchTarball "https://github.com/rrbutani/nixpkgs/tarball/feature/llvm-15") { config = config.nixpkgs.config; };
-in
 {
   imports =
     [
@@ -40,6 +37,7 @@ in
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+  programs.kdeconnect.enable = true;
 
   time.timeZone = "Europe/Vienna";
 
@@ -68,7 +66,9 @@ in
   };
   security.polkit.enable = true;
   hardware.opengl.enable = true;
-  hardware.opengl.package = (pkgs.mesa.override { llvmPackages = llvm15.llvmPackages_15; enableOpenCL = false; }).drivers;
+  hardware.opengl.package = pkgs.mesa.drivers;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.package32 = pkgs.pkgsi686Linux.mesa.drivers;
   hardware.bluetooth.enable = true;
   programs.sway = {
     enable = true;
@@ -105,7 +105,6 @@ in
       python3Packages.debugpy
       fd
       xplr
-      just
       nushell
       starship
       wezterm
@@ -123,6 +122,9 @@ in
       wine
       _1password-gui
       helix
+      lm_sensors
+      du-dust
+      signal-desktop
     ];
     xdg.configFile.nushell = {
       source = ./nushell;
