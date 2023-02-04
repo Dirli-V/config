@@ -125,6 +125,7 @@
       lm_sensors
       du-dust
       signal-desktop
+      thunderbird
     ];
     xdg.configFile.nushell = {
       source = ./nushell;

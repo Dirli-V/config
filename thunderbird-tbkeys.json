@@ -1,0 +1,16 @@
+{
+    "j": "cmd:cmd_nextMsg",
+    "k": "cmd:cmd_previousMsg",
+    "o": "cmd:cmd_openMessage",
+    "q": "cmd:cmd_markAsJunk",
+    "Q": "cmd:cmd_markAsNotJunk",
+    "f": "cmd:cmd_forward",
+    "d": "cmd:cmd_delete",
+    "r": "cmd:cmd_reply",
+    "a": "cmd:cmd_replyall",
+    "x": "cmd:cmd_archive",
+    "c": "func:MsgNewMessage",
+    "u": "tbkeys:closeMessageAndRefresh",
+    "J": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(-1, true)",
+    "K": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(1, true)"
+}
