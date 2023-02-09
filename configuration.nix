@@ -37,6 +37,7 @@
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.videoDrivers = [ "modesetting" ];
   programs.kdeconnect.enable = true;
 
   time.timeZone = "Europe/Vienna";
@@ -66,16 +67,11 @@
   };
   security.polkit.enable = true;
   hardware.opengl.enable = true;
-  hardware.opengl.package = pkgs.mesa.drivers;
   hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.package32 = pkgs.pkgsi686Linux.mesa.drivers;
   hardware.bluetooth.enable = true;
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-  };
-  environment.variables = rec {
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -126,6 +122,12 @@
       du-dust
       signal-desktop
       thunderbird
+      lutris
+      # x things
+      xdotool
+      xorg.xdpyinfo
+      wmctrl
+      # end of x things
     ];
     xdg.configFile.nushell = {
       source = ./nushell;
@@ -145,6 +147,9 @@
     xdg.configFile.sway = {
       source = ./sway;
       recursive = true;
+    };
+    xdg.configFile."window_mover.yaml" = {
+      source = ./window_mover.yaml;
     };
 
     home.stateVersion = "22.11";
