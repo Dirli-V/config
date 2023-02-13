@@ -127,6 +127,7 @@
       xdotool
       xorg.xdpyinfo
       wmctrl
+      xclip
       # end of x things
     ];
     xdg.configFile.nushell = {
