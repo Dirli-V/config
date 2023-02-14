@@ -99,6 +99,8 @@
       python3
       python3Packages.autopep8
       python3Packages.debugpy
+      sumneko-lua-language-server
+      stylua
       fd
       xplr
       nushell
