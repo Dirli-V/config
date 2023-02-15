@@ -46,3 +46,9 @@ vim.api.nvim_create_autocmd("FileType", {
   group = tabs_and_spaces_group,
   command = "set autoindent noexpandtab tabstop=4 shiftwidth=4",
 })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "vim-ghost#connected",
+  group = augroup("ghost_text"),
+  command = "set ft=markdown",
+})
