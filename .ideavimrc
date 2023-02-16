@@ -20,6 +20,33 @@ set clipboard+=unnamed
 set surround
 set sneak
 
+sethandler <c-a> a:vim
+sethandler <c-b> a:vim
+sethandler <c-c> a:ide
+sethandler <c-d> a:vim
+sethandler <c-e> a:ide
+sethandler <c-f> a:ide
+sethandler <c-g> a:ide
+sethandler <c-h> a:ide
+sethandler <c-i> a:vim
+sethandler <c-j> a:ide
+sethandler <c-k> a:ide
+sethandler <c-l> a:ide
+sethandler <c-m> a:ide
+sethandler <c-n> a:ide
+sethandler <c-o> a:vim
+sethandler <c-p> a:ide
+sethandler <c-q> a:ide
+sethandler <c-r> a:vim
+sethandler <c-s> a:ide
+sethandler <c-t> a:ide
+sethandler <c-u> a:vim
+sethandler <c-v> a:vim
+sethandler <c-w> a:vim
+sethandler <c-x> a:ide
+sethandler <c-y> a:ide
+sethandler <c-z> a:ide
+
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
@@ -81,3 +108,12 @@ map <leader>j <Action>(GotoNextError)
 map <leader>k <Action>(GotoPreviousError)
 
 map <leader>e :NERDTreeFocus<cr>
+map <leader>m <Action>(PinActiveTabToggle)
+map <leader>1 <Action>(GoToTab1)
+map <leader>2 <Action>(GoToTab2)
+map <leader>3 <Action>(GoToTab3)
+map <leader>4 <Action>(GoToTab4)
+map <leader>5 <Action>(GoToTab5)
+
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <c-m> <Action>(MoveEditorToOppositeTabGroup)
