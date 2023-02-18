@@ -31,3 +31,8 @@ map("x", "p", '"_dP')
 
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
+
+map("n", "gh", "<c-w>h", { desc = "Go to left window" })
+map("n", "gl", "<c-w>l", { desc = "Go to right window" })
+map("n", "gj", "<c-w>j", { desc = "Go to down window" })
+map("n", "gk", "<c-w>k", { desc = "Go to up window" })
