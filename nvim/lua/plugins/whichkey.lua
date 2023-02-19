@@ -19,6 +19,7 @@ return {
       ["<leader>sn"] = { name = "+noice" },
       ["<leader>u"] = { name = "+ui" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
+      ["<leader>n"] = { name = "+note" },
     })
   end,
 }

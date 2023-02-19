@@ -6,3 +6,4 @@ vim.opt.relativenumber = false
 vim.opt.timeoutlen = 100
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+vim.opt.foldlevel = 99
