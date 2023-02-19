@@ -20,6 +20,7 @@ return {
       ["<leader>u"] = { name = "+ui" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
       ["<leader>n"] = { name = "+note" },
+      ["<leader>y"] = { name = "+misc" },
     })
   end,
 }
