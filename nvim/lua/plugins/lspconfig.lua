@@ -23,6 +23,28 @@ return {
       rust_analyzer = {
         mason = false,
       },
+      tsserver = {
+        mason = false,
+      },
+      rnix = {
+        mason = false,
+      },
+      taplo = {
+        mason = false,
+      },
+      pyright = {
+        mason = false,
+      },
+      yamlls = {
+        mason = false,
+        settings = {
+          yaml = {
+            schemas = {
+              ["kubernetes"] = "*/deployment/**/*",
+            },
+          },
+        },
+      },
     },
     setup = {
       rust_analyzer = function(_, opts)
