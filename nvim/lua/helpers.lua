@@ -1,0 +1,54 @@
+local M = {}
+
+function M.copy_git_file_to_clipboard(include_line)
+  local file_abs = vim.api.nvim_buf_get_name(0)
+  local git_dir
+  for dir in vim.fs.parents(file_abs) do
+    if vim.fn.isdirectory(dir .. "/.git") == 1 then
+      git_dir = dir
+      break
+    end
+  end
+
+  if not git_dir then
+    print("Not in a git directory")
+  end
+
+  local output = vim.api.nvim_exec("!git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'", true)
+  local lines = {}
+  for line in output:gmatch("([^\n]*)\n?") do
+    table.insert(lines, line)
+  end
+  local default_branch = lines[3]
+
+  local file_path = string.sub(file_abs, string.len(git_dir) + 1)
+
+  local origin = vim.api.nvim_exec("!git config --get remote.origin.url", true)
+  local at_index = string.find(origin, "@", 1, true)
+  local origin_clean = string.sub(origin, at_index + 1, string.len(origin) - 5)
+  local protocol = "https://"
+  local result = protocol .. origin_clean
+  local is_bitbucket = string.find(origin_clean, "bitbucket", 1, true)
+  if is_bitbucket then
+    result = string.gsub(origin_clean, ":", "/") .. "/blob/" .. default_branch .. file_path
+  end
+  local is_github = string.find(origin_clean, "github", 1, true)
+  if is_github then
+    result = protocol .. string.gsub(origin_clean, ":", "/") .. "/blob/" .. default_branch .. file_path
+  end
+
+  if include_line then
+    local line_number = vim.api.nvim_win_get_cursor(0)[1]
+
+    if is_bitbucket then
+      result = result .. "#" .. line_number
+    end
+    if is_github then
+      result = result .. "#L" .. line_number
+    end
+  end
+
+  vim.fn.setreg("+", result)
+end
+
+return M

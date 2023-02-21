@@ -38,3 +38,16 @@ map("n", "gh", "<c-w>h", { desc = "Go to left window" })
 map("n", "gl", "<c-w>l", { desc = "Go to right window" })
 map("n", "gj", "<c-w>j", { desc = "Go to down window" })
 map("n", "gk", "<c-w>k", { desc = "Go to up window" })
+
+map("n", "<leader>yy", "", {
+  desc = "Copy URL of open file",
+  callback = function()
+    require("helpers").copy_git_file_to_clipboard(false)
+  end,
+})
+map("n", "<leader>yY", "", {
+  desc = "Copy URL of open file (+ line number)",
+  callback = function()
+    require("helpers").copy_git_file_to_clipboard(true)
+  end,
+})
