@@ -52,3 +52,14 @@ vim.api.nvim_create_autocmd("User", {
   group = augroup("ghost_text"),
   command = "set ft=markdown",
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  group = augroup("open_trouble_on_qf"),
+  callback = function()
+    vim.schedule(function()
+      vim.cmd("cclose")
+      vim.cmd("Trouble quickfix")
+    end)
+  end,
+})

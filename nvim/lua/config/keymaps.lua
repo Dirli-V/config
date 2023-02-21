@@ -15,6 +15,12 @@ map("n", "<leader>ww", "<nop>")
 map("n", "<leader>wd", "<nop>")
 map("n", "<leader>w-", "<nop>")
 map("n", "<leader>w|", "<nop>")
+map("n", "<leader>fn", "<nop>")
+map("n", "<leader>gg", "<nop>")
+map("n", "<leader>gG", "<nop>")
+map("n", "<leader>qq", "<nop>")
+map("n", "<leader>ft", "<nop>")
+map("n", "<leader>fT", "<nop>")
 
 map("n", "<cr>", "ciw", { desc = "Change inner word", remap = true })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Safe file" })
@@ -38,6 +44,8 @@ map("n", "gh", "<c-w>h", { desc = "Go to left window" })
 map("n", "gl", "<c-w>l", { desc = "Go to right window" })
 map("n", "gj", "<c-w>j", { desc = "Go to down window" })
 map("n", "gk", "<c-w>k", { desc = "Go to up window" })
+
+map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save all file" })
 
 map("n", "<leader>yy", "", {
   desc = "Copy URL of open file",
