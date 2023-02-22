@@ -30,7 +30,13 @@ function M.copy_git_file_to_clipboard(include_line)
   local result = protocol .. origin_clean
   local is_bitbucket = string.find(origin_clean, "bitbucket", 1, true)
   if is_bitbucket then
-    result = string.gsub(origin_clean, ":", "/") .. "/blob/" .. default_branch .. file_path
+    local project_index = string.find(origin_clean, "/", 1, true)
+    local repo_index = string.find(origin_clean, "/", project_index + 1, true)
+    local bitbucket_path = "/projects"
+      .. string.sub(origin_clean, project_index, repo_index)
+      .. "repos/"
+      .. string.sub(origin_clean, repo_index + 1)
+    result = protocol .. string.sub(origin_clean, 1, project_index - 1) .. bitbucket_path .. "/browse" .. file_path
   end
   local is_github = string.find(origin_clean, "github", 1, true)
   if is_github then
