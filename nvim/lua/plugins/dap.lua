@@ -1,6 +1,9 @@
 return {
   "mfussenegger/nvim-dap",
-  dependencies = { "theHamsta/nvim-dap-virtual-text" },
+  dependencies = {
+    "theHamsta/nvim-dap-virtual-text",
+    "mfussenegger/nvim-dap-python",
+  },
   -- stylua: ignore
   keys = {
     { "<F5>", function() require("dap").continue() end, desc = "Continue" },
@@ -10,6 +13,8 @@ return {
   },
   config = function(_, _)
     local dap = require("dap")
+    require("dap-python").setup(vim.api.nvim_exec("!whereis python", true))
+
     dap.adapters.lldb = {
       type = "executable",
       command = vim.api.nvim_exec("!whereis lldb-vscode", true),
@@ -28,12 +33,6 @@ return {
         stopOnEntry = false,
         args = {},
       },
-    }
-
-    dap.adapters.python = {
-      type = "executable",
-      command = vim.api.nvim_exec("!whereis python", true),
-      args = { "-m", "debugpy.adapter" },
     }
   end,
 }
