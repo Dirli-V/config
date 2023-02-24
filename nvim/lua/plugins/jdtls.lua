@@ -6,19 +6,37 @@ return {
   ft = "java",
   config = function(_, _)
     local jdtls = require("jdtls")
+    local helpers = require("helpers")
     local root_markers = { "gradlew", ".git" }
     local root_dir = require("jdtls.setup").find_root(root_markers)
     local home = os.getenv("HOME")
     local workspace_folder = home .. "/.local/share/jdt-language-server/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
+    local runtimes = {}
+    local java_11 = os.getenv("JAVA_11_HOME")
+    if java_11 then
+      table.insert(runtimes, {
+        {
+          name = "JavaSE-11",
+          path = java_11,
+        },
+      })
+    end
+
     local config = {
       cmd = {
-        require("helpers").find_executable("jdt-language-server"),
-        -- "/nix/store/4qvyvcbn6h1sm8dvx9wjrv3y5az1znp2-jdt-language-server-1.19.0/bin/jdt-language-server",
+        helpers.find_executable("jdt-language-server"),
         "-data",
         workspace_folder,
       },
       root_dir = root_dir,
+      settings = {
+        java = {
+          configuration = {
+            runtimes = runtimes,
+          },
+        },
+      },
       on_attach = function(client, buffer)
         require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
         require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
