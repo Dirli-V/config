@@ -57,4 +57,21 @@ function M.copy_git_file_to_clipboard(include_line)
   vim.fn.setreg("+", result)
 end
 
+function M.trim(str)
+  return (str:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+function M.find_executable(name)
+  local result = vim.api.nvim_exec("!whereis " .. name, true)
+  local binary_start_index = string.find(result, ": ", 1, true)
+  if not binary_start_index then
+    return nil
+  end
+  local binary_end_index = string.find(result, " ", binary_start_index + 2, true)
+  if binary_end_index then
+    return M.trim(string.sub(result, binary_start_index + 1, binary_end_index))
+  end
+  return M.trim(string.sub(result, binary_start_index + 1))
+end
+
 return M

@@ -28,5 +28,8 @@ return {
         end,
       },
     },
+    window = {
+      width = "fit_content",
+    },
   },
 }

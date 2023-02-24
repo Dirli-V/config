@@ -13,11 +13,11 @@ return {
   },
   config = function(_, _)
     local dap = require("dap")
-    require("dap-python").setup(vim.api.nvim_exec("!whereis python", true))
+    require("dap-python").setup(require("helpers").find_executable("python"))
 
     dap.adapters.lldb = {
       type = "executable",
-      command = vim.api.nvim_exec("!whereis lldb-vscode", true),
+      command = require("helpers").find_executable("lldb-vscode"),
       name = "lldb",
     }
 
