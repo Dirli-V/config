@@ -8,3 +8,4 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.foldlevel = 99
 vim.opt.conceallevel = 0
+vim.opt.spell = true
