@@ -106,6 +106,7 @@ for i, entry in ipairs(launch_menu) do
 end
 
 wezterm.on("gui-startup", function(_)
+	mux.spawn_window({})
 	for _, entry in ipairs(launch_menu) do
 		mux.spawn_window({
 			workspace = entry.label,
