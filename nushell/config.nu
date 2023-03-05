@@ -13,4 +13,5 @@ source ~/.config/nushell/bluetooth.nu
 source ~/.config/nushell/systemd.nu
 source ~/.config/nushell/cerebro.nu
 source ~/.config/nushell/cargo.nu
+source ~/.config/nushell/nix.nu
 source ~/personal_config/scripts/config.nu
