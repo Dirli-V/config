@@ -13,7 +13,6 @@ return {
       ["<leader>b"] = { name = "+buffer" },
       ["<leader>c"] = { name = "+code" },
       ["<leader>g"] = { name = "+git" },
-      ["<leader>gh"] = { name = "+hunks" },
       ["<leader>s"] = { name = "+search" },
       ["<leader>d"] = { name = "+debug" },
       ["<leader>sn"] = { name = "+noice" },
