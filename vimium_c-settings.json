@@ -1,0 +1,32 @@
+{
+	"name": "Vimium C",
+	"@time": "3/8/2023, 3:29:58 PM",
+	"time": 1678285798768,
+	"environment": {
+		"extension": "1.99.97",
+		"platform": "linux",
+		"chromium": 110
+	},
+	"allBrowserUrls": true,
+	"keyLayout": 2,
+	"keyMappings": [
+		"#!no-check",
+		"map x closeTabsOnRight",
+		"map X closeDownloadBar",
+		"map yF LinkHints.activateCopyLinkText",
+		""
+	],
+	"userDefinedCss": [
+		"/* #ui */",
+		"* { font-size: 12px; padding: 0; margin: 0; }",
+		""
+	],
+	"vimSync": true,
+	"vomnibarOptions": {
+		"actions": "",
+		"maxMatches": 10,
+		"queryInterval": 0,
+		"sizes": "77,3,44,0.8",
+		"styles": "mono-url"
+	}
+}
