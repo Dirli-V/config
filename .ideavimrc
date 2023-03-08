@@ -104,6 +104,8 @@ map <leader>dB <Action>(Debugger.RemoveAllBreakpointsInFile)
 map <leader>de <Action>(EditBreakpoint)
 map <leader>da <Action>(ToggleBreakpointEnabled)
 
+map <leader>yy <Action>(Bitbucket.CopyFileUrlInBitbucket)
+
 map <leader>j <Action>(GotoNextError)
 map <leader>k <Action>(GotoPreviousError)
 
