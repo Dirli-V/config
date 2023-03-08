@@ -5,7 +5,7 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
   },
   ft = "nu",
-  bulld = ":TSInstall nu",
+  build = ":TSInstall nu",
   config = function(_, _)
     require("nu").setup()
   end,
