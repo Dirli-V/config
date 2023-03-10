@@ -16,6 +16,9 @@ return {
     call_and_append_if_is_executable(sources, function()
       return nls.builtins.diagnostics.black
     end, "black")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.formatting.fixjson
+    end, "fixjson")
 
     return {
       sources = sources,

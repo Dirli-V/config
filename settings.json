@@ -74,56 +74,110 @@
     },
     "vim.insertModeKeyBindingsNonRecursive": [
         {
-            "before": ["ö"],
-            "commands": ["selectNextSuggestion"]
+            "before": [
+                "ö"
+            ],
+            "commands": [
+                "selectNextSuggestion"
+            ]
         },
         {
-            "before": ["Ö"],
-            "commands": ["selectPrevSuggestion"]
+            "before": [
+                "Ö"
+            ],
+            "commands": [
+                "selectPrevSuggestion"
+            ]
         }
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "s"],
-            "commands": ["git.sync"]
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "commands": [
+                "git.sync"
+            ]
         },
         {
-            "before": ["<leader>", "q"],
-            "commands": ["workbench.action.closeActiveEditor"]
+            "before": [
+                "<leader>",
+                "q"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
         },
         {
-            "before": ["<leader>", "g"],
-            "commands": ["workbench.view.scm"]
+            "before": [
+                "<leader>",
+                "g"
+            ],
+            "commands": [
+                "workbench.view.scm"
+            ]
         },
         {
-            "before": ["<leader>", "r"],
-            "commands": ["revealFileInOS"]
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "revealFileInOS"
+            ]
         },
         {
-            "before": ["<leader>", "z"],
-            "commands": ["workbench.action.toggleZenMode"]
+            "before": [
+                "<leader>",
+                "z"
+            ],
+            "commands": [
+                "workbench.action.toggleZenMode"
+            ]
         },
         {
-            "before": ["<leader>", "o"],
-            "commands": ["editor.action.openLink"]
+            "before": [
+                "<leader>",
+                "o"
+            ],
+            "commands": [
+                "editor.action.openLink"
+            ]
         },
         {
-            "before": ["ö"],
-            "after": [";"]
+            "before": [
+                "ö"
+            ],
+            "after": [
+                ";"
+            ]
         },
         {
-            "before": ["Ö"],
-            "after": [","]
+            "before": [
+                "Ö"
+            ],
+            "after": [
+                ","
+            ]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": ["ö"],
-            "after": [";"]
+            "before": [
+                "ö"
+            ],
+            "after": [
+                ";"
+            ]
         },
         {
-            "before": ["Ö"],
-            "after": [","]
+            "before": [
+                "Ö"
+            ],
+            "after": [
+                ","
+            ]
         }
     ],
     "workbench.iconTheme": "material-icon-theme",

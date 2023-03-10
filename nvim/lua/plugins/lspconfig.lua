@@ -18,6 +18,13 @@ return {
     keys[#keys + 1] = { "<c-.>", vim.lsp.buf.code_action, desc = "Open code actions" }
     keys[#keys + 1] = { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" }
     keys[#keys + 1] = { "<F2>", vim.lsp.buf.rename, desc = "Rename" }
+    keys[#keys + 1] = {
+      "<a-l>",
+      function()
+        vim.lsp.buf.format({ async = true })
+      end,
+      desc = "Format",
+    }
   end,
   opts = {
     diagnostics = {
@@ -36,7 +43,9 @@ return {
       timeout_ms = nil,
     },
     servers = {
-      jsonls = {},
+      jsonls = {
+        cmd = { "vscode-json-languageserver", "--stdio" },
+      },
       lua_ls = {
         settings = {
           Lua = {
