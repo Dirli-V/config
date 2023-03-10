@@ -10,5 +10,5 @@ local d = ls.dynamic_node
 local r = ls.restore_node
 
 return {
-  s("ctrig", t("also loaded!!")),
+  s("tests", { t({ "#[cfg(test)]", "mod tests {", "    " }), i(0), t({ "", "}" }) }),
 }
