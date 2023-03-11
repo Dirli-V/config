@@ -4,6 +4,9 @@ return {
     updateevents = "TextChanged,TextChangedI",
   },
   keys = {
+    { "<tab>", false, mode = "i" },
+    { "<tab>", false, mode = "s" },
+    { "<s-tab>", false, mode = { "i", "s" } },
     {
       "<c-l>",
       function()
@@ -15,6 +18,29 @@ return {
         if ls.expandable() then
           ls.expand()
         end
+      end,
+      mode = { "i", "s" },
+    },
+    {
+      "<c-j>",
+      function()
+        return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+      end,
+      expr = true,
+      silent = true,
+      mode = "i",
+    },
+    {
+      "<c-j>",
+      function()
+        require("luasnip").jump(1)
+      end,
+      mode = "s",
+    },
+    {
+      "<c-h>",
+      function()
+        require("luasnip").jump(-1)
       end,
       mode = { "i", "s" },
     },
