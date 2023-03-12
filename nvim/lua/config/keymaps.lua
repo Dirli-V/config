@@ -1,6 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+local helpers = require("helpers")
 
 vim.g.maplocalleader = ","
 
@@ -50,12 +51,20 @@ map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save all file
 map("n", "<leader>yy", "", {
   desc = "Copy URL of open file",
   callback = function()
-    require("helpers").copy_git_file_to_clipboard(false)
+    helpers.copy_git_file_to_clipboard(false)
   end,
 })
 map("n", "<leader>yY", "", {
   desc = "Copy URL of open file (+ line number)",
   callback = function()
-    require("helpers").copy_git_file_to_clipboard(true)
+    helpers.copy_git_file_to_clipboard(true)
+  end,
+})
+
+map("n", "<c-l>", "", {
+  desc = "Select TS node under cursor",
+  callback = function()
+    local node = helpers.get_treesitter_node_under_cursor()
+    helpers.select_tresssitter_node(node)
   end,
 })
