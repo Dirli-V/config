@@ -67,7 +67,7 @@ map("n", "<c-l>", "", {
   callback = function()
     local node = helpers.get_treesitter_node_under_cursor()
     bufnr_to_node_history[vim.api.nvim_get_current_buf()] = { node }
-    helpers.select_tresssitter_node(node)
+    helpers.select_tresssitter_node(node, false)
   end,
 })
 map("x", "<c-l>", "", {
@@ -76,7 +76,21 @@ map("x", "<c-l>", "", {
     local bufnr = vim.api.nvim_get_current_buf()
     if bufnr_to_node_history[bufnr] == nil then
       local node = helpers.get_treesitter_node_under_cursor()
-      bufnr_to_node_history[vim.api.nvim_get_current_buf()] = { node }
+      bufnr_to_node_history[bufnr] = { node }
+    else
+      local parent = bufnr_to_node_history[bufnr][#bufnr_to_node_history[bufnr]]:parent()
+      table.insert(bufnr_to_node_history[bufnr], parent)
+    end
+    helpers.select_tresssitter_node(bufnr_to_node_history[bufnr][#bufnr_to_node_history[bufnr]], true)
+  end,
+})
+map("x", "<c-h>", "", {
+  desc = "Reduce selection to inner TS node",
+  callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    if bufnr_to_node_history[bufnr] ~= nil and #bufnr_to_node_history[bufnr] >= 2 then
+      table.remove(bufnr_to_node_history[bufnr])
+      helpers.select_tresssitter_node(bufnr_to_node_history[bufnr][#bufnr_to_node_history[bufnr]], true)
     end
   end,
 })
