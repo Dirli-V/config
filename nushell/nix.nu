@@ -1,2 +1,3 @@
 alias nr = sudo nixos-rebuild switch
-alias nn = (sudo nix-channel --update; nr)
+alias ncu = sudo nix-channel --update
+alias nn = (ncu; nr)
