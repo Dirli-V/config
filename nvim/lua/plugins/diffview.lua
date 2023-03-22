@@ -6,6 +6,7 @@ return {
   },
   keys = {
     { "<leader>gH", "<cmd>DiffviewFileHistory %<cr>", desc = "File History" },
+    { "<leader>gt", "<cmd>DiffviewToggleFiles<cr>", desc = "Toggle File View" },
     {
       "<leader>gd",
       function()
