@@ -14,6 +14,7 @@
 		"map x closeTabsOnRight",
 		"map X closeDownloadBar",
 		"map yF LinkHints.activateCopyLinkText",
+		"map gK LinkHints.unhoverLast",
 		""
 	],
 	"userDefinedCss": [
