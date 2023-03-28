@@ -11,6 +11,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 0;
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
+  virtualisation.libvirtd.enable = true;
 
   networking.hostName = "dirli-nixos";
   networking.networkmanager.enable = true;
@@ -59,7 +61,7 @@
   # Don't forget to set a password with ‘passwd’.
   users.users.dirli = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "video" ];
+    extraGroups = [ "wheel" "docker" "video" "libvirtd" "adbusers" ];
     shell = pkgs.nushell;
   };
   security.pam.services.swaylock = {
@@ -69,6 +71,7 @@
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.bluetooth.enable = true;
+  programs.adb.enable = true;
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -76,7 +79,11 @@
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
-  home-manager.users.dirli = { pkgs, ... }: {
+  home-manager.users.dirli = { config, pkgs, ... }:
+  let
+    config-files = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config";
+  in
+  {
     home.packages = with pkgs; [
       # sway start
       swaylock
@@ -94,7 +101,9 @@
       nodePackages.jsonlint
       nodePackages.stylelint
       nodePackages.vscode-json-languageserver
+      ltex-ls
       rustup
+      cargo-nextest
       ripgrep
       python3
       python3Packages.autopep8
@@ -114,9 +123,8 @@
       inlyne
       rust-analyzer
       spotify
+      spotify-tui
       steam
-      steamcmd
-      steam-tui
       wine
       _1password-gui
       helix
@@ -131,28 +139,19 @@
       wmctrl
       xclip
       # end of x things
+      android-studio
     ];
-    xdg.configFile.nushell = {
-      source = ./nushell;
-      recursive = true;
-    };
-    xdg.configFile.helix = {
-      source = ./helix;
-      recursive = true;
-    };
-    xdg.configFile."starship.toml" = {
-      source = ./starship.toml;
-    };
-    xdg.configFile.wezterm = {
-      source = ./wezterm;
-      recursive = true;
-    };
-    xdg.configFile.sway = {
-      source = ./sway;
-      recursive = true;
-    };
-    xdg.configFile."window_mover.yaml" = {
-      source = ./window_mover.yaml;
+    xdg.configFile = {
+      nushell.source = "${config-files}/nushell";
+      helix.source = "${config-files}/helix";
+      "starship.toml".source = "${config-files}/starship.toml";
+      wezterm.source = "${config-files}/wezterm";
+      sway.source = "${config-files}/sway";
+      k9s.source = "${config-files}/k9s";
+      "window_mover.yaml".source = "${config-files}/window_mover.yaml";
+      ".ideavimrc".source = "${config-files}/.ideavimrc";
+      nvim.source = "${config-files}/nvim";
+      btop.source = "${config-files}/btop";
     };
 
     home.stateVersion = "22.11";
@@ -176,10 +175,6 @@
       lfs.enable = true;
     };
 
-    xdg.configFile.nvim = {
-      source = ./nvim;
-      recursive = true;
-    };
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -193,7 +188,7 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    htop
+    btop
     cmake
     gnumake
     gcc
