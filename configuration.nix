@@ -64,124 +64,110 @@
     extraGroups = [ "wheel" "docker" "video" "libvirtd" "adbusers" ];
     shell = pkgs.nushell;
   };
-  security.pam.services.swaylock = {
-    text = "auth include login";
-  };
   security.polkit.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.bluetooth.enable = true;
   programs.adb.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
   home-manager.users.dirli = { config, pkgs, ... }:
-  let
-    config-files = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config";
-  in
-  {
-    home.packages = with pkgs; [
-      # sway start
-      swaylock
-      swayidle
-      wl-clipboard
-      mako
-      alacritty
-      wofi
-      waybar
-      # sway end
-      brave
-      discord
-      nodejs
-      nodePackages.cspell
-      nodePackages.jsonlint
-      nodePackages.stylelint
-      nodePackages.vscode-json-languageserver
-      ltex-ls
-      rustup
-      cargo-nextest
-      ripgrep
-      python3
-      python3Packages.autopep8
-      python3Packages.debugpy
-      sumneko-lua-language-server
-      stylua
-      fd
-      xplr
-      nushell
-      starship
-      wezterm
-      bandwhich
-      docker
-      k9s
-      proselint
-      codespell
-      inlyne
-      rust-analyzer
-      spotify
-      spotify-tui
-      steam
-      wine
-      _1password-gui
-      helix
-      lm_sensors
-      du-dust
-      signal-desktop
-      thunderbird
-      lutris
-      # x things
-      xdotool
-      xorg.xdpyinfo
-      wmctrl
-      xclip
-      # end of x things
-      android-studio
-    ];
-    xdg.configFile = {
-      nushell.source = "${config-files}/nushell";
-      helix.source = "${config-files}/helix";
-      "starship.toml".source = "${config-files}/starship.toml";
-      wezterm.source = "${config-files}/wezterm";
-      sway.source = "${config-files}/sway";
-      k9s.source = "${config-files}/k9s";
-      "window_mover.yaml".source = "${config-files}/window_mover.yaml";
-      ".ideavimrc".source = "${config-files}/.ideavimrc";
-      nvim.source = "${config-files}/nvim";
-      btop.source = "${config-files}/btop";
-    };
-
-    home.stateVersion = "22.11";
-
-    programs.home-manager.enable = true;
-
-    programs.git = {
-      enable = true;
-      userName = "Dirli-V";
-      userEmail = "github@dirli.net";
-      extraConfig = {
-        core = {
-          editor = "nvim";
-        };
-        push.autoSetupRemote = true;
-        init.defaultBranch = "main";
+    let
+      config-files = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config";
+    in
+    {
+      home.packages = with pkgs; [
+        alacritty
+        brave
+        discord
+        nodejs
+        nodePackages.cspell
+        nodePackages.jsonlint
+        nodePackages.stylelint
+        nodePackages.vscode-json-languageserver
+        ltex-ls
+        rustup
+        rnix-lsp
+        cargo-nextest
+        ripgrep
+        python3
+        python3Packages.autopep8
+        python3Packages.debugpy
+        sumneko-lua-language-server
+        stylua
+        fd
+        xplr
+        nushell
+        starship
+        wezterm
+        bandwhich
+        docker
+        k9s
+        proselint
+        codespell
+        inlyne
+        rust-analyzer
+        spotify
+        spotify-tui
+        steam
+        wine
+        _1password-gui
+        helix
+        lm_sensors
+        du-dust
+        signal-desktop
+        thunderbird
+        lutris
+        # x things
+        xdotool
+        xorg.xdpyinfo
+        wmctrl
+        xclip
+        # end of x things
+        android-studio
+        p7zip
+      ];
+      xdg.configFile = {
+        nushell.source = "${config-files}/nushell";
+        helix.source = "${config-files}/helix";
+        "starship.toml".source = "${config-files}/starship.toml";
+        wezterm.source = "${config-files}/wezterm";
+        k9s.source = "${config-files}/k9s";
+        "window_mover.yaml".source = "${config-files}/window_mover.yaml";
+        ".ideavimrc".source = "${config-files}/.ideavimrc";
+        nvim.source = "${config-files}/nvim";
+        btop.source = "${config-files}/btop";
       };
-      difftastic = {
+
+      home.stateVersion = "22.11";
+
+      programs.home-manager.enable = true;
+
+      programs.git = {
         enable = true;
+        userName = "Dirli-V";
+        userEmail = "github@dirli.net";
+        extraConfig = {
+          core = {
+            editor = "nvim";
+          };
+          push.autoSetupRemote = true;
+          init.defaultBranch = "main";
+        };
+        difftastic = {
+          enable = true;
+        };
+        lfs.enable = true;
       };
-      lfs.enable = true;
-    };
 
-    programs.neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
+      programs.neovim = {
+        enable = true;
+        defaultEditor = true;
+      };
 
-    programs.fzf.enable = true;
-  };
+      programs.fzf.enable = true;
+    };
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
 
