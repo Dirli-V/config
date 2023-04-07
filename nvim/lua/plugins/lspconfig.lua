@@ -64,6 +64,7 @@ return {
       rnix = {},
       taplo = {},
       pyright = {},
+      ruff_lsp = {},
       yamlls = {
         settings = {
           yaml = {

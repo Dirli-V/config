@@ -86,6 +86,7 @@
         nodePackages.jsonlint
         nodePackages.stylelint
         nodePackages.vscode-json-languageserver
+        ruff
         ltex-ls
         rustup
         rnix-lsp
