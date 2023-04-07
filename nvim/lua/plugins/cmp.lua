@@ -1,5 +1,8 @@
 return {
   "hrsh7th/nvim-cmp",
+  dependencies = {
+    "Saecki/crates.nvim",
+  },
   opts = function()
     local cmp = require("cmp")
     return {
@@ -22,6 +25,7 @@ return {
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "crates" },
         { name = "neorg" },
         { name = "luasnip" },
         { name = "buffer" },
