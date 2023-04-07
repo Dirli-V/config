@@ -1,4 +1,4 @@
-alias ll = ls -l
+alias ll = ls -la
 alias sc = systemctl
 alias ssc = sudo systemctl 
 alias sl = journalctl
