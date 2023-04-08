@@ -36,7 +36,7 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
-let-env PROMPT_COMMAND = (starship prompt)
+let-env PROMPT_COMMAND = {|| starship prompt }
 let-env PROMPT_COMMAND_RIGHT = ""
 let-env PATH = ($env.PATH | append ("~" | path expand | path join ".cargo/bin"))
 let-env EDITOR = "nvim"
