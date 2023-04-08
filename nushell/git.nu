@@ -26,7 +26,7 @@ alias gb = git branch
 alias gdf = git diff
 def grho [] {
     let $bname = (git symbolic-ref --short HEAD| str trim)
-    grh (echo "origin/" $bname | str collect)
+    grh (echo "origin/" $bname | str join)
 }
 def gu [bname] {
     if (gdf --exit-code | complete).exit_code == 0 {

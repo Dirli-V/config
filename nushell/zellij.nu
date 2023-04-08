@@ -11,7 +11,7 @@ def find-all-repos [] {
 }
 
 def z [repo: string@list-repos] {
-    let template = open --raw ~/.config/zellij/layouts/repo_template.yaml
+    let template = (open --raw ~/.config/zellij/layouts/repo_template.yaml)
     $template |
         str replace '{{session_name}}' $repo -s |
         save /tmp/zellij-repo-layout.yaml --raw

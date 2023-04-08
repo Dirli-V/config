@@ -4,8 +4,8 @@ alias btscan = bt scan on
 def list-bt-devices [] {
     bt devices | lines | each {|device|
         let parts = (echo $device | split row ' ')
-        echo ($parts | skip 2 | str collect) "[" ($parts | get 1) "]" |
-            str collect
+        echo ($parts | skip 2 | str join) "[" ($parts | get 1) "]" |
+            str join
     }
 }
 
