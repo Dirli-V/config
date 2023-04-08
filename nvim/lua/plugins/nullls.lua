@@ -24,6 +24,15 @@ return {
     call_and_append_if_is_executable(sources, function()
       return nls.builtins.formatting.fixjson
     end, "fixjson")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.formatting.alejandra
+    end, "alejandra")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.diagnostics.deadnix
+    end, "deadnix")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.code_actions.statix
+    end, "statix")
 
     return {
       sources = sources,
