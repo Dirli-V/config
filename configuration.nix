@@ -154,7 +154,7 @@
       "window_mover.yaml".source = "${config-files}/window_mover.yaml";
       ".ideavimrc".source = "${config-files}/.ideavimrc";
       nvim.source = "${config-files}/nvim";
-      btop.source = "${config-files}/btop";
+      btop.source = ./btop;
     };
 
     home.stateVersion = "22.11";
