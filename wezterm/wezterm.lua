@@ -1,37 +1,72 @@
 local wezterm = require("wezterm")
 local mux = wezterm.mux
-local home_path = os.getenv("HOME")
+local home_path = os.getenv("HOME") or ""
+
+-- see if the file exists
+local function file_exists(file)
+	local f = io.open(file, "rb")
+	if f then
+		f:close()
+	end
+	return f ~= nil
+end
+
+-- get all lines from a file, returns an empty
+-- list/table if the file does not exist
+local function lines_from(file)
+	if not file_exists(file) then
+		return {}
+	end
+	local lines = {}
+	for line in io.lines(file) do
+		lines[#lines + 1] = line
+	end
+	return lines
+end
 
 local launch_menu = {}
+local known_lables = {}
+local add_to_launch_menu = function(label, cwd)
+	if known_lables[label] ~= nil then
+		return
+	end
+	local counter = #launch_menu + 1
+	if counter == 8 then -- Ctrl + 8 does not work in wezterm
+		table.insert(launch_menu, {
+			label = "Reserved",
+			cwd = "",
+		})
+		counter = counter + 1
+	end
+	local prefix = ""
+	if counter <= 9 then
+		prefix = "(" .. counter .. ") "
+	else
+		prefix = "(F" .. (counter - 9) .. ") "
+	end
+	counter = counter + 1
 
-table.insert(launch_menu, {
-	label = "(1) config",
-	cwd = home_path .. "/config",
-})
+	table.insert(launch_menu, {
+		label = prefix .. label,
+		cwd = cwd,
+	})
+	known_lables[label] = true
+end
 
-local counter = 2
+add_to_launch_menu("config", home_path .. "/config")
+add_to_launch_menu("personal_config", home_path .. "/personal_config")
+
+local project_list = lines_from(home_path .. "/personal_config/projects.txt")
+for _, v in pairs(project_list) do
+	local sep_index = string.find(v, "=", 1, true)
+	local label = string.sub(v, 1, sep_index - 1)
+	local cwd = string.sub(v, sep_index + 1)
+	add_to_launch_menu(label, cwd:gsub("$HOME", home_path))
+end
 local dir_list = io.popen("dir -1 ~/repos")
 if dir_list ~= nil then
 	for dir in dir_list:lines() do
-		if counter == 8 then -- Ctrl + 8 does not work in wezterm
-			table.insert(launch_menu, {
-				label = "Reserved",
-				cwd = "",
-			})
-			counter = counter + 1
-		end
-		local prefix = ""
-		if counter <= 9 then
-			prefix = "(" .. counter .. ") "
-		else
-			prefix = "(F" .. (counter - 9) .. ") "
-		end
-		counter = counter + 1
-
-		table.insert(launch_menu, {
-			label = prefix .. dir,
-			cwd = home_path .. "/repos/" .. dir,
-		})
+		add_to_launch_menu(dir, home_path .. "/repos/" .. dir)
 	end
 	dir_list:close()
 end
