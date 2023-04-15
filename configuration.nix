@@ -28,6 +28,15 @@
     jack.enable = true;
   };
 
+  services.printing.enable = true;
+  # http://localhost:631/admin/
+  services.printing.drivers = [
+    pkgs.gutenprint
+    pkgs.gutenprintBin
+    pkgs.hplip
+    pkgs.hplipWithPlugin
+  ];
+
   xdg = {
     portal = {
       enable = true;
@@ -144,6 +153,7 @@
       android-studio
       p7zip
       qalculate-qt
+      mpv
     ];
     xdg.configFile = {
       nushell.source = "${config-files}/nushell";
