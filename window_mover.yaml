@@ -35,6 +35,13 @@ commands:
             top: 0
             width: 2520
             height: 1396
+        - window_names:
+            - mpv
+          position:
+            left: 1300
+            top: 0
+            width: 2518
+            height: 1396
       default:
         left: 1299
         top: -29
@@ -72,7 +79,14 @@ commands:
           position:
             left: 0
             top: 0
-            width: 1299 
+            width: 1299
+            height: 1440
+        - window_names:
+            - mpv
+          position:
+            left: 0
+            top: 0
+            width: 1297
             height: 1440
       default:
         left: 0
@@ -112,6 +126,13 @@ commands:
             left: 3819
             top: 0
             width: 1301
+            height: 1440
+        - window_names:
+            - mpv
+          position:
+            left: 3820
+            top: 0
+            width: 1300
             height: 1440
       default:
         left: 3819
