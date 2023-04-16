@@ -154,6 +154,7 @@
       p7zip
       qalculate-qt
       mpv
+      stremio
     ];
     xdg.configFile = {
       nushell.source = "${config-files}/nushell";
