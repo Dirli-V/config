@@ -1,12 +1,20 @@
 return {
   "L3MON4D3/LuaSnip",
+  build = (not jit.os:find("Windows"))
+      and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
+    or nil,
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
   opts = {
+    history = true,
+    delete_check_events = "TextChanged",
     updateevents = "TextChanged,TextChangedI",
   },
   keys = {
-    { "<tab>", false, mode = "i" },
-    { "<tab>", false, mode = "s" },
-    { "<s-tab>", false, mode = { "i", "s" } },
     {
       "<c-l>",
       function()
@@ -56,5 +64,6 @@ return {
       },
     }
     require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/lua/snippets" })
+    require("luasnip").setup(opts)
   end,
 }
