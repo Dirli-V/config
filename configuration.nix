@@ -155,6 +155,7 @@
       qalculate-qt
       mpv
       stremio
+      looking-glass-client
     ];
     xdg.configFile = {
       nushell.source = "${config-files}/nushell";
@@ -216,12 +217,12 @@
   ];
 
   # Keep a list of all installed packages in /etc/current-systempackages
-  environment.etc."current-systempackages".text = let
-    packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
-    sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
-    formatted = builtins.concatStringsSep "\n" sortedUnique;
-  in
-    formatted;
+  # environment.etc."current-systempackages".text = let
+  #   packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+  #   sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
+  #   formatted = builtins.concatStringsSep "\n" sortedUnique;
+  # in
+  #   formatted;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

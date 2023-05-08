@@ -1,10 +1,15 @@
 alias nr = sudo nixos-rebuild switch
 alias ncu = sudo nix-channel --update
-alias nn = (ncu; nr)
+def nn [] {
+  ncu
+  nr
+}
 alias nfu = nix flake update
-alias nfua = (fd flake.nix ~/personal_config/ |
+def nfua [] {
+  fd flake.nix ~/personal_config/ |
   lines |
-  each {|it| nix flake update (echo $it | path dirname) | echo "✔ " $it | str join })
+  each {|it| nix flake update (echo $it | path dirname) | echo "✔ " $it | str join }
+}
 
 def nd [name = ""] {
     if ("./flake.nix" | path exists) {
