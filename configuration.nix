@@ -158,6 +158,7 @@
       looking-glass-client
     ];
     xdg.configFile = {
+      alacritty.source = "${config-files}/alacritty";
       nushell.source = "${config-files}/nushell";
       helix.source = "${config-files}/helix";
       "starship.toml".source = "${config-files}/starship.toml";
