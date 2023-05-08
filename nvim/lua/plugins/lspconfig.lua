@@ -17,6 +17,7 @@ return {
     keys[#keys + 1] = { "<leader>k", vim.diagnostic.goto_prev }
     keys[#keys + 1] = { "<c-.>", vim.lsp.buf.code_action, desc = "Open code actions" }
     keys[#keys + 1] = { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" }
+    keys[#keys + 1] = { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" }
     keys[#keys + 1] = { "<F2>", vim.lsp.buf.rename, desc = "Rename" }
     keys[#keys + 1] = {
       "<a-l>",
@@ -81,6 +82,17 @@ return {
         return true
       end,
     },
+    additional_keys = {
+      ruff_lsp = {
+        {
+          "<a-o>",
+          function()
+            require("helpers").execute_code_action("source.organizeImports")
+          end,
+          desc = "Organize Imports",
+        },
+      },
+    },
   },
   config = function(_, opts)
     -- setup autoformat
@@ -89,6 +101,17 @@ return {
     require("lazyvim.util").on_attach(function(client, buffer)
       require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
       require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+
+      if opts.additional_keys[client.name] then
+        local Keys = require("lazy.core.handler.keys")
+        for _, keys in pairs(opts.additional_keys[client.name]) do
+          local key_opts = Keys.opts(keys)
+          key_opts.has = nil
+          key_opts.silent = key_opts.silent ~= false
+          key_opts.buffer = buffer
+          vim.keymap.set(keys.mode or "n", keys[1], keys[2], key_opts)
+        end
+      end
     end)
 
     -- diagnostics

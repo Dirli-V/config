@@ -22,6 +22,7 @@ map("n", "<leader>gG", "<nop>")
 map("n", "<leader>qq", "<nop>")
 map("n", "<leader>ft", "<nop>")
 map("n", "<leader>fT", "<nop>")
+map("n", "<leader>fR", "<nop>")
 
 map("n", "<cr>", "ciw", { desc = "Change inner word", remap = true })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Safe file" })

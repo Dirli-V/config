@@ -14,13 +14,8 @@ return {
       return nls.builtins.formatting.stylua
     end, "stylua")
     call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.black.with({
-        args = { "--quiet", "-" },
-      })
+      return nls.builtins.formatting.black
     end, "black")
-    call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.isort
-    end, "isort")
     call_and_append_if_is_executable(sources, function()
       return nls.builtins.formatting.fixjson
     end, "fixjson")
