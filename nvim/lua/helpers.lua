@@ -74,22 +74,6 @@ function M.find_executable(name)
   return M.trim(string.sub(result, binary_start_index + 1))
 end
 
-function M.get_treesitter_node_under_cursor()
-  local ts = require("vim.treesitter")
-  local pos = vim.api.nvim_win_get_cursor(0)
-  return ts.get_node_at_pos(0, pos[1] - 1, pos[2], {})
-end
-
-function M.select_tresssitter_node(node, is_in_visual_already)
-  local start_row, start_col, end_row, end_col = node:range()
-  if is_in_visual_already then
-    vim.cmd("normal! v")
-  end
-  vim.api.nvim_win_set_cursor(0, { start_row + 1, start_col })
-  vim.cmd("normal! v")
-  vim.api.nvim_win_set_cursor(0, { end_row + 1, end_col - 1 })
-end
-
 local make_code_action_params = function()
   local params = vim.lsp.util.make_range_params()
   params.context = {
