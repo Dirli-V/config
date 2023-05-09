@@ -1,9 +1,14 @@
-local icons = require("lazyvim.config").icons
-
 return {
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = {
+  "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
+  opts = function()
+    local icons = require("lazyconfig").icons
+
+    return {
+      options = {
+        theme = "auto",
+        globalstatus = true,
+      },
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch" },
@@ -17,7 +22,7 @@ return {
               hint = icons.diagnostics.Hint,
             },
           },
-          { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+          { "filename", path = 1, symbols = { modified = "  ", readonly = " 🔒 ", unnamed = "" } },
         },
         lualine_x = {
           {
@@ -39,6 +44,7 @@ return {
           { "location", padding = { left = 0, right = 1 } },
         },
       },
-    },
-  },
+      extensions = { "neo-tree", "lazy" },
+    }
+  end,
 }
