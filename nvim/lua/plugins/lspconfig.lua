@@ -10,12 +10,19 @@ return {
       end,
     },
     "simrat39/rust-tools.nvim",
+    "aznhe21/actions-preview.nvim",
   },
   init = function()
     local keys = require("lazylspkeymaps").get()
     keys[#keys + 1] = { "<leader>j", vim.diagnostic.goto_next }
     keys[#keys + 1] = { "<leader>k", vim.diagnostic.goto_prev }
-    keys[#keys + 1] = { "<c-.>", vim.lsp.buf.code_action, desc = "Open code actions" }
+    keys[#keys + 1] = {
+      "<c-.>",
+      function()
+        require("actions-preview").code_actions()
+      end,
+      desc = "Open code actions",
+    }
     keys[#keys + 1] = { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" }
     keys[#keys + 1] = { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" }
     keys[#keys + 1] = { "<F2>", vim.lsp.buf.rename, desc = "Rename" }
