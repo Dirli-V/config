@@ -6,7 +6,7 @@ M._keys = nil
 ---@return (LazyKeys|{has?:string})[]
 function M.get()
   local format = function()
-    require("lazyvim.plugins.lsp.format").format({ force = true })
+    require("lazylspformat").format({ force = true })
   end
   if not M._keys then
   ---@class PluginLspKeys
@@ -47,7 +47,7 @@ function M.get()
         has = "codeAction",
       }
     }
-    if require("lazyvim.util").has("inc-rename.nvim") then
+    if require("lazyutil").has("inc-rename.nvim") then
       M._keys[#M._keys + 1] = {
         "<leader>cr",
         function()

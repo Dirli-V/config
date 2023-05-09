@@ -1,4 +1,4 @@
-local Util = require("lazyvim.util")
+local Util = require("lazyutil")
 
 return {
   "nvim-telescope/telescope.nvim",

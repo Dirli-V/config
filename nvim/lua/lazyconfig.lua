@@ -152,10 +152,6 @@ function M.load(name)
       end,
     })
   end
-  -- always load lazyvim, then user file
-  if M.defaults[name] or name == "options" then
-    _load("lazyvim.config." .. name)
-  end
   _load("config." .. name)
   if vim.bo.filetype == "lazy" then
     -- HACK: LazyVim may have overwritten options of the Lazy ui, so reset this here
@@ -168,12 +164,12 @@ function M.init()
   if not M.did_init then
     M.did_init = true
     -- delay notifications till vim.notify was replaced or after 500ms
-    require("lazyvim.util").lazy_notify()
+    require("lazyutil").lazy_notify()
 
     -- load options here, before lazy init while sourcing plugin modules
     -- this is needed to make sure options will be correctly applied
     -- after installing missing plugins
-    require("lazyvim.config").load("options")
+    require("lazyconfig").load("options")
     local Plugin = require("lazy.core.plugin")
     local add = Plugin.Spec.add
     Plugin.Spec.add = function(self, plugin, ...)

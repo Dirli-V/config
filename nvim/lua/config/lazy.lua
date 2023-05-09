@@ -6,9 +6,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+require("lazyconfig").init()
+
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "plugins" },
   },
   defaults = {
@@ -34,3 +36,5 @@ require("lazy").setup({
     },
   },
 })
+
+require("lazyconfig").setup()
