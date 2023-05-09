@@ -6,13 +6,13 @@ return {
     {
       "hrsh7th/cmp-nvim-lsp",
       cond = function()
-        return require("lazyvim.util").has("nvim-cmp")
+        return require("lazyutil").has("nvim-cmp")
       end,
     },
     "simrat39/rust-tools.nvim",
   },
   init = function()
-    local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    local keys = require("lazylspkeymaps").get()
     keys[#keys + 1] = { "<leader>j", vim.diagnostic.goto_next }
     keys[#keys + 1] = { "<leader>k", vim.diagnostic.goto_prev }
     keys[#keys + 1] = { "<c-.>", vim.lsp.buf.code_action, desc = "Open code actions" }
@@ -30,15 +30,15 @@ return {
   opts = {
     diagnostics = {
       underline = true,
-      virtual_text = { spacing = 4, prefix = "●" },
+      virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "icons",
+      },
       severity_sort = true,
       update_in_insert = true,
     },
-    -- Automatically format on save
     autoformat = true,
-    -- options for vim.lsp.buf.format
-    -- `bufnr` and `filter` is handled by the LazyVim formatter,
-    -- but can be also overridden when specified
     format = {
       formatting_options = nil,
       timeout_ms = nil,
@@ -96,11 +96,11 @@ return {
   },
   config = function(_, opts)
     -- setup autoformat
-    require("lazyvim.plugins.lsp.format").autoformat = opts.autoformat
+    require("lazylspformat").autoformat = opts.autoformat
     -- setup formatting and keymaps
-    require("lazyvim.util").on_attach(function(client, buffer)
-      require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
-      require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+    require("lazyutil").on_attach(function(client, buffer)
+      require("lazylspformat").on_attach(client, buffer)
+      require("lazylspkeymaps").on_attach(client, buffer)
 
       if opts.additional_keys[client.name] then
         local Keys = require("lazy.core.handler.keys")
@@ -115,7 +115,7 @@ return {
     end)
 
     -- diagnostics
-    for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
+    for name, icon in pairs(require("lazyconfig").icons.diagnostics) do
       name = "DiagnosticSign" .. name
       vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
     end
