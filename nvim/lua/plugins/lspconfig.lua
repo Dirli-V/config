@@ -12,28 +12,6 @@ return {
     "simrat39/rust-tools.nvim",
     "aznhe21/actions-preview.nvim",
   },
-  init = function()
-    local keys = require("lazylspkeymaps").get()
-    keys[#keys + 1] = { "<leader>j", vim.diagnostic.goto_next }
-    keys[#keys + 1] = { "<leader>k", vim.diagnostic.goto_prev }
-    keys[#keys + 1] = {
-      "<c-.>",
-      function()
-        require("actions-preview").code_actions()
-      end,
-      desc = "Open code actions",
-    }
-    keys[#keys + 1] = { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" }
-    keys[#keys + 1] = { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" }
-    keys[#keys + 1] = { "<F2>", vim.lsp.buf.rename, desc = "Rename" }
-    keys[#keys + 1] = {
-      "<a-l>",
-      function()
-        vim.lsp.buf.format({ async = true })
-      end,
-      desc = "Format",
-    }
-  end,
   opts = {
     diagnostics = {
       underline = true,
@@ -104,7 +82,7 @@ return {
   config = function(_, opts)
     require("lazyutil").on_attach(function(client, buffer)
       require("lspformat").on_attach(client, buffer)
-      require("lazylspkeymaps").on_attach(client, buffer)
+      require("config.lspkeymaps").on_attach(client, buffer)
 
       if opts.additional_keys[client.name] then
         local Keys = require("lazy.core.handler.keys")
