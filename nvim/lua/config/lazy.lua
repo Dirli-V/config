@@ -6,18 +6,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("lazyconfig").init()
+require("config.options")
 
 require("lazy").setup({
   spec = {
-    -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "plugins" },
   },
   defaults = {
     lazy = true,
     version = false,
   },
-  install = { colorscheme = { "tokyonight" } },
   checker = { enabled = false },
   change_detection = { enabled = false },
   performance = {
@@ -37,4 +35,5 @@ require("lazy").setup({
   },
 })
 
-require("lazyconfig").setup()
+require("config.autocmds")
+require("config.keymaps")
