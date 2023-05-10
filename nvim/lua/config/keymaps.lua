@@ -90,7 +90,7 @@ map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 
 -- toggle options
-map("n", "<leader>uf", require("lazylspformat").toggle, { desc = "Toggle format on Save" })
+map("n", "<leader>uf", require("lspformat").toggle, { desc = "Toggle format on Save" })
 map("n", "<leader>us", function()
   Util.toggle("spell")
 end, { desc = "Toggle Spelling" })

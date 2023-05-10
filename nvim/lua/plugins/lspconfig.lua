@@ -102,11 +102,8 @@ return {
     },
   },
   config = function(_, opts)
-    -- setup autoformat
-    require("lazylspformat").autoformat = opts.autoformat
-    -- setup formatting and keymaps
     require("lazyutil").on_attach(function(client, buffer)
-      require("lazylspformat").on_attach(client, buffer)
+      require("lspformat").on_attach(client, buffer)
       require("lazylspkeymaps").on_attach(client, buffer)
 
       if opts.additional_keys[client.name] then
