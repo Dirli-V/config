@@ -3,7 +3,7 @@ return {
   keys = {
     { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
     { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-    { "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+    { "gs", mode = { "n", "x", "o" }, desc = "Leap cross window" },
   },
   config = function(_, opts)
     local leap = require("leap")
@@ -13,8 +13,7 @@ return {
     for _, _1_ in ipairs({
       { { "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", "Leap forward to" },
       { { "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", "Leap backward to" },
-      { { "n", "x", "o" }, "gs", "<Plug>(leap-from-window)", "Leap from window" },
-      { { "n", "x", "o" }, "gs", "<Plug>(leap-cross-window)", "Leap from window" },
+      { { "n", "x", "o" }, "gs", "<Plug>(leap-cross-window)", "Leap cross window" },
     }) do
       local _each_2_ = _1_
       local modes = _each_2_[1]
