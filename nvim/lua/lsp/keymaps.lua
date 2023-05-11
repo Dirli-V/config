@@ -9,7 +9,7 @@ function M.diagnostic_goto(next, severity)
 end
 
 local format = function()
-  require("lspformat").format({ force = true })
+  require("lsp.format").format({ force = true })
 end
 
 LspKeys = {

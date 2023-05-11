@@ -5,7 +5,7 @@ return {
     {
       "<leader>E",
       function()
-        require("neo-tree.command").execute({ toggle = true, dir = require("lazyutil").get_root() })
+        require("neo-tree.command").execute({ toggle = true, dir = require("helpers").get_root() })
       end,
       desc = "Explorer NeoTree (root dir)",
     },
@@ -20,6 +20,7 @@ return {
   init = function()
     vim.g.neo_tree_remove_legacy_commands = 1
     if vim.fn.argc() == 1 then
+      ---@diagnostic disable-next-line: param-type-mismatch
       local stat = vim.loop.fs_stat(vim.fn.argv(0))
       if stat and stat.type == "directory" then
         require("neo-tree")

@@ -28,7 +28,7 @@ function M.format(opts)
   local have_nls = package.loaded["null-ls"]
     and (#require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0)
 
-  vim.lsp.buf.format(vim.tbl_deep_extend("force", {
+  vim.lsp.buf.format({
     bufnr = buf,
     filter = function(client)
       if have_nls then
@@ -36,11 +36,14 @@ function M.format(opts)
       end
       return client.name ~= "null-ls"
     end,
-  }, require("lazyutil").opts("nvim-lspconfig").format or {}))
+    formatting_options = {
+      trimTrailingWhitespace = true,
+    },
+  })
 end
 
 function M.on_attach(client, buf)
-  -- dont format if client disabled it
+  -- don't format if client disabled it
   if
     client.config
     and client.config.capabilities

@@ -1,3 +1,19 @@
+local next_entry = function()
+  if require("trouble").is_open() then
+    require("trouble").next({ skip_groups = true, jump = true })
+  else
+    vim.cmd.cnext()
+  end
+end
+
+local previous_entry = function()
+  if require("trouble").is_open() then
+    require("trouble").previous({ skip_groups = true, jump = true })
+  else
+    vim.cmd.cprev()
+  end
+end
+
 return {
   "folke/trouble.nvim",
   cmd = { "TroubleToggle", "Trouble" },
@@ -9,35 +25,23 @@ return {
     { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
     {
       "[q",
-      function()
-        if require("trouble").is_open() then
-          require("trouble").previous({ skip_groups = true, jump = true })
-        else
-          vim.cmd.cprev()
-        end
-      end,
+      previous_entry,
       desc = "Previous trouble/quickfix item",
     },
     {
       "]q",
-      function()
-        if require("trouble").is_open() then
-          require("trouble").next({ skip_groups = true, jump = true })
-        else
-          vim.cmd.cnext()
-        end
-      end,
+      next_entry,
       desc = "Next trouble/quickfix item",
     },
     { "<leader>q", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
     {
       "<c-j>",
-      "]q",
+      next_entry,
       desc = "Trouble next entry",
     },
     {
       "<c-k>",
-      "[q",
+      previous_entry,
       desc = "Trouble previous entry",
     },
     { "<c-q>", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },

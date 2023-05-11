@@ -1,4 +1,4 @@
-local Util = require("lazyutil")
+local Util = require("lazy.core.util")
 local helpers = require("helpers")
 
 vim.g.maplocalleader = ","
@@ -84,30 +84,55 @@ map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 
 -- toggle options
-map("n", "<leader>uf", require("lspformat").toggle, { desc = "Toggle format on Save" })
+---@param silent boolean?
+---@param values? {[1]:any, [2]:any}
+local function toggle_option(option, silent, values)
+  if values then
+    if vim.opt_local[option]:get() == values[1] then
+      vim.opt_local[option] = values[2]
+    else
+      vim.opt_local[option] = values[1]
+    end
+    return Util.info("Set " .. option .. " to " .. vim.opt_local[option]:get(), { title = "Option" })
+  end
+  vim.opt_local[option] = not vim.opt_local[option]:get()
+  if not silent then
+    if vim.opt_local[option]:get() then
+      Util.info("Enabled " .. option, { title = "Option" })
+    else
+      Util.warn("Disabled " .. option, { title = "Option" })
+    end
+  end
+end
+
+local diagnostics_enabled = true
+local function toggle_diagnostics()
+  diagnostics_enabled = not diagnostics_enabled
+  if diagnostics_enabled then
+    vim.diagnostic.enable()
+    Util.info("Enabled diagnostics", { title = "Diagnostics" })
+  else
+    vim.diagnostic.disable()
+    Util.warn("Disabled diagnostics", { title = "Diagnostics" })
+  end
+end
+
+map("n", "<leader>uf", require("lsp.format").toggle, { desc = "Toggle format on Save" })
 map("n", "<leader>us", function()
-  Util.toggle("spell")
+  toggle_option("spell")
 end, { desc = "Toggle Spelling" })
 map("n", "<leader>uw", function()
-  Util.toggle("wrap")
+  toggle_option("wrap")
 end, { desc = "Toggle Word Wrap" })
 map("n", "<leader>ul", function()
-  Util.toggle("relativenumber", true)
-  Util.toggle("number")
+  toggle_option("relativenumber", true)
+  toggle_option("number")
 end, { desc = "Toggle Line Numbers" })
-map("n", "<leader>ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
+map("n", "<leader>ud", toggle_diagnostics, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 map("n", "<leader>uc", function()
-  Util.toggle("conceallevel", false, { 0, conceallevel })
+  toggle_option("conceallevel", false, { 0, conceallevel })
 end, { desc = "Toggle Conceal" })
-
--- lazygit
-map("n", "<leader>gg", function()
-  Util.float_term({ "lazygit" }, { cwd = Util.get_root(), esc_esc = false })
-end, { desc = "Lazygit (root dir)" })
-map("n", "<leader>gG", function()
-  Util.float_term({ "lazygit" }, { esc_esc = false })
-end, { desc = "Lazygit (cwd)" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
@@ -116,15 +141,6 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 if vim.fn.has("nvim-0.9.0") == 1 then
   map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 end
-
--- floating terminal
-map("n", "<leader>ft", function()
-  Util.float_term(nil, { cwd = Util.get_root() })
-end, { desc = "Terminal (root dir)" })
-map("n", "<leader>fT", function()
-  Util.float_term()
-end, { desc = "Terminal (cwd)" })
-map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- windows
 map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })

@@ -1,4 +1,25 @@
-local Util = require("lazyutil")
+local helpers = require("helpers")
+
+-- this will return a function that calls telescope.
+-- cwd will default to lazyvim.util.get_root
+-- for `files`, git_files or find_files will be chosen depending on .git
+local function telescope_with_cwd(builtin, opts)
+  local params = { builtin = builtin, opts = opts }
+  return function()
+    builtin = params.builtin
+    opts = params.opts
+    opts = vim.tbl_deep_extend("force", { cwd = helpers.get_root() }, opts or {})
+    if builtin == "files" then
+      if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
+        opts.show_untracked = true
+        builtin = "git_files"
+      else
+        builtin = "find_files"
+      end
+    end
+    require("telescope.builtin")[builtin](opts)
+  end
+end
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -12,15 +33,16 @@ return {
       end,
     },
     "nvim-lua/plenary.nvim",
+    "folke/trouble.nvim",
   },
   keys = {
     { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-    { "<leader>/", Util.telescope("live_grep"), desc = "Grep (root dir)" },
+    { "<leader>/", telescope_with_cwd("live_grep"), desc = "Grep (root dir)" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
+    { "<leader><space>", telescope_with_cwd("files"), desc = "Find Files (root dir)" },
     -- find
-    { "<leader>F", Util.telescope("files"), desc = "Find Files (root dir)" },
-    { "<leader>f", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+    { "<leader>F", telescope_with_cwd("files"), desc = "Find Files (root dir)" },
+    { "<leader>f", telescope_with_cwd("files", { cwd = false }), desc = "Find Files (cwd)" },
     -- git
     { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
     { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
@@ -31,20 +53,20 @@ return {
     { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
     { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
-    { "<leader>sg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
-    { "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
+    { "<leader>sg", telescope_with_cwd("live_grep"), desc = "Grep (root dir)" },
+    { "<leader>sG", telescope_with_cwd("live_grep", { cwd = false }), desc = "Grep (cwd)" },
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
     { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
     { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
     { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
     { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-    { "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
-    { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
-    { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
+    { "<leader>sw", telescope_with_cwd("grep_string"), desc = "Word (root dir)" },
+    { "<leader>sW", telescope_with_cwd("grep_string", { cwd = false }), desc = "Word (cwd)" },
+    { "<leader>uC", telescope_with_cwd("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
     {
       "<leader>ss",
-      Util.telescope("lsp_document_symbols", {
+      telescope_with_cwd("lsp_document_symbols", {
         symbols = {
           "Class",
           "Function",
@@ -62,7 +84,7 @@ return {
     },
     {
       "<leader>sS",
-      Util.telescope("lsp_dynamic_workspace_symbols", {
+      telescope_with_cwd("lsp_dynamic_workspace_symbols", {
         symbols = {
           "Class",
           "Function",
@@ -93,10 +115,10 @@ return {
             return require("trouble.providers.telescope").open_selected_with_trouble(...)
           end,
           ["<a-i>"] = function()
-            Util.telescope("find_files", { no_ignore = true })()
+            telescope_with_cwd("find_files", { no_ignore = true })()
           end,
           ["<a-h>"] = function()
-            Util.telescope("find_files", { hidden = true })()
+            telescope_with_cwd("find_files", { hidden = true })()
           end,
           ["<C-Down>"] = function(...)
             return require("telescope.actions").cycle_history_next(...)

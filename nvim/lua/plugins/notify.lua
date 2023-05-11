@@ -19,9 +19,11 @@ return {
     end,
   },
   init = function()
-    local Util = require("lazyutil")
-    Util.on_very_lazy(function()
-      vim.notify = require("notify")
-    end)
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "VeryLazy",
+      callback = function()
+        vim.notify = require("notify")
+      end,
+    })
   end,
 }

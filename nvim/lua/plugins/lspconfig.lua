@@ -1,14 +1,20 @@
+---@param on_attach fun(client, buffer)
+local function on_lsp_attach(on_attach)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local buffer = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      on_attach(client, buffer)
+    end,
+  })
+end
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
-    {
-      "hrsh7th/cmp-nvim-lsp",
-      cond = function()
-        return require("lazyutil").has("nvim-cmp")
-      end,
-    },
+    "hrsh7th/cmp-nvim-lsp",
     "simrat39/rust-tools.nvim",
     "aznhe21/actions-preview.nvim",
   },
@@ -18,15 +24,9 @@ return {
       virtual_text = {
         spacing = 4,
         source = "if_many",
-        prefix = "icons",
       },
       severity_sort = true,
       update_in_insert = true,
-    },
-    autoformat = true,
-    format = {
-      formatting_options = nil,
-      timeout_ms = nil,
     },
     servers = {
       jsonls = {
@@ -80,9 +80,9 @@ return {
     },
   },
   config = function(_, opts)
-    require("lazyutil").on_attach(function(client, buffer)
-      require("lspformat").on_attach(client, buffer)
-      require("config.lspkeymaps").on_attach(client, buffer)
+    on_lsp_attach(function(client, buffer)
+      require("lsp.format").on_attach(client, buffer)
+      require("lsp.keymaps").on_attach(client, buffer)
 
       if opts.additional_keys[client.name] then
         local Keys = require("lazy.core.handler.keys")
