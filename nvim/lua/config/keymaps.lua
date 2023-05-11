@@ -75,7 +75,7 @@ map("v", ">", ">gv")
 map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
 -- new file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<leader>cn", "<cmd>enew<cr>", { desc = "New File" })
 
 map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
@@ -134,19 +134,12 @@ map("n", "<leader>uc", function()
   toggle_option("conceallevel", false, { 0, conceallevel })
 end, { desc = "Toggle Conceal" })
 
--- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-
 -- highlights under cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
   map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 end
 
 -- windows
-map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
-map("n", "<leader>w-", "<C-W>s", { desc = "Split window below" })
-map("n", "<leader>w|", "<C-W>v", { desc = "Split window right" })
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
 
@@ -158,27 +151,13 @@ map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
-map("n", "<leader>ww", "<nop>")
-map("n", "<leader>wd", "<nop>")
-map("n", "<leader>w-", "<nop>")
-map("n", "<leader>w|", "<nop>")
-map("n", "<leader>fn", "<nop>")
-map("n", "<leader>gg", "<nop>")
-map("n", "<leader>gG", "<nop>")
-map("n", "<leader>qq", "<nop>")
-map("n", "<leader>ft", "<nop>")
-map("n", "<leader>fT", "<nop>")
-map("n", "<leader>fR", "<nop>")
-
 map("n", "<cr>", "ciw", { desc = "Change inner word", remap = true })
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Safe file" })
 map("n", "<leader>W", "<cmd>wa<cr>", { desc = "Safe all files" })
 
 map({ "n", "x" }, "d", '"_d')
-map("n", "dd", '"_dd')
 map({ "n", "x" }, "D", '"_D')
 map({ "n", "x" }, "c", '"_c')
-map("n", "cc", '"_cc')
 map({ "n", "x" }, "C", '"_C')
 map("n", "x", "d")
 map("n", "X", "D")
@@ -188,12 +167,10 @@ map("x", "p", '"_dP')
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
-map("n", "gh", "<c-w>h", { desc = "Go to left window" })
-map("n", "gl", "<c-w>l", { desc = "Go to right window" })
-map("n", "gj", "<c-w>j", { desc = "Go to down window" })
-map("n", "gk", "<c-w>k", { desc = "Go to up window" })
-
-map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save all file" })
+map("n", "<left>", "<c-w>h", { desc = "Go to left window" })
+map("n", "<right>", "<c-w>l", { desc = "Go to right window" })
+map("n", "<down>", "<c-w>j", { desc = "Go to down window" })
+map("n", "<up>", "<c-w>k", { desc = "Go to up window" })
 
 map("n", "<leader>yy", "", {
   desc = "Copy URL of open file",

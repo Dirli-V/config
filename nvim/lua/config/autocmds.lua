@@ -50,6 +50,8 @@ vim.api.nvim_create_autocmd("FileType", {
     "startuptime",
     "tsplayground",
     "checkhealth",
+    "neotest-output",
+    "symboltree",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -134,17 +136,5 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.cmd("cclose")
       vim.cmd("Trouble quickfix")
     end)
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
-    "neotest-output",
-    "symboltree",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })

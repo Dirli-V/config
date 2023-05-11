@@ -63,20 +63,6 @@ function M.trim(str)
   return (str:gsub("^%s*(.-)%s*$", "%1"))
 end
 
-function M.find_executable(name)
-  ---@diagnostic disable-next-line: undefined-field
-  local result = vim.api.nvim_exec("!whereis " .. name, true)
-  local binary_start_index = string.find(result, ": ", 1, true)
-  if not binary_start_index then
-    return nil
-  end
-  local binary_end_index = string.find(result, " ", binary_start_index + 2, true)
-  if binary_end_index then
-    return M.trim(string.sub(result, binary_start_index + 1, binary_end_index))
-  end
-  return M.trim(string.sub(result, binary_start_index + 1))
-end
-
 local make_code_action_params = function()
   local params = vim.lsp.util.make_range_params()
   params.context = {

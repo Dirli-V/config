@@ -6,7 +6,6 @@ return {
   ft = "java",
   config = function(_, _)
     local jdtls = require("jdtls")
-    local helpers = require("helpers")
     local root_markers = { "gradlew", ".git" }
     local root_dir = require("jdtls.setup").find_root(root_markers)
     local home = os.getenv("HOME")
@@ -25,7 +24,7 @@ return {
 
     local config = {
       cmd = {
-        helpers.find_executable("jdt-language-server"),
+        vim.fn.exepath("jdt-language-server"),
         "-data",
         workspace_folder,
       },

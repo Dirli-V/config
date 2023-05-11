@@ -3,9 +3,6 @@ return {
   event = "BufReadPre",
   opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" } },
   keys = {
-    { "<leader>qs", false },
-    { "<leader>ql", false },
-    { "<leader>qd", false },
     {
       "<leader>br",
       function()

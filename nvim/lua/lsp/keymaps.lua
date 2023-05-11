@@ -13,7 +13,7 @@ local format = function()
 end
 
 LspKeys = {
-  { "go", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+  { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
   { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
   { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
   { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
@@ -32,6 +32,7 @@ LspKeys = {
   { "<a-l>", format, desc = "Format Document", has = "documentFormatting" },
   { "<a-l>", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
   { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
+  { "<F2>", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
   {
     "<c-.>",
     function()
@@ -41,7 +42,6 @@ LspKeys = {
   },
   { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" },
   { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" },
-  { "<F2>", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
 }
 
 function M.on_attach(client, buffer)

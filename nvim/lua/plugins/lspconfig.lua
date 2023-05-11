@@ -13,7 +13,10 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+    {
+      "folke/neodev.nvim",
+      opts = {}, -- opts needs to specified for working plugin
+    },
     "hrsh7th/cmp-nvim-lsp",
     "simrat39/rust-tools.nvim",
     "aznhe21/actions-preview.nvim",

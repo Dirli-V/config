@@ -36,7 +36,7 @@ return {
     "folke/trouble.nvim",
   },
   keys = {
-    { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
+    { "<leader>sb", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
     { "<leader>/", telescope_with_cwd("live_grep"), desc = "Grep (root dir)" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
     { "<leader><space>", telescope_with_cwd("files"), desc = "Find Files (root dir)" },
@@ -48,9 +48,9 @@ return {
     { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
     -- search
     { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-    { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-    { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<leader>sB", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+    { "<leader>sC", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+    { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
     { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
     { "<leader>sg", telescope_with_cwd("live_grep"), desc = "Grep (root dir)" },
