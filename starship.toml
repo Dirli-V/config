@@ -1,15 +1,23 @@
-format = "$directory$git_branch$python$git_state$git_status$status"
+format = "$directory$nix_shell$python$java$git_branch$git_state$git_status$status"
 add_newline = false
 
-[git_branch]
-symbol = " "
+[nix_shell]
+symbol = "  "
+format = "[$symbol]($style)"
 
 [python]
 symbol = " "
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[java]
+format = "[${symbol}(${version} )]($style)"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [status]
 disabled = false
 
 [directory]
 truncation_length = 8
-
