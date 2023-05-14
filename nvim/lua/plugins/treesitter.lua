@@ -6,6 +6,7 @@ return {
     "HiPhish/nvim-ts-rainbow2",
     "JoosepAlviste/nvim-ts-context-commentstring",
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/nvim-treesitter-context"
   },
   keys = {
     { "<bs>", desc = "Increment selection" },
