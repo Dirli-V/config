@@ -105,6 +105,7 @@
       nodePackages.jsonlint
       nodePackages.stylelint
       nodePackages.vscode-json-languageserver
+      nodePackages.fixjson
       ruff
       taplo
       ltex-ls

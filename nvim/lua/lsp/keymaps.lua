@@ -14,7 +14,6 @@ end
 
 LspKeys = {
   { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-  { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
   { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
   { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
   { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
@@ -49,6 +48,7 @@ function M.on_attach(client, buffer)
 
   for _, keys in pairs(LspKeys) do
     local parsedKeys = Keys.parse(keys)
+    ---@diagnostic disable-next-line: undefined-field
     if not parsedKeys.has or client.server_capabilities[parsedKeys.has .. "Provider"] then
       local opts = Keys.opts(parsedKeys)
       opts.has = nil

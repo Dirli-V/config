@@ -11,7 +11,7 @@ end
 
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+  event = "BufNew",
   dependencies = {
     {
       "folke/neodev.nvim",
@@ -20,6 +20,9 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "simrat39/rust-tools.nvim",
     "aznhe21/actions-preview.nvim",
+  },
+  keys = {
+    { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
   },
   opts = {
     diagnostics = {
