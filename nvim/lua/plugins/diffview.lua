@@ -14,7 +14,7 @@ return {
         vim.api.nvim_exec("!git fetch origin " .. branch, false)
         vim.api.nvim_command("DiffviewOpen origin/" .. branch)
       end,
-      desc = "Diff with ...",
+      desc = "Diff with origin ...",
     },
     {
       "<leader>gD",
