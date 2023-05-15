@@ -19,5 +19,6 @@ def nd [name = ""] {
     let repo_path = (git rev-parse --show-toplevel)
     let repo_name = (echo $repo_path | path basename)
     let path = (echo (pwd) | path relative-to $repo_path)
-    nix develop (echo ("~/personal_config/flakes" | path join $repo_name | path join $path) "#" $name | str join)
+    let flake_path = ("~/personal_config/flakes" | path join $repo_name | path join $path | path expand)
+    nix develop (echo $flake_path "#" $name | str join)
 }
