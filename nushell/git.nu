@@ -5,6 +5,7 @@ alias ga = git rebase -i --autosquash
 alias gs = git status
 alias gc = git commit
 alias gca = git commit --amend
+alias gcp = git cherry-pick
 alias gp = git push
 alias gpf = git push --force-with-lease
 def gpu [] {
@@ -23,6 +24,8 @@ alias grh = git reset --hard
 alias gre = git restore --staged
 alias gd = git add
 alias gb = git branch
+alias gbd = git branch -d
+alias gbD = git branch -D
 alias gdf = git diff
 def grho [] {
     let $bname = (git symbolic-ref --short HEAD| str trim)
