@@ -135,9 +135,7 @@ map("n", "<leader>uc", function()
 end, { desc = "Toggle Conceal" })
 
 -- highlights under cursor
-if vim.fn.has("nvim-0.9.0") == 1 then
-  map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
-end
+map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 
 -- windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
