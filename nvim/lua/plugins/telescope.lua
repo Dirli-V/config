@@ -139,6 +139,15 @@ return {
           end,
         },
       },
+      sorting_strategy = "ascending",
+      layout_config = {
+        horizontal = {
+          height = 0.95,
+          preview_cutoff = 120,
+          prompt_position = "top",
+          width = 0.95,
+        },
+      },
     },
   },
 }
