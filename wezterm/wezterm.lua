@@ -153,7 +153,7 @@ end)
 return {
 	default_cwd = home_path .. "/repos",
 	font = wezterm.font("FiraCode Nerd Font"),
-	font_size = 18.0,
+	font_size = 17.0,
 	color_scheme = "tokyonight-storm",
 	launch_menu = launch_menu,
 	tab_bar_at_bottom = true,
