@@ -31,14 +31,23 @@ return {
       root_dir = root_dir,
       settings = {
         java = {
+          autobuild = { enabled = false },
+          signatureHelp = { enabled = true },
+          contentProvider = { preferred = "fernflower" },
+          saveActions = {
+            organizeImports = true,
+          },
           configuration = {
             runtimes = runtimes,
           },
         },
       },
+      handlers = {
+        ["language/status"] = function() end,
+      },
       on_attach = function(client, buffer)
-        require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
-        require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+        require("lsp.format").on_attach(client, buffer)
+        require("lsp.keymaps").on_attach(client, buffer)
         jdtls.setup_dap({ hotcodereplace = "auto" })
         jdtls.setup.add_commands()
 

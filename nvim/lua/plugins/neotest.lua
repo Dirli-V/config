@@ -1,8 +1,11 @@
 return {
   "nvim-neotest/neotest",
   dependencies = {
+    "mfussenegger/nvim-dap",
     "nvim-neotest/neotest-python",
     "rouge8/neotest-rust",
+    "nvim-neotest/neotest-vim-test",
+    "vim-test/vim-test",
   },
   -- stylua: ignore
   keys = {
@@ -22,6 +25,9 @@ return {
       adapters = {
         require("neotest-python"),
         require("neotest-rust"),
+        require("neotest-vim-test")({
+          allow_file_types = { "java" },
+        }),
       },
     })
   end,
