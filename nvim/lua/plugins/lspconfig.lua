@@ -53,7 +53,7 @@ return {
       ltex = {},
       rust_analyzer = {},
       tsserver = {},
-      rnix = {},
+      nil_ls = {},
       taplo = {},
       pyright = {},
       ruff_lsp = {},

@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ../hardware-configuration.nix
     <home-manager/nixos>
@@ -110,7 +105,7 @@
       taplo
       ltex-ls
       rustup
-      rnix-lsp
+      nil
       alejandra
       deadnix
       statix
