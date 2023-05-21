@@ -4,6 +4,7 @@ def nn [] {
   ncu
   nr
 }
+alias nsp = nix-shell -p
 alias nfu = nix flake update
 def nfua [] {
   fd flake.nix ~/personal_config/ |

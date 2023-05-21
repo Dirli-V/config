@@ -127,7 +127,6 @@
       proselint
       codespell
       inlyne
-      rust-analyzer
       spotify
       spotify-tui
       cider
