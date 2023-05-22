@@ -14,6 +14,10 @@
         specialArgs = {inherit inputs;};
         modules = [./desktop.nix];
       };
+      nas = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [./nas.nix];
+      };
     };
   };
 }
