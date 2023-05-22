@@ -1,11 +1,14 @@
-alias nr = sudo nixos-rebuild switch
-alias ncu = sudo nix-channel --update
+alias nfu = nix flake update
+def nr [] {
+  cd ~/config
+  sudo nixos-rebuild switch --flake ./nixos#dirli-nixos
+}
 def nn [] {
-  ncu
+  cd ~/config
+  nfu ./nixos
   nr
 }
 alias nsp = nix-shell -p
-alias nfu = nix flake update
 def nfua [] {
   fd flake.nix ~/personal_config/ |
   lines |
