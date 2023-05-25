@@ -119,3 +119,8 @@ map <leader>5 <Action>(GoToTab5)
 
 map <leader>z <Action>(ToggleDistractionFreeMode)
 map <c-m> <Action>(MoveEditorToOppositeTabGroup)
+
+map <left> <c-w>h
+map <right> <c-w>l
+map <down> <c-w>j
+map <up> <c-w>k
