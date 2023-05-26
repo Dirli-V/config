@@ -8,7 +8,6 @@
   };
 
   outputs = {nixpkgs, ...} @ inputs: {
-    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       dirli-nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
