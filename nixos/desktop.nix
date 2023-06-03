@@ -168,6 +168,7 @@
         mpv
         stremio
         looking-glass-client
+        zoxide
       ];
       xdg.configFile = {
         alacritty.source = "${config-files}/alacritty";

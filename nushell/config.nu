@@ -14,4 +14,5 @@ source ~/.config/nushell/systemd.nu
 source ~/.config/nushell/cerebro.nu
 source ~/.config/nushell/cargo.nu
 source ~/.config/nushell/nix.nu
+source ~/.config/nushell/zoxide.nu
 source ~/personal_config/scripts/config.nu
