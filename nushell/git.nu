@@ -26,6 +26,7 @@ alias gd = git add
 alias gb = git branch
 alias gbd = git branch -d
 alias gbD = git branch -D
+alias gbdo = git push origin --delete
 alias gdf = git diff
 def grho [] {
     let $bname = (git symbolic-ref --short HEAD| str trim)
