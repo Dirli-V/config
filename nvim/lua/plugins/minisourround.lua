@@ -1,7 +1,6 @@
 return {
   "echasnovski/mini.surround",
   keys = function(_, keys)
-    -- Populate the keys based on the user's options
     local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
     local opts = require("lazy.core.plugin").values(plugin, "opts", false)
     local mappings = {
@@ -20,17 +19,22 @@ return {
   end,
   opts = {
     mappings = {
-      add = "gza", -- Add surrounding in Normal and Visual modes
-      delete = "gzd", -- Delete surrounding
-      find = "gzf", -- Find surrounding (to the right)
-      find_left = "gzF", -- Find surrounding (to the left)
-      highlight = "gzh", -- Highlight surrounding
-      replace = "gzr", -- Replace surrounding
-      update_n_lines = "gzn", -- Update `n_lines`
+      add = "<F3>",
+      delete = "<F4>",
+      find = "gzf",
+      find_left = "gzF",
+      highlight = "gzh",
+      replace = "gzr",
+      update_n_lines = "gzn",
+    },
+    custom_surroundings = {
+      d = {
+        input = { "dbg!%(().-()%)" },
+        output = { left = "dbg!(", right = ")" },
+      },
     },
   },
   config = function(_, opts)
-    -- use gz mappings instead of s to prevent conflict with leap
     require("mini.surround").setup(opts)
   end,
 }
