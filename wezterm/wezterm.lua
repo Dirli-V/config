@@ -73,6 +73,7 @@ end
 
 local keys = {
 	{ key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
+	{ key = "C", mods = "LEADER", action = wezterm.action.SpawnCommandInNewTab({ args = { "nu" } }) },
 	{ key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
 	{ key = "<", mods = "LEADER", action = wezterm.action.MoveTabRelative(-1) },
 	{ key = ">", mods = "LEADER", action = wezterm.action.MoveTabRelative(1) },
@@ -152,6 +153,7 @@ end)
 
 return {
 	default_cwd = home_path .. "/repos",
+	default_prog = { "nu", "-e", "nd --silent" },
 	font = wezterm.font("FiraCode Nerd Font"),
 	font_size = 17.0,
 	color_scheme = "tokyonight-storm",

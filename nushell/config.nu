@@ -15,4 +15,5 @@ source ~/.config/nushell/cerebro.nu
 source ~/.config/nushell/cargo.nu
 source ~/.config/nushell/nix.nu
 source ~/.config/nushell/zoxide.nu
+source ~/.config/nushell/killall.nu
 source ~/personal_config/scripts/config.nu
