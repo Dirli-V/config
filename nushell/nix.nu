@@ -20,7 +20,7 @@ def nd [name = "", --silent] {
     nix develop --command "nu"
     return
   }
-  if not ("./.git" | path exists) {
+  if (do { git rev-parse --is-inside-work-tree } | complete | get exit_code) == 128 {
     return
   }
   let repo_path = (git rev-parse --show-toplevel)
