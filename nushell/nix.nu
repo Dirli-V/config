@@ -20,7 +20,7 @@ def nd [name = "", --silent] {
     nix develop --command "nu"
     return
   }
-  if not ("./git" | path exists) {
+  if not ("./.git" | path exists) {
     return
   }
   let repo_path = (git rev-parse --show-toplevel)
