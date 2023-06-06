@@ -49,6 +49,7 @@ sethandler <c-z> a:ide
 
 " Don't use Ex mode, use Q for formatting.
 map Q gq
+map Y y$
 
 nnoremap c \"_c
 nnoremap cc \"_S
