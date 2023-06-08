@@ -156,7 +156,7 @@ return {
 	default_prog = { "nu", "-e", "nd --silent" },
 	font = wezterm.font("FiraCode Nerd Font"),
 	font_size = 17.0,
-	color_scheme = "tokyonight-storm",
+	color_scheme = "Catppuccin Mocha",
 	launch_menu = launch_menu,
 	tab_bar_at_bottom = true,
 	leader = { key = "z", mods = "CTRL", timeout_milliseconds = 1000 },
@@ -169,22 +169,22 @@ return {
 	},
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	window_frame = {
-		active_titlebar_bg = "#24283b",
-		inactive_titlebar_bg = "#24283b",
+		active_titlebar_bg = "#1E1E2E",
+		inactive_titlebar_bg = "#1E1E2E",
 	},
 	colors = {
 		tab_bar = {
-			inactive_tab_edge = "#9ece6a",
+			inactive_tab_edge = "#B4BEFE",
 			active_tab = {
-				bg_color = "#9ece6a",
+				bg_color = "#97CD94",
 				fg_color = "#24283b",
 			},
 			inactive_tab = {
-				bg_color = "#7aa2f7",
+				bg_color = "#89B4FA",
 				fg_color = "#24283b",
 			},
 			new_tab = {
-				bg_color = "#7aa2f7",
+				bg_color = "#89B4FA",
 				fg_color = "#24283b",
 			},
 		},
