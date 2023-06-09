@@ -154,6 +154,9 @@ end)
 return {
 	default_cwd = home_path .. "/repos",
 	default_prog = { "nu", "-e", "nd --silent" },
+	set_environment_variables = {
+		TERM = "alacritty",
+	},
 	font = wezterm.font("FiraCode Nerd Font"),
 	font_size = 17.0,
 	color_scheme = "Catppuccin Mocha",
