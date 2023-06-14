@@ -37,3 +37,9 @@ require("lazy").setup({
 
 require("config.autocmds")
 require("config.keymaps")
+
+vim.filetype.add({
+  filename = {
+    ["Jenkinsfile"] = "groovy",
+  },
+})
