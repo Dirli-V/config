@@ -61,7 +61,10 @@ for _, v in pairs(project_list) do
 	local sep_index = string.find(v, "=", 1, true)
 	local label = string.sub(v, 1, sep_index - 1)
 	local cwd = string.sub(v, sep_index + 1)
-	add_to_launch_menu(label, cwd:gsub("$HOME", home_path))
+	local project_path = cwd:gsub("$HOME", home_path)
+	if file_exists(project_path) then
+		add_to_launch_menu(label, project_path)
+	end
 end
 local dir_list = io.popen("dir -1 ~/repos")
 if dir_list ~= nil then
