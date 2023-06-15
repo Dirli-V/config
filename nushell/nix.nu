@@ -27,7 +27,7 @@ def nd [name = "", --silent] {
   let repo_name = (echo $repo_path | path basename)
   let path = (echo (pwd) | path relative-to $repo_path)
   let flake_path = ("~/personal_config/flakes" | path join $repo_name | path join $path | path expand)
-  if (echo $flake_path | path exists) {
+  if ($flake_path | path join "flake.nix" | path exists) {
     nix develop (echo $flake_path "#" $name | str join) --command nu
   } else if not $silent {
     echo $"Flake at ($flake_path) not found"
