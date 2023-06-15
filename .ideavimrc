@@ -97,6 +97,7 @@ map <leader>rr <Action>(RefactoringMenu)
 map <leader>rm <Action>(ExtractMethod)
 map <leader>rc <Action>(IntroduceConstant)
 map <leader>rv <Action>(IntroduceVariable)
+map <leader>ri <Action>(Inline)
 
 map <leader>dd gg<Action>(DebugClass)``
 map <leader>dm <Action>(RunMenu)
