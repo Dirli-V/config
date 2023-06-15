@@ -29,6 +29,9 @@ return {
     call_and_append_if_is_executable(sources, function()
       return nls.builtins.code_actions.statix
     end, "statix")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.formatting.prettierd
+    end, "prettierd")
 
     return {
       sources = sources,

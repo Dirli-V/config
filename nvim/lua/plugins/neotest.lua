@@ -6,6 +6,7 @@ return {
     "rouge8/neotest-rust",
     "nvim-neotest/neotest-vim-test",
     "vim-test/vim-test",
+    "nvim-neotest/neotest-jest",
   },
   -- stylua: ignore
   keys = {
@@ -25,6 +26,7 @@ return {
       adapters = {
         require("neotest-python"),
         require("neotest-rust"),
+        require("neotest-jest"),
         require("neotest-vim-test")({
           allow_file_types = { "java" },
         }),
