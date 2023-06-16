@@ -56,6 +56,17 @@ end
 add_to_launch_menu("config", home_path .. "/config")
 add_to_launch_menu("personal_config", home_path .. "/personal_config")
 
+-- add all subfolders to the launch menu
+local function add_subfolders_to_launch_menu(dir)
+	local dir_list = io.popen("dir -1 " .. dir)
+	if dir_list ~= nil then
+		for subdir in dir_list:lines() do
+			add_to_launch_menu(subdir, dir .. "/" .. subdir)
+		end
+		dir_list:close()
+	end
+end
+
 local project_list = lines_from(home_path .. "/personal_config/projects.txt")
 for _, v in pairs(project_list) do
 	local sep_index = string.find(v, "=", 1, true)
@@ -63,15 +74,12 @@ for _, v in pairs(project_list) do
 	local cwd = string.sub(v, sep_index + 1)
 	local project_path = cwd:gsub("$HOME", home_path)
 	if file_exists(project_path) then
-		add_to_launch_menu(label, project_path)
+		if label == "*" then
+			add_subfolders_to_launch_menu(project_path)
+		else
+			add_to_launch_menu(label, project_path)
+		end
 	end
-end
-local dir_list = io.popen("dir -1 ~/repos")
-if dir_list ~= nil then
-	for dir in dir_list:lines() do
-		add_to_launch_menu(dir, home_path .. "/repos/" .. dir)
-	end
-	dir_list:close()
 end
 
 local keys = {
