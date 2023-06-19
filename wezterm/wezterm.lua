@@ -1,5 +1,4 @@
 local wezterm = require("wezterm")
-local mux = wezterm.mux
 local home_path = os.getenv("HOME") or ""
 
 -- see if the file exists
@@ -24,62 +23,51 @@ local function lines_from(file)
 	return lines
 end
 
-local launch_menu = {}
-local known_lables = {}
-local add_to_launch_menu = function(label, cwd)
-	if known_lables[label] ~= nil then
+-- insert the given label / cwd into the list of workspaces if not yet present
+local add_to_workspaces = function(label, cwd, workspace_choices, known_workspaces)
+	if known_workspaces[label] ~= nil then
 		return
 	end
-	local counter = #launch_menu + 1
-	if counter == 8 then -- Ctrl + 8 does not work in wezterm
-		table.insert(launch_menu, {
-			label = "Reserved",
-			cwd = "",
-		})
-		counter = counter + 1
-	end
-	local prefix = ""
-	if counter <= 9 then
-		prefix = "(" .. counter .. ") "
-	else
-		prefix = "(F" .. (counter - 9) .. ") "
-	end
-	counter = counter + 1
-
-	table.insert(launch_menu, {
-		label = prefix .. label,
-		cwd = cwd,
-	})
-	known_lables[label] = true
+	local workspace_choice = {
+		label = label,
+		id = label,
+	}
+	table.insert(workspace_choices, workspace_choice)
+	known_workspaces[label] = cwd
 end
 
-add_to_launch_menu("config", home_path .. "/config")
-add_to_launch_menu("personal_config", home_path .. "/personal_config")
-
--- add all subfolders to the launch menu
-local function add_subfolders_to_launch_menu(dir)
+-- add all subfolders to the list of workspaces
+local function add_subfolders_to_workspaces(dir, workspace_choices, known_workspaces)
 	local dir_list = io.popen("dir -1 " .. dir)
 	if dir_list ~= nil then
 		for subdir in dir_list:lines() do
-			add_to_launch_menu(subdir, dir .. "/" .. subdir)
+			add_to_workspaces(subdir, dir .. "/" .. subdir, workspace_choices, known_workspaces)
 		end
 		dir_list:close()
 	end
 end
 
-local project_list = lines_from(home_path .. "/personal_config/projects.txt")
-for _, v in pairs(project_list) do
-	local sep_index = string.find(v, "=", 1, true)
-	local label = string.sub(v, 1, sep_index - 1)
-	local cwd = string.sub(v, sep_index + 1)
-	local project_path = cwd:gsub("$HOME", home_path)
-	if file_exists(project_path) then
-		if label == "*" then
-			add_subfolders_to_launch_menu(project_path)
-		else
-			add_to_launch_menu(label, project_path)
+-- build the list workspaces
+local function get_workspaces()
+	local workspace_choices = {}
+	local known_workspaces = {}
+
+	local project_list = lines_from(home_path .. "/personal_config/projects.txt")
+	for _, v in pairs(project_list) do
+		local sep_index = string.find(v, "=", 1, true)
+		local label = string.sub(v, 1, sep_index - 1)
+		local cwd = string.sub(v, sep_index + 1)
+		local project_path = cwd:gsub("$HOME", home_path)
+		if file_exists(project_path) then
+			if label == "*" then
+				add_subfolders_to_workspaces(project_path, workspace_choices, known_workspaces)
+			else
+				add_to_workspaces(label, project_path, workspace_choices, known_workspaces)
+			end
 		end
 	end
+
+	return workspace_choices, known_workspaces
 end
 
 local keys = {
@@ -94,9 +82,35 @@ local keys = {
 	{ key = "d", mods = "LEADER", action = wezterm.action.SwitchToWorkspace({
 		name = "default",
 	}) },
-	{ key = "p", mods = "ALT", action = wezterm.action.ShowLauncherArgs({
-		flags = "FUZZY|WORKSPACES",
-	}) },
+	{
+		key = "p",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			local choices, workspace_to_cwd = get_workspaces()
+			window:perform_action(
+				wezterm.action.InputSelector({
+					action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
+						if not id or not label then
+							return
+						end
+						inner_window:perform_action(
+							wezterm.action.SwitchToWorkspace({
+								name = label,
+								spawn = {
+									cwd = workspace_to_cwd[id],
+								},
+							}),
+							inner_pane
+						)
+					end),
+					title = "Switch to workspace",
+					choices = choices,
+					fuzzy = true,
+				}),
+				pane
+			)
+		end),
+	},
 	{ key = "z", mods = "LEADER|CTRL", action = wezterm.action.SendKey({ key = "z", mods = "CTRL" }) },
 	{ key = "+", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
 	{ key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
@@ -127,15 +141,35 @@ for i = 1, 9 do
 		action = wezterm.action.ActivateTab(i - 1),
 	})
 end
-for i, entry in ipairs(launch_menu) do
+-- open a workspace based on the given index
+local function open_workspace(window, pane, i)
+	local workspace_choices, workspace_to_cwd = get_workspaces()
+	local entry = workspace_choices[i]
+	window:perform_action(
+		wezterm.action.SwitchToWorkspace({
+			name = entry.label,
+			spawn = {
+				cwd = workspace_to_cwd[entry.id],
+			},
+		}),
+		pane
+	)
+end
+for i = 1, 9 + 12 do
+	local workspace_index = i
+	if i > 8 then
+		workspace_index = workspace_index - 1
+	end
 	if i <= 9 then
+		if i == 8 then -- CTRL + 8 does not work
+			goto continue
+		end
 		table.insert(keys, {
 			key = tostring(i),
 			mods = "CTRL",
-			action = wezterm.action.SwitchToWorkspace({
-				name = entry.label,
-				spawn = entry,
-			}),
+			action = wezterm.action_callback(function(window, pane)
+				open_workspace(window, pane, workspace_index)
+			end),
 		})
 	else
 		local fi = i - 9
@@ -143,24 +177,14 @@ for i, entry in ipairs(launch_menu) do
 			table.insert(keys, {
 				key = "F" .. tostring(fi),
 				mods = "SHIFT",
-				action = wezterm.action.SwitchToWorkspace({
-					name = entry.label,
-					spawn = entry,
-				}),
+				action = wezterm.action_callback(function(window, pane)
+					open_workspace(window, pane, workspace_index)
+				end),
 			})
 		end
 	end
+	::continue::
 end
-
-wezterm.on("gui-startup", function(_)
-	mux.spawn_window({})
-	for _, entry in ipairs(launch_menu) do
-		mux.spawn_window({
-			workspace = entry.label,
-			cwd = entry.cwd,
-		})
-	end
-end)
 
 return {
 	default_cwd = home_path .. "/repos",
@@ -171,7 +195,6 @@ return {
 	font = wezterm.font("FiraCode Nerd Font"),
 	font_size = 17.0,
 	color_scheme = "Catppuccin Mocha",
-	launch_menu = launch_menu,
 	tab_bar_at_bottom = true,
 	leader = { key = "z", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = keys,
