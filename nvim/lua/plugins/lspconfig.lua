@@ -57,6 +57,9 @@ return {
       taplo = {},
       pyright = {},
       ruff_lsp = {},
+      kotlin_language_server = {
+        root_dir = { "settings.gradle.kts", "settings.gradle" },
+      },
       yamlls = {
         settings = {
           yaml = {
@@ -116,6 +119,10 @@ return {
       local server_opts = vim.tbl_deep_extend("force", {
         capabilities = vim.deepcopy(capabilities),
       }, config_opts or {})
+      if server_opts["root_dir"] then
+        ---@diagnostic disable-next-line: param-type-mismatch
+        server_opts["root_dir"] = require("lspconfig").util.root_pattern(unpack(server_opts["root_dir"]))
+      end
 
       if opts.setup[server] then
         if opts.setup[server](server, server_opts) then

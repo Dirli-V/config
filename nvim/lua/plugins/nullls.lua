@@ -32,6 +32,12 @@ return {
     call_and_append_if_is_executable(sources, function()
       return nls.builtins.formatting.prettierd
     end, "prettierd")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.formatting.ktlint
+    end, "ktlint")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.diagnostics.ktlint
+    end, "ktlint")
 
     return {
       sources = sources,
