@@ -6,7 +6,7 @@ return {
     "HiPhish/nvim-ts-rainbow2",
     "JoosepAlviste/nvim-ts-context-commentstring",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/nvim-treesitter-context"
+    "nvim-treesitter/nvim-treesitter-context",
   },
   keys = {
     { "<bs>", desc = "Increment selection" },
@@ -32,5 +32,6 @@ return {
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
+    require("treesitter-context").setup()
   end,
 }
