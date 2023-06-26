@@ -13,6 +13,7 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
       - name: Update flake.lock
+        id: update
         uses: DeterminateSystems/update-flake-lock@v19
         with:
           pr-title: "Update flake.lock" # Title of PR to be created
@@ -20,3 +21,8 @@ jobs:
             dependencies
             automated
           path-to-flake-dir: 'nixos/'
+      - name: Enable Pull Request Automerge
+        run: gh pr merge --merge --auto $PR_NUMBER
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.update.outputs.pull-request-number }}
