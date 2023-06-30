@@ -20,6 +20,8 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "simrat39/rust-tools.nvim",
     "aznhe21/actions-preview.nvim",
+    "pmizio/typescript-tools.nvim",
+    "nvim-lua/plenary.nvim",
   },
   keys = {
     { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
@@ -73,6 +75,15 @@ return {
     setup = {
       rust_analyzer = function(_, opts)
         require("rust-tools").setup({ server = opts })
+        return true
+      end,
+      tsserver = function(_, opts)
+        require("typescript-tools").setup({
+          server = opts,
+          settings = {
+            publish_diagnostic_on = "change",
+          },
+        })
         return true
       end,
     },
