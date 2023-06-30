@@ -118,6 +118,20 @@ LspKeys = {
   },
   { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" },
   { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" },
+  {
+    "<leader>yc",
+    function()
+      vim.fn.setreg("+", vim.fn.expand("%"))
+    end,
+    desc = "Copy filename to clipboard",
+  },
+  {
+    "<leader>yC",
+    function()
+      vim.fn.setreg("+", vim.fn.expand("%:p"))
+    end,
+    desc = "Copy full filename to clipboard",
+  },
 }
 
 function M.on_attach(_, buffer)
