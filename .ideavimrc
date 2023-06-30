@@ -113,12 +113,6 @@ map <leader>j <Action>(GotoNextError)
 map <leader>k <Action>(GotoPreviousError)
 
 map <leader>e :NERDTreeFocus<cr>
-map <leader>m <Action>(PinActiveTabToggle)
-map <leader>1 <Action>(GoToTab1)
-map <leader>2 <Action>(GoToTab2)
-map <leader>3 <Action>(GoToTab3)
-map <leader>4 <Action>(GoToTab4)
-map <leader>5 <Action>(GoToTab5)
 
 map <leader>z <Action>(ToggleDistractionFreeMode)
 map <c-m> <Action>(MoveEditorToOppositeTabGroup)
@@ -127,3 +121,11 @@ map <left> <c-w>h
 map <right> <c-w>l
 map <down> <c-w>j
 map <up> <c-w>k
+
+map <a-a> <Action>(GotoHarpoon1)
+map <a-s> <Action>(GotoHarpoon2)
+map <a-d> <Action>(GotoHarpoon3)
+map <a-f> <Action>(GotoHarpoon4)
+map <a-g> <Action>(GotoHarpoon5)
+map <leader>h <Action>(ShowHarpoon)
+map <leader>m <Action>(AddToHarpoon)
