@@ -15,16 +15,42 @@ return {
   dependencies = {
     {
       "folke/neodev.nvim",
-      opts = {}, -- opts needs to specified for working plugin
+      opts = {}, -- opts needs to be specified for working plugin
     },
     "hrsh7th/cmp-nvim-lsp",
     "simrat39/rust-tools.nvim",
     "aznhe21/actions-preview.nvim",
     "pmizio/typescript-tools.nvim",
     "nvim-lua/plenary.nvim",
+    {
+      "SmiteshP/nvim-navbuddy",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim",
+      },
+      opts = function()
+        return {
+          window = {
+            size = "90%",
+          },
+          mappings = {
+            ["t"] = require("nvim-navbuddy.actions").telescope({
+              layout_config = {
+                height = 0.90,
+                width = 0.90,
+              },
+            }),
+          },
+          lsp = {
+            auto_attach = true,
+          },
+        }
+      end,
+    },
   },
   keys = {
     { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+    { "<leader>cs", "<cmd>Navbuddy<cr>", desc = "Symbol tree" },
   },
   opts = {
     diagnostics = {
