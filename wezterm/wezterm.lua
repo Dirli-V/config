@@ -25,15 +25,15 @@ end
 
 -- insert the given label / cwd into the list of workspaces if not yet present
 local add_to_workspaces = function(label, cwd, workspace_choices, known_workspaces)
-	if known_workspaces[label] ~= nil then
+	if known_workspaces[cwd] ~= nil then
 		return
 	end
 	local workspace_choice = {
 		label = label,
-		id = label,
+		id = cwd,
 	}
 	table.insert(workspace_choices, workspace_choice)
-	known_workspaces[label] = cwd
+	known_workspaces[cwd] = cwd
 end
 
 -- add all subfolders to the list of workspaces
