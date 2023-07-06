@@ -23,13 +23,29 @@ local function lines_from(file)
 	return lines
 end
 
+-- the global list of currently active workspaces
+local active_workspaces = {}
+-- the last activated workspace choice
+local current_workspace_choice = nil
+
 -- insert the given label / cwd into the list of workspaces if not yet present
 local add_to_workspaces = function(label, cwd, workspace_choices, known_workspaces)
 	if known_workspaces[cwd] ~= nil then
 		return
 	end
 	local workspace_choice = {
-		label = label,
+		label = wezterm.format({
+			{ Foreground = { Color = "green" } },
+			{ Text = label },
+			"ResetAttributes",
+			{ Text = " " },
+			{ Foreground = { Color = "orange" } },
+			{ Text = "(" },
+			"ResetAttributes",
+			{ Text = cwd },
+			{ Foreground = { Color = "orange" } },
+			{ Text = ")" },
+		}),
 		id = cwd,
 	}
 	table.insert(workspace_choices, workspace_choice)
@@ -47,7 +63,7 @@ local function add_subfolders_to_workspaces(dir, workspace_choices, known_worksp
 	end
 end
 
--- build the list workspaces
+-- build the list of available workspaces
 local function get_workspaces()
 	local workspace_choices = {}
 	local known_workspaces = {}
@@ -67,7 +83,7 @@ local function get_workspaces()
 		end
 	end
 
-	return workspace_choices, known_workspaces
+	return workspace_choices
 end
 
 local keys = {
@@ -86,24 +102,62 @@ local keys = {
 		key = "p",
 		mods = "ALT",
 		action = wezterm.action_callback(function(window, pane)
-			local choices, workspace_to_cwd = get_workspaces()
+			local choices = get_workspaces()
 			window:perform_action(
 				wezterm.action.InputSelector({
 					action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
 						if not id or not label then
 							return
 						end
+						current_workspace_choice = { id = id, label = label }
 						inner_window:perform_action(
 							wezterm.action.SwitchToWorkspace({
-								name = label,
+								name = id,
 								spawn = {
-									cwd = workspace_to_cwd[id],
+									cwd = id,
 								},
 							}),
 							inner_pane
 						)
 					end),
 					title = "Switch to workspace",
+					choices = choices,
+					fuzzy = true,
+				}),
+				pane
+			)
+		end),
+	},
+	{
+		key = "z",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			local choices = {}
+			for n = 1, 9 do
+				if active_workspaces[n] then
+					table.insert(choices, { id = tostring(n), label = active_workspaces[n].label })
+				else
+					table.insert(choices, {
+						id = tostring(n),
+						label = wezterm.format({
+							{ Foreground = { Color = "purple" } },
+							{ Text = tostring(n) },
+							"ResetAttributes",
+							{ Text = ": <empty>" },
+						}),
+					})
+				end
+			end
+
+			window:perform_action(
+				wezterm.action.InputSelector({
+					action = wezterm.action_callback(function(_, _, id, _)
+						if not id then
+							return
+						end
+						active_workspaces[tonumber(id)] = current_workspace_choice
+					end),
+					title = "Assign current workspace to slot",
 					choices = choices,
 					fuzzy = true,
 				}),
@@ -143,14 +197,41 @@ for i = 1, 9 do
 end
 -- open a workspace based on the given index
 local function open_workspace(window, pane, i)
-	local workspace_choices, workspace_to_cwd = get_workspaces()
-	local entry = workspace_choices[i]
+	-- activate workspace for this slot if there is one
+	if active_workspaces[i] then
+		window:perform_action(
+			wezterm.action.SwitchToWorkspace({
+				name = active_workspaces[i].id,
+			}),
+			pane
+		)
+		return
+	end
+
+	-- spawn new workspace in current slot
+	local choices = get_workspaces()
 	window:perform_action(
-		wezterm.action.SwitchToWorkspace({
-			name = entry.label,
-			spawn = {
-				cwd = workspace_to_cwd[entry.id],
-			},
+		wezterm.action.InputSelector({
+			action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
+				if not id or not label then
+					return
+				end
+
+				current_workspace_choice = { id = id, label = label }
+				active_workspaces[i] = current_workspace_choice
+				inner_window:perform_action(
+					wezterm.action.SwitchToWorkspace({
+						name = id,
+						spawn = {
+							cwd = id,
+						},
+					}),
+					inner_pane
+				)
+			end),
+			title = "Switch to workspace",
+			choices = choices,
+			fuzzy = true,
 		}),
 		pane
 	)
