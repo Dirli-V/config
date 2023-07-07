@@ -85,6 +85,7 @@ return {
       taplo = {},
       pyright = {},
       ruff_lsp = {},
+      intelephense = {},
       kotlin_language_server = {
         root_dir = { "settings.gradle.kts", "settings.gradle" },
       },
@@ -111,6 +112,18 @@ return {
           },
         })
         return true
+      end,
+      ruff_lsp = function(_, opts)
+        local project_path = os.getenv("RUFF_LSP_PROJECT_PATH")
+        if project_path then
+          opts["init_options"] = {
+            settings = {
+              args = {
+                "--config=" .. project_path,
+              },
+            },
+          }
+        end
       end,
     },
     additional_keys = {
@@ -163,10 +176,6 @@ return {
 
       if opts.setup[server] then
         if opts.setup[server](server, server_opts) then
-          goto continue
-        end
-      elseif opts.setup["*"] then
-        if opts.setup["*"](server, server_opts) then
           goto continue
         end
       end
