@@ -83,7 +83,10 @@ return {
       tsserver = {},
       nil_ls = {},
       taplo = {},
-      pyright = {},
+      pyright = {
+        root_dir = { "requirements.txt" },
+        start_root_search_from_buffer_location = true,
+      },
       ruff_lsp = {},
       intelephense = {},
       kotlin_language_server = {
@@ -172,6 +175,15 @@ return {
       if server_opts["root_dir"] then
         ---@diagnostic disable-next-line: param-type-mismatch
         server_opts["root_dir"] = require("lspconfig").util.root_pattern(unpack(server_opts["root_dir"]))
+        if server_opts["start_root_search_from_buffer_location"] then
+          local buffer_location = vim.api.nvim_buf_get_name(0)
+          if buffer_location ~= "" then
+            local file_path = vim.loop.fs_realpath(buffer_location)
+            if file_path then
+              server_opts["root_dir"] = server_opts["root_dir"](vim.fs.dirname(file_path))
+            end
+          end
+        end
       end
 
       if opts.setup[server] then
