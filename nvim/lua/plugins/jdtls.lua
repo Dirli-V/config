@@ -49,7 +49,6 @@ return {
         require("lsp.format").on_attach(client, buffer)
         require("lsp.keymaps").on_attach(client, buffer)
         jdtls.setup_dap({ hotcodereplace = "auto" })
-        jdtls.setup.add_commands()
 
         local opts = { silent = true, buffer = buffer }
         local set = vim.keymap.set
@@ -76,12 +75,13 @@ return {
 
         set("n", "crv", jdtls.extract_variable_all, opts)
         set("v", "crv", function()
-          jdtls.extract_variable_all(true)
+          jdtls.extract_variable_all({ visual = true })
         end, opts)
         set("v", "crm", function()
-          jdtls.extract_method(true)
+          jdtls.extract_method({ visual = true })
         end, opts)
         set("n", "crc", jdtls.extract_constant, opts)
+        set("n", "gt", jdtls.goto_subjects, opts)
       end,
     }
 
