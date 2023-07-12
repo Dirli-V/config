@@ -202,6 +202,9 @@ local function open_workspace(window, pane, i)
 		window:perform_action(
 			wezterm.action.SwitchToWorkspace({
 				name = active_workspaces[i].id,
+				spawn = {
+					cwd = active_workspaces[i].id,
+				},
 			}),
 			pane
 		)
