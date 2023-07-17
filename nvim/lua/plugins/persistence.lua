@@ -25,4 +25,9 @@ return {
       desc = "Don't Save Current Session",
     },
   },
+  config = function(_, opts)
+    if 0 == vim.fn.argc(-1) then
+      require("persistence").setup(opts)
+    end
+  end,
 }
