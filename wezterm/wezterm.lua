@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local home_path = os.getenv("HOME") or ""
+local workspaces_path = home_path .. "/.local/share/workspaces.txt"
 
 -- see if the file exists
 local function file_exists(file)
@@ -27,6 +28,22 @@ end
 local active_workspaces = {}
 -- the last activated workspace choice
 local current_workspace_choice = nil
+
+local function save_current_workspaces()
+	local sink = io.open(workspaces_path, "w")
+	if not sink then
+		return
+	end
+
+	for n = 1, 9 do
+		if active_workspaces[n] then
+			sink:write(active_workspaces[n].id)
+		end
+		sink:write("\n")
+	end
+
+	sink:close()
+end
 
 -- insert the given label / cwd into the list of workspaces if not yet present
 local add_to_workspaces = function(label, cwd, workspace_choices, known_workspaces)
@@ -84,6 +101,19 @@ local function get_workspaces()
 	end
 
 	return workspace_choices
+end
+
+-- restore previous workspaces
+local saved_workspaces = lines_from(workspaces_path)
+local saved_workspace_index = 1
+local available_workspaces = get_workspaces()
+for _, saved_workspace in pairs(saved_workspaces) do
+	for _, available_workspace in pairs(available_workspaces) do
+		if available_workspace.id == saved_workspace then
+			active_workspaces[saved_workspace_index] = available_workspace
+		end
+	end
+	saved_workspace_index = saved_workspace_index + 1
 end
 
 local keys = {
@@ -156,6 +186,7 @@ local keys = {
 							return
 						end
 						active_workspaces[tonumber(id)] = current_workspace_choice
+						save_current_workspaces()
 					end),
 					title = "Assign current workspace to slot",
 					choices = choices,
@@ -222,6 +253,7 @@ local function open_workspace(window, pane, i)
 
 				current_workspace_choice = { id = id, label = label }
 				active_workspaces[i] = current_workspace_choice
+				save_current_workspaces()
 				inner_window:perform_action(
 					wezterm.action.SwitchToWorkspace({
 						name = id,
