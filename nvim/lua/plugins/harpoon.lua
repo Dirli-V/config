@@ -59,6 +59,7 @@ return {
         require("harpoon.ui").nav_file(1)
       end,
       desc = "Nav to file 1",
+      mode = { "n", "i", "v" },
     },
     {
       "<a-s>",
@@ -66,6 +67,7 @@ return {
         require("harpoon.ui").nav_file(2)
       end,
       desc = "Nav to file 2",
+      mode = { "n", "i", "v" },
     },
     {
       "<a-d>",
@@ -73,6 +75,7 @@ return {
         require("harpoon.ui").nav_file(3)
       end,
       desc = "Nav to file 3",
+      mode = { "n", "i", "v" },
     },
     {
       "<a-f>",
@@ -80,6 +83,7 @@ return {
         require("harpoon.ui").nav_file(4)
       end,
       desc = "Nav to file 4",
+      mode = { "n", "i", "v" },
     },
     {
       "<a-g>",
@@ -87,6 +91,7 @@ return {
         require("harpoon.ui").nav_file(5)
       end,
       desc = "Nav to file 5",
+      mode = { "n", "i", "v" },
     },
   },
 }
