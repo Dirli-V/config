@@ -38,6 +38,9 @@ return {
     call_and_append_if_is_executable(sources, function()
       return nls.builtins.diagnostics.ktlint
     end, "ktlint")
+    call_and_append_if_is_executable(sources, function()
+      return nls.builtins.formatting.google_java_format
+    end, "google-java-format")
 
     return {
       sources = sources,

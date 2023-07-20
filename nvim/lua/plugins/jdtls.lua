@@ -40,6 +40,10 @@ return {
           configuration = {
             runtimes = runtimes,
           },
+          completion = {
+            -- static imports followed by everything else
+            importOrder = { "#", "" },
+          },
         },
       },
       handlers = {

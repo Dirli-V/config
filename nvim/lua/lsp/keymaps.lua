@@ -116,6 +116,14 @@ LspKeys = {
     end,
     desc = "Open code actions",
   },
+  {
+    "<c-.>",
+    function()
+      require("actions-preview").code_actions()
+    end,
+    mode = "i",
+    desc = "Open code actions",
+  },
   { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" },
   { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" },
   {

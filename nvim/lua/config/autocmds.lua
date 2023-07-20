@@ -116,11 +116,11 @@ vim.api.nvim_create_autocmd("FileType", {
   group = tabs_and_spaces_group,
   command = "set shiftwidth=2 tabstop=2",
 })
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "java",
-  group = tabs_and_spaces_group,
-  command = "set autoindent noexpandtab tabstop=4 shiftwidth=4",
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "java",
+--   group = tabs_and_spaces_group,
+--   command = "set autoindent noexpandtab tabstop=4 shiftwidth=4",
+-- })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "vim-ghost#connected",
