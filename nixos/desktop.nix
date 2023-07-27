@@ -131,6 +131,7 @@
         python3
         python3Packages.autopep8
         python3Packages.debugpy
+        luajitPackages.jsregexp
         sumneko-lua-language-server
         stylua
         fd
@@ -141,6 +142,11 @@
         bandwhich
         docker
         k9s
+        terraform
+        packer
+        kubectl
+        hcloud
+        kubernetes-helm
         proselint
         codespell
         inlyne
@@ -167,8 +173,9 @@
         qalculate-qt
         mpv
         stremio
-        looking-glass-client
         zoxide
+        joplin-desktop
+        sniffnet
       ];
       xdg.configFile = {
         alacritty.source = "${config-files}/alacritty";

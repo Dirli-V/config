@@ -36,6 +36,7 @@ map("n", "<s-tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>bf", require("helpers").close_all_floating_windows, { desc = "Close all floating windows" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })

@@ -6,8 +6,10 @@
   ...
 }: {
   imports = [
-    ./nas-hardware-configuration.nix
+    inputs.disko.nixosModules.disko
   ];
+
+  disko.devices = import ./nas-disk-config.nix;
 
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -17,11 +19,6 @@
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
   };
 
   networking = {
@@ -29,10 +26,11 @@
     networkmanager.enable = true;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 0;
+  boot.loader.grub = {
+    devices = ["/dev/sda"];
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
 
   time.timeZone = "Europe/Vienna";
 
@@ -40,19 +38,13 @@
   i18n.extraLocaleSettings = {
     LC_TIME = "de_AT.UTF-8";
   };
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de";
-  };
-
-  services.fwupd.enable = true;
 
   users.users.nas = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker"];
+    extraGroups = ["wheel"];
     shell = pkgs.nushell;
     openssh.authorizedKeys.keys = [
-      # Add SSH public key(s) here
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHROzDmztQ/VcUkUFFAoz9D676Yq874SVb3TIYHmdvxw github@dirli.net"
     ];
   };
 
@@ -71,11 +63,7 @@
     gcc
     unzip
     zip
-    lldb
-    nixos-option
     killall
-    nix-index
-    libGL
   ];
 
   # This value determines the NixOS release from which the default
