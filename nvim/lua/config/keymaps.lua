@@ -161,7 +161,7 @@ map({ "n", "x" }, "C", '"_C')
 map("n", "x", "d")
 map("n", "X", "D")
 map("n", "xx", "dd")
-map("x", "p", '"_dp')
+map("x", "p", "P")
 
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
