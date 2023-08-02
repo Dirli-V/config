@@ -14,7 +14,18 @@ return {
   },
   opts = {
     ensure_installed = "all",
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      disable = function(lang, bufnr)
+        if vim.api.nvim_buf_line_count(bufnr) > 10000 then
+          return true
+        end
+        if lang == "json" and #vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] > 10000 then
+          return true
+        end
+        return false
+      end,
+    },
     indent = { enable = true },
     context_commentstring = { enable = true, enable_autocmd = false },
     rainbow = {
