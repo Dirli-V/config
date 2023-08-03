@@ -68,7 +68,28 @@
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  # services.xserver.videoDrivers = ["modesetting"];
+
+  # systemd.services.lemurs = {
+  #   description = "Lemurs";
+  #   after = [
+  #     "systemd-user-sessions.service"
+  #     "plymouth-quit-wait.service"
+  #     "getty@tty3.service"
+  #   ];
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.lemurs}/bin/lemurs";
+  #     StandardInput = "tty";
+  #     TTYPath = "/dev/tty3";
+  #     TTYReset = "yes";
+  #     TTYVHangup = "yes";
+  #     Type = "idle";
+  #   };
+  #   aliases = [
+  #     "display-manager.service"
+  #   ];
+  # };
+  #
+  services.xserver.videoDrivers = ["modesetting"];
   programs.kdeconnect.enable = true;
 
   time.timeZone = "Europe/Vienna";
@@ -95,7 +116,7 @@
   hardware.opengl.driSupport32Bit = true;
   hardware.bluetooth.enable = true;
   programs.adb.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode"];})
   ];
   home-manager = {
@@ -234,6 +255,7 @@
     killall
     nix-index
     libGL
+    # lemurs
   ];
 
   # Keep a list of all installed packages in /etc/current-systempackages

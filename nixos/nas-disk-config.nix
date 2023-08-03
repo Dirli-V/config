@@ -46,7 +46,8 @@
         partitions = [
           {
             name = "mdadm";
-            size = "100%";
+            start = "0";
+            end = "100%";
             content = {
               type = "mdraid";
               name = "raid1";
@@ -64,7 +65,8 @@
         partitions = [
           {
             name = "mdadm";
-            size = "100%";
+            start = "0";
+            end = "100%";
             content = {
               type = "mdraid";
               name = "raid1";
@@ -94,7 +96,8 @@
         partitions = [
           {
             name = "primary";
-            size = "100%";
+            start = "0";
+            end = "100%";
             content = {
               type = "filesystem";
               format = "ext4";
