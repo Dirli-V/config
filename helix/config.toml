@@ -1,9 +1,23 @@
-theme = "tokyonight_storm"
+theme = "catppuccin_mocha"
+
+[editor]
+color-modes = true
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
 
 [keys.normal]
 "esc" = ["collapse_selection", "keep_primary_selection"]
