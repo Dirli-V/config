@@ -108,6 +108,7 @@ map <leader>da <Action>(ToggleBreakpointEnabled)
 
 map <leader>yy <Action>(Bitbucket.CopyFileUrlInBitbucket)
 map <leader>ys <Action>(SonarLint.AnalyzeChangedFiles)
+map <leader>yg <Action>(Gradle.RefreshDependencies)
 
 map <leader>j <Action>(GotoNextError)
 map <leader>k <Action>(GotoPreviousError)
