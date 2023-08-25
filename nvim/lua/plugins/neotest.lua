@@ -101,7 +101,7 @@ return {
         require("neotest-rust"),
         require("neotest-jest"),
         require("neotest-vim-test")({
-          allow_file_types = { "java" },
+          allow_file_types = { "java", "kotlin" },
         }),
       },
     })
