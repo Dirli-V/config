@@ -8,10 +8,6 @@ function M.diagnostic_goto(next, severity)
   end
 end
 
-local format = function()
-  require("lsp.format").format({ force = true })
-end
-
 local function cursor_not_on_result(result)
   local target_uri = result.targetUri or result.uri
   local target_range = result.targetRange or result.range
@@ -105,8 +101,6 @@ LspKeys = {
   { "[e", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
   { "]w", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
   { "[w", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
-  { "<a-l>", format, desc = "Format Document" },
-  { "<a-l>", format, desc = "Format Range", mode = "v" },
   { "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
   { "<F2>", vim.lsp.buf.rename, desc = "Rename" },
   {

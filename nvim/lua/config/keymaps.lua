@@ -68,6 +68,11 @@ map("i", ";", ";<c-g>u")
 -- save file
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
+-- format file
+local format = require("config.format").format
+map("n", "<a-l>", format, { desc = "Format Document" })
+map("x", "<a-l>", format, { desc = "Format Range" })
+
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
@@ -118,7 +123,7 @@ local function toggle_diagnostics()
   end
 end
 
-map("n", "<leader>uf", require("lsp.format").toggle, { desc = "Toggle format on Save" })
+map("n", "<leader>uf", require("config.format").toggle, { desc = "Toggle format on Save" })
 map("n", "<leader>us", function()
   toggle_option("spell")
 end, { desc = "Toggle Spelling" })

@@ -111,12 +111,12 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-local tabs_and_spaces_group = augroup("tabs_and_spaces")
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "lua", "javascript", "typescriptreact", "typescript", "nix" },
-  group = tabs_and_spaces_group,
-  command = "set shiftwidth=2 tabstop=2",
-})
+-- local tabs_and_spaces_group = augroup("tabs_and_spaces")
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "lua", "javascript", "typescriptreact", "typescript", "nix" },
+--   group = tabs_and_spaces_group,
+--   command = "set shiftwidth=2 tabstop=2",
+-- })
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "java",
 --   group = tabs_and_spaces_group,

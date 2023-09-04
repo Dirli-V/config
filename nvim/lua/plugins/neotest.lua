@@ -16,6 +16,7 @@ return {
         require("neotest").run.run({
           vim.fn.expand("%"),
           cwd = require("helpers").get_root(),
+          suite = false,
         })
       end,
       desc = "Run tests in file",
@@ -28,6 +29,7 @@ return {
           vim.fn.expand("%"),
           strategy = "dap",
           cwd = require("helpers").get_root(),
+          suite = false,
         })
       end,
       desc = "Debug tests in file",
@@ -38,6 +40,7 @@ return {
         vim.cmd("w")
         require("neotest").run.run({
           cwd = require("helpers").get_root(),
+          suite = false,
         })
       end,
       desc = "Run nearest test",
@@ -49,6 +52,7 @@ return {
         require("neotest").run.run({
           strategy = "dap",
           cwd = require("helpers").get_root(),
+          suite = false,
         })
       end,
       desc = "Debug nearest test",

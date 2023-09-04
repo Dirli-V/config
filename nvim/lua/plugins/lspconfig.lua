@@ -150,7 +150,6 @@ return {
   },
   config = function(_, opts)
     on_lsp_attach(function(client, buffer)
-      require("lsp.format").on_attach(client, buffer)
       require("lsp.keymaps").on_attach(client, buffer)
 
       if opts.additional_keys[client.name] then

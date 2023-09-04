@@ -50,9 +50,8 @@ return {
         ["language/status"] = function() end,
       },
       on_attach = function(client, buffer)
-        require("lsp.format").on_attach(client, buffer)
         require("lsp.keymaps").on_attach(client, buffer)
-        jdtls.setup_dap({ hotcodereplace = "auto" })
+        jdtls.setup_dap({ config_overrides = {}, hotcodereplace = "auto" })
 
         local opts = { silent = true, buffer = buffer }
         local set = vim.keymap.set
