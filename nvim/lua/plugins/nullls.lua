@@ -12,35 +12,14 @@ return {
 
     local sources = {}
     call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.stylua
-    end, "stylua")
-    call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.black
-    end, "black")
-    call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.fixjson
-    end, "fixjson")
-    call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.alejandra
-    end, "alejandra")
-    call_and_append_if_is_executable(sources, function()
       return nls.builtins.diagnostics.deadnix
     end, "deadnix")
     call_and_append_if_is_executable(sources, function()
       return nls.builtins.code_actions.statix
     end, "statix")
     call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.prettierd
-    end, "prettierd")
-    call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.ktlint
-    end, "ktlint")
-    call_and_append_if_is_executable(sources, function()
       return nls.builtins.diagnostics.ktlint
     end, "ktlint")
-    call_and_append_if_is_executable(sources, function()
-      return nls.builtins.formatting.google_java_format
-    end, "google-java-format")
 
     return {
       sources = sources,
