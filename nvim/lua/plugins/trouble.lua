@@ -1,8 +1,14 @@
+local Util = require("lazy.core.util")
+
 local next_entry = function()
   if require("trouble").is_open() then
     require("trouble").next({ skip_groups = true, jump = true })
   else
-    vim.cmd.cnext()
+    local success = pcall(vim.cmd.cnext)
+    if not success then
+      Util.info("End of list. Going to first.", { title = "Quickfix" })
+      vim.cmd.crewind()
+    end
   end
 end
 
@@ -10,7 +16,11 @@ local previous_entry = function()
   if require("trouble").is_open() then
     require("trouble").previous({ skip_groups = true, jump = true })
   else
-    vim.cmd.cprev()
+    local success = pcall(vim.cmd.cprev)
+    if not success then
+      Util.info("Start of list. Going to last.", { title = "Quickfix" })
+      vim.cmd.clast()
+    end
   end
 end
 

@@ -95,11 +95,9 @@ return {
       desc = "Jump to prev test",
     },
   },
-  opts = {
-    status = { virtual_text = true },
-  },
-  config = function(_, _)
-    require("neotest").setup({
+  opts = {},
+  config = function(_, opts)
+    require("neotest").setup(vim.tbl_extend("force", opts, {
       adapters = {
         require("neotest-python"),
         require("neotest-rust"),
@@ -108,6 +106,6 @@ return {
           allow_file_types = { "java", "kotlin" },
         }),
       },
-    })
+    }))
   end,
 }
