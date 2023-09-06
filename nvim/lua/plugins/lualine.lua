@@ -1,5 +1,8 @@
 return {
   "nvim-lualine/lualine.nvim",
+  dependencies = {
+    "arkav/lualine-lsp-progress",
+  },
   event = "VeryLazy",
   opts = function()
     local icons = require("config.icons")
@@ -8,6 +11,7 @@ return {
       options = {
         theme = "auto",
         globalstatus = true,
+        component_separators = "",
       },
       sections = {
         lualine_a = { "mode" },
@@ -23,6 +27,12 @@ return {
             },
           },
           { "filename", path = 1, symbols = { modified = "  ", readonly = " 🔒 ", unnamed = "" } },
+          {
+            "lsp_progress",
+            display_components = { "spinner" },
+            spinner_symbols = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾" },
+            timer = { progress_enddelay = 0, spinner = 500 },
+          },
         },
         lualine_x = {
           {
@@ -36,7 +46,14 @@ return {
         },
         lualine_y = {
           { "filetype", separator = "", padding = { left = 1, right = 0 } },
-          { "encoding", separator = "", padding = { left = 1, right = 0 } },
+          function()
+            if vim.bo.expandtab then
+              return "Spc:" .. vim.bo.tabstop
+            else
+              return "Tab:" .. vim.bo.tabstop
+            end
+          end,
+          { "encoding", separator = "", padding = { left = 0, right = 0 } },
           { "fileformat", padding = { left = 1, right = 1 } },
         },
         lualine_z = {

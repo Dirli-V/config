@@ -8,6 +8,7 @@ return {
         ["vim.lsp.util.stylize_markdown"] = true,
       },
       progress = {
+        enabled = false,
         format_done = {},
       },
     },
