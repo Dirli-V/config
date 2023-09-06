@@ -30,11 +30,12 @@
     networkmanager.enable = true;
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 0;
   boot.kernelModules = ["kvm-amd" "kvm-intel"];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   virtualisation.libvirtd.enable = true;
 
   security.rtkit.enable = true;
@@ -197,6 +198,13 @@
         zoxide
         joplin-desktop
         sniffnet
+        # neomutt
+        neomutt
+        isync
+        msmtp
+        pass
+        mutt-wizard
+        # end of neomutt
       ];
       xdg.configFile = {
         alacritty.source = "${config-files}/alacritty";
@@ -240,6 +248,13 @@
       programs.fzf.enable = true;
     };
   };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "qt";
+  };
+
+  services.pcscd.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -256,6 +271,8 @@
     nix-index
     libGL
     # lemurs
+    gnupg
+    pinentry-qt
   ];
 
   # Keep a list of all installed packages in /etc/current-systempackages
