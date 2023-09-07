@@ -37,6 +37,7 @@ return {
   },
   keys = {
     { "<leader>sb", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
+    { "L", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
     { "<leader>/", telescope_with_cwd("live_grep"), desc = "Grep (root dir)" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
     { "<leader><space>", telescope_with_cwd("files"), desc = "Find Files (root dir)" },

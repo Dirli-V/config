@@ -29,13 +29,8 @@ map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Buffers
-map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "<tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-map("n", "<s-tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<S-h>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bf", require("helpers").close_all_floating_windows, { desc = "Close all floating windows" })
 
 -- Clear search with <esc>

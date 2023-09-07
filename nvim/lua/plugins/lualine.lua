@@ -6,6 +6,52 @@ return {
   event = "VeryLazy",
   opts = function()
     local icons = require("config.icons")
+    local custom_fname = require("lualine.components.filename"):extend()
+    local highlight = require("lualine.highlight")
+    local default_status_colors = {
+      saved = "#B1B9D4",
+      modified = "#F9E2AF",
+      new = "#A6E3A1",
+      readonly = "#F38BA8",
+    }
+
+    function custom_fname:init(options)
+      custom_fname.super.init(self, options)
+      self.status_colors = {
+        saved = highlight.create_component_highlight_group(
+          { fg = default_status_colors.saved },
+          "filename_status_saved",
+          self.options
+        ),
+        modified = highlight.create_component_highlight_group(
+          { fg = default_status_colors.modified },
+          "filename_status_modified",
+          self.options
+        ),
+        new = highlight.create_component_highlight_group(
+          { fg = default_status_colors.modified },
+          "filename_status_new",
+          self.options
+        ),
+        readonly = highlight.create_component_highlight_group(
+          { fg = default_status_colors.modified },
+          "filename_status_readonly",
+          self.options
+        ),
+      }
+      if self.options.color == nil then
+        self.options.color = ""
+      end
+    end
+
+    function custom_fname:update_status()
+      local filename = custom_fname.super.update_status(self)
+      return highlight.component_format_highlight(
+        vim.bo.modified and self.status_colors.modified
+          or vim.bo.readonly and self.status_colors.readonly
+          or self.status_colors.saved
+      ) .. filename
+    end
 
     return {
       options = {
@@ -17,6 +63,7 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch" },
         lualine_c = {
+          { custom_fname, path = 1, symbols = { modified = "", readonly = "", unnamed = "" } },
           {
             "diagnostics",
             symbols = {
@@ -26,12 +73,11 @@ return {
               hint = icons.diagnostics.Hint,
             },
           },
-          { "filename", path = 1, symbols = { modified = "  ", readonly = " 🔒 ", unnamed = "" } },
           {
             "lsp_progress",
             display_components = { "spinner" },
             spinner_symbols = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾" },
-            timer = { progress_enddelay = 0, spinner = 500 },
+            timer = { progress_enddelay = 0, spinner = 1000 },
           },
         },
         lualine_x = {
