@@ -129,6 +129,7 @@
       ...
     }: let
       config-files = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config";
+      personal-config-files = config.lib.file.mkOutOfStoreSymlink "/home/dirli/personal_config";
     in {
       home.packages = with pkgs; [
         alacritty
@@ -204,6 +205,9 @@
         msmtp
         pass
         mutt-wizard
+        lynx
+        notmuch
+        urlview
         # end of neomutt
       ];
       xdg.configFile = {
@@ -217,6 +221,7 @@
         ".ideavimrc".source = "${config-files}/.ideavimrc";
         nvim.source = "${config-files}/nvim";
         btop.source = ../btop;
+        mutt.source = "${personal-config-files}/mutt";
       };
 
       home.stateVersion = "22.11";
@@ -255,6 +260,27 @@
   };
 
   services.pcscd.enable = true;
+
+  systemd.timers."mw-mailsync" = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnBootSec = "5m";
+      OnUnitActiveSec = "5m";
+      Unit = "mw-mailsync.service";
+    };
+  };
+
+  systemd.services."mw-mailsync" = {
+    script = ''
+      set -eu
+      ${pkgs.mutt-wizard}/bin/mailsync
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "dirli";
+    };
+  };
+  security.pam.services.dirli.gnupg.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
