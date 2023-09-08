@@ -40,3 +40,4 @@ $env.PROMPT_COMMAND = {|| starship prompt }
 $env.PROMPT_COMMAND_RIGHT = ""
 $env.PATH = ($env.PATH | append ("~" | path expand | path join ".cargo/bin"))
 $env.EDITOR = "nvim"
+$env.BROWSER = "brave"
