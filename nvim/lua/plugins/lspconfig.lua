@@ -1,14 +1,3 @@
----@param on_attach fun(client, buffer)
-local function on_lsp_attach(on_attach)
-  vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-      local buffer = args.buf
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      on_attach(client, buffer)
-    end,
-  })
-end
-
 return {
   "neovim/nvim-lspconfig",
   event = "BufNew",
@@ -149,7 +138,7 @@ return {
     },
   },
   config = function(_, opts)
-    on_lsp_attach(function(client, buffer)
+    local on_attach = function(client, buffer)
       require("lsp.keymaps").on_attach(client, buffer)
 
       if opts.additional_keys[client.name] then
@@ -162,7 +151,14 @@ return {
           vim.keymap.set(keys.mode or "n", keys[1], keys[2], key_opts)
         end
       end
-    end)
+    end
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local buffer = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        on_attach(client, buffer)
+      end,
+    })
 
     -- diagnostics
     for name, icon in pairs(require("config.icons").diagnostics) do
