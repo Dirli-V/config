@@ -53,6 +53,41 @@ return {
       ) .. filename
     end
 
+    local tab_status = require("lualine.component"):extend()
+    function tab_status:init(options)
+      tab_status.super.init(self, options)
+      self.tab_highlights = {
+        open_tab_highlight = highlight.create_component_highlight_group(
+          { fg = "#89B4FA", bg = "#45475A" },
+          "currently_open_tab",
+          options
+        ),
+        other_tab_highlight = highlight.create_component_highlight_group({ fg = "#CDD6F4" }, "other_tab", options),
+      }
+    end
+
+    function tab_status:update_status()
+      local tabs = vim.api.nvim_list_tabpages()
+      if #tabs <= 1 then
+        return ""
+      end
+
+      local result = highlight.component_format_highlight(self.tab_highlights.other_tab_highlight)
+      local current_tab = vim.api.nvim_get_current_tabpage()
+      for _, tab in ipairs(tabs) do
+        if tab == current_tab then
+          result = result
+            .. highlight.component_format_highlight(self.tab_highlights.open_tab_highlight)
+            .. tab
+            .. highlight.component_format_highlight(self.tab_highlights.other_tab_highlight)
+            .. " "
+        else
+          result = result .. tab .. " "
+        end
+      end
+      return result
+    end
+
     return {
       options = {
         theme = "auto",
@@ -88,6 +123,10 @@ return {
               modified = icons.git.modified,
               removed = icons.git.removed,
             },
+          },
+          {
+            tab_status,
+            padding = { left = 0, right = 0 },
           },
         },
         lualine_y = {

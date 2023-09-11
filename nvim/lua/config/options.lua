@@ -49,6 +49,7 @@ opt.foldlevel = 99 -- Default levels to unfold
 opt.splitkeep = "screen"
 opt.shortmess:append({ C = true })
 opt.shelltemp = false
+opt.showtabline = 0 -- Hide tabline
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
