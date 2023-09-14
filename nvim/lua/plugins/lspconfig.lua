@@ -182,7 +182,10 @@ return {
           if buffer_location ~= "" then
             local file_path = vim.loop.fs_realpath(buffer_location)
             if file_path then
-              server_opts["root_dir"] = server_opts["root_dir"](vim.fs.dirname(file_path))
+              local root_dir = server_opts["root_dir"]
+              server_opts["root_dir"] = function()
+                return root_dir(vim.fs.dirname(file_path))
+              end
             end
           end
         end
