@@ -9,7 +9,8 @@
     inputs.disko.nixosModules.disko
   ];
 
-  disko.devices = import ./nas-disk-config.nix;
+  # disko.devices = import ./nas-disk-config.nix;
+  disko.devices = import ./simple.nix;
 
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -27,7 +28,7 @@
   };
 
   boot.loader.grub = {
-    devices = ["/dev/sda"];
+    devices = ["/dev/nvme0n1"];
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
@@ -37,6 +38,12 @@
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_TIME = "de_AT.UTF-8";
+  };
+
+  users.users.root = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHROzDmztQ/VcUkUFFAoz9D676Yq874SVb3TIYHmdvxw github@dirli.net"
+    ];
   };
 
   users.users.nas = {
@@ -50,8 +57,10 @@
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
-    passwordAuthentication = false;
+    settings = {
+      PermitRootLogin = "yes";
+      PasswordAuthentication = false;
+    };
   };
 
   environment.systemPackages = with pkgs; [
