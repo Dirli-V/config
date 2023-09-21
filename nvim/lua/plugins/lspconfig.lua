@@ -83,7 +83,7 @@ return {
         root_dir = { "requirements.txt" },
         start_root_search_from_buffer_location = true,
       },
-      -- ruff_lsp = {},
+      gopls = {},
       intelephense = {},
       kotlin_language_server = {
         root_dir = { "settings.gradle.kts", "settings.gradle" },
