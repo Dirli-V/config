@@ -50,6 +50,7 @@ opt.splitkeep = "screen"
 opt.shortmess:append({ C = true })
 opt.shelltemp = false
 opt.showtabline = 0 -- Hide tabline
+opt.fixeol = false
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
