@@ -75,7 +75,7 @@ let mapleader = " "
 
 nnoremap <leader>si :source ~/.ideavimrc<cr>
 " See :actionlist
-nmap <CR> ciw
+map <CR> ciw
 
 map gt <Action>(GotoTest)
 map gi <Action>(GotoImplementation)
