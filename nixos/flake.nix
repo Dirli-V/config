@@ -7,18 +7,30 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    sops.url = "github:Mic92/sops-nix";
+    sops.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = {
+    nixpkgs,
+    disko,
+    sops,
+    ...
+  } @ inputs: {
     nixosConfigurations = {
       dirli-nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [./desktop.nix];
       };
       nas = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+        system = "x86_64-linux";
         specialArgs = {inherit inputs;};
-        modules = [./nas.nix];
+        modules = [
+          disko.nixosModules.disko
+          sops.nixosModules.sops
+          ./nas-disk-config.nix
+          ./nas.nix
+        ];
       };
     };
   };
