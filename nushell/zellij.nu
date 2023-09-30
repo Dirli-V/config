@@ -13,7 +13,7 @@ def find-all-repos [] {
 def z [repo: string@list-repos] {
     let template = (open --raw ~/.config/zellij/layouts/repo_template.yaml)
     $template |
-        str replace '{{session_name}}' $repo -s |
+        str replace '{{session_name}}' $repo |
         save /tmp/zellij-repo-layout.yaml --raw
 
     let wd = (find-all-repos | where name == $repo | get path | get 0)
