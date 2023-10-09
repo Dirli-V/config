@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = "BufNew",
+  event = "VeryLazy",
   dependencies = {
     {
       "folke/neodev.nvim",
