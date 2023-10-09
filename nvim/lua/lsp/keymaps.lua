@@ -144,7 +144,7 @@ function M.on_attach(_, buffer)
     local opts = Keys.opts(parsedKeys)
     opts.silent = opts.silent ~= false
     opts.buffer = buffer
-    vim.keymap.set(parsedKeys.mode or "n", parsedKeys[1], parsedKeys[2], opts)
+    vim.keymap.set(parsedKeys.mode or "n", parsedKeys.lhs, parsedKeys.rhs, opts)
   end
 end
 
