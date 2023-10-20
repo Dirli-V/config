@@ -22,6 +22,10 @@
         specialArgs = {inherit inputs;};
         modules = [./desktop.nix];
       };
+      dirli-surface = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [./surface.nix];
+      };
       nas = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
