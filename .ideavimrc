@@ -47,9 +47,9 @@ sethandler <c-x> a:ide
 sethandler <c-y> a:ide
 sethandler <c-z> a:ide
 
-map Y y$
-map <c-d> <c-d>zz
-map <c-u> <c-u>zz
+nmap Y y$
+nmap <c-d> <c-d>zz
+nmap <c-u> <c-u>zz
 
 nnoremap c \"_c
 nnoremap cc \"_S
@@ -75,58 +75,58 @@ let mapleader = " "
 
 nnoremap <leader>si :source ~/.ideavimrc<cr>
 " See :actionlist
-map <CR> ciw
+nmap <CR> ciw
 
-map gt <Action>(GotoTest)
-map gi <Action>(GotoImplementation)
-map gs <Action>(GotoSuperMethod)
-map gh <Action>(ShowErrorDescription)
-map gr <Action>(FindUsages)
+nmap gt <Action>(GotoTest)
+nmap gi <Action>(GotoImplementation)
+nmap gs <Action>(GotoSuperMethod)
+nmap gh <Action>(ShowErrorDescription)
+nmap gr <Action>(FindUsages)
 
-map gcc <Action>(CommentByLineComment)
-vnoremap gc :action CommentByLineComment<cr>
-xnoremap gc :action CommentByLineComment<cr>
+nmap gcc <Action>(CommentByLineComment)
+vnoremap gc <Action>(CommentByLineComment)
+xnoremap gc <Action>(CommentByLineComment)
 
-map <leader>gg <Action>(Generate)
-map <leader>gt <Action>(GenerateTestMethod)
+nmap <leader>gg <Action>(Generate)
+nmap <leader>gt <Action>(GenerateTestMethod)
 
-map <leader>nc <Action>(NewClass)
-map <leader>nd <Action>(NewDir)
+nmap <leader>nc <Action>(NewClass)
+nmap <leader>nd <Action>(NewDir)
 
-map <leader>rr <Action>(RefactoringMenu)
-map <leader>rm <Action>(ExtractMethod)
-map <leader>rc <Action>(IntroduceConstant)
-map <leader>rv <Action>(IntroduceVariable)
-map <leader>ri <Action>(Inline)
+nmap <leader>rr <Action>(RefactoringMenu)
+nmap <leader>rm <Action>(ExtractMethod)
+nmap <leader>rc <Action>(IntroduceConstant)
+nmap <leader>rv <Action>(IntroduceVariable)
+nmap <leader>ri <Action>(Inline)
 
-map <leader>dd gg<Action>(DebugClass)``
-map <leader>dm <Action>(RunMenu)
-map <leader>db <Action>(ToggleLineBreakpoint)
-map <leader>dB <Action>(Debugger.RemoveAllBreakpointsInFile)
-map <leader>de <Action>(EditBreakpoint)
-map <leader>da <Action>(ToggleBreakpointEnabled)
+nmap <leader>dd gg<Action>(DebugClass)``
+nmap <leader>dm <Action>(RunMenu)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>dB <Action>(Debugger.RemoveAllBreakpointsInFile)
+nmap <leader>de <Action>(EditBreakpoint)
+nmap <leader>da <Action>(ToggleBreakpointEnabled)
 
-map <leader>yy <Action>(Bitbucket.CopyFileUrlInBitbucket)
-map <leader>ys <Action>(SonarLint.AnalyzeChangedFiles)
-map <leader>yg <Action>(Gradle.RefreshDependencies)
+nmap <leader>yy <Action>(Bitbucket.CopyFileUrlInBitbucket)
+nmap <leader>ys <Action>(SonarLint.AnalyzeChangedFiles)
+nmap <leader>yg <Action>(Gradle.RefreshDependencies)
 
-map <leader>j <Action>(GotoNextError)
-map <leader>k <Action>(GotoPreviousError)
+nmap <leader>j <Action>(GotoNextError)
+nmap <leader>k <Action>(GotoPreviousError)
 
-map <leader>e :NERDTreeFocus<cr>
+nmap <leader>e :NERDTreeFocus<cr>
 
-map <leader>z <Action>(ToggleDistractionFreeMode)
-map <c-m> <Action>(MoveEditorToOppositeTabGroup)
+nmap <leader>z <Action>(ToggleDistractionFreeMode)
+nmap <c-m> <Action>(MoveEditorToOppositeTabGroup)
 
-map <left> <c-w>h
-map <right> <c-w>l
-map <down> <c-w>j
-map <up> <c-w>k
+nmap <left> <c-w>h
+nmap <right> <c-w>l
+nmap <down> <c-w>j
+nmap <up> <c-w>k
 
-map <a-a> <Action>(GotoHarpoon1)
-map <a-s> <Action>(GotoHarpoon2)
-map <a-d> <Action>(GotoHarpoon3)
-map <a-f> <Action>(GotoHarpoon4)
-map <a-g> <Action>(GotoHarpoon5)
-map <leader>h <Action>(ShowHarpoon)
-map <leader>m <Action>(AddToHarpoon)
+nmap <a-a> <Action>(GotoHarpoon1)
+nmap <a-s> <Action>(GotoHarpoon2)
+nmap <a-d> <Action>(GotoHarpoon3)
+nmap <a-f> <Action>(GotoHarpoon4)
+nmap <a-g> <Action>(GotoHarpoon5)
+nmap <leader>h <Action>(ShowHarpoon)
+nmap <leader>m <Action>(AddToHarpoon)
