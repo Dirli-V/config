@@ -96,7 +96,18 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch" },
+        lualine_b = {
+          {
+            "branch",
+            fmt = function(str)
+              if string.len(str) > 35 then
+                return string.sub(str, 1, 30) .. "..."
+              else
+                return str
+              end
+            end,
+          },
+        },
         lualine_c = {
           { custom_fname, path = 1, symbols = { modified = "", readonly = "", unnamed = "" } },
           {
