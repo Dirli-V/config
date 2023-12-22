@@ -71,8 +71,8 @@ return {
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
-            cargo = { allFeatures = true },
-            procMacro = { enable = true },
+            -- cargo = { features = "all" },
+            -- procMacro = { enable = true },
           },
         },
       },
