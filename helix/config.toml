@@ -2,6 +2,8 @@ theme = "catppuccin_mocha"
 
 [editor]
 color-modes = true
+shell = ["nu", "-c"]
+insert-final-newline = false
 
 [editor.cursor-shape]
 insert = "bar"
