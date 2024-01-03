@@ -41,3 +41,6 @@ def download_nixpkgs_cache_index [] {
   wget -q -N $"https://github.com/Mic92/nix-index-database/releases/latest/download/($filename)"
   ln -f $filename files
 }
+
+alias nl = nix-locate
+alias nlt = nix-locate --top-level
