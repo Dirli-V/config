@@ -1,5 +1,11 @@
 # [[language]]
 # name = "rust"
 # config = { rust-analyzer = { cargo = { allFeatures = true }, procMacro = { enable = true } } }
-[language-server.pylsp]
-config = { pylsp = { plugins = { black = { enabled = true }, flake8 = { enabled = true, maxLineLength = 160 } } } }
+[[language]]
+name = "python"
+auto-format = true
+
+[language-server.pylsp.config.pylsp.plugins]
+black = { enabled = true }
+flake8 = { enabled = true, maxLineLength = 160 }
+mypy = { enabled = true, strict = true }
