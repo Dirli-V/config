@@ -24,6 +24,14 @@ skip-levels = 1
 [keys.normal]
 "esc" = ["collapse_selection", "keep_primary_selection"]
 "ret" = ["select_textobject_inner"]
+"d" = "delete_selection_noyank"
+"D" = "delete_selection"
+"c" = "change_selection_noyank"
+
+[keys.select]
+"d" = "delete_selection_noyank"
+"D" = "delete_selection"
+"c" = "change_selection_noyank"
 
 [keys.normal.space]
 "w" = ":w"
