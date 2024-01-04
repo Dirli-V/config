@@ -83,6 +83,27 @@ return {
         root_dir = { "requirements.txt" },
         start_root_search_from_buffer_location = true,
       },
+      pylsp = {
+        root_dir = { "requirements.txt" },
+        start_root_search_from_buffer_location = true,
+        settings = {
+          pylsp = {
+            plugins = {
+              black = {
+                enabled = true,
+              },
+              flake8 = {
+                enabled = true,
+                maxLineLength = 160,
+              },
+              mypy = {
+                enabled = true,
+                strict = true,
+              },
+            },
+          },
+        },
+      },
       gopls = {},
       intelephense = {},
       kotlin_language_server = {
