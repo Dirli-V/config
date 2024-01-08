@@ -37,5 +37,17 @@
         ];
       };
     };
+    nixosModules = {
+      neovim = ./neovim.nix;
+      alacritty = ./alacritty.nix;
+      nushell = ./nushell.nix;
+      helix = ./helix.nix;
+      starship = ./starship.nix;
+      wezterm = ./wezterm.nix;
+      k9s = ./k9s.nix;
+      btop = ./btop.nix;
+      dev-tools = ./dev-tools.nix;
+      ideavim = ./ideavim.nix;
+    };
   };
 }
