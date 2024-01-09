@@ -42,4 +42,4 @@ colors:
 shell:
   program: nu
 
-working_directory: ~
+working_directory: "~"
