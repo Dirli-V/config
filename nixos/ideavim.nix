@@ -1,3 +1,3 @@
-{_}: {
+_: {
   home.file.".ideavimrc".source = ./.ideavimrc;
 }
