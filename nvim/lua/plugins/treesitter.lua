@@ -27,7 +27,6 @@ return {
       end,
     },
     indent = { enable = true },
-    context_commentstring = { enable = true, enable_autocmd = false },
     rainbow = {
       enable = true,
     },
@@ -44,5 +43,8 @@ return {
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
     require("treesitter-context").setup()
+    require("ts_context_commentstring").setup({
+      enable_autocmd = false,
+    })
   end,
 }
