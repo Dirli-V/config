@@ -22,7 +22,6 @@
     fd
     xplr
     bandwhich
-    terraform
     kubectl
     kubernetes-helm
     proselint

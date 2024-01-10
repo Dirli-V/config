@@ -189,6 +189,7 @@
           discord
           packer
           hcloud
+          terraform
           spotify
           steam
           wine
