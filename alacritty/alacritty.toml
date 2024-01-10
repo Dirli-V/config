@@ -38,8 +38,5 @@ size = 16.0
 [font.normal]
 family = "FiraCode Nerd Font"
 
-[shell]
-program = "nu"
-
 [window]
 startup_mode = "Windowed"
