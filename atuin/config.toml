@@ -1,0 +1,4 @@
+dialect = "uk"
+auto_sync = false
+update_check = false
+enter_accept = false
