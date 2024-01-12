@@ -8,6 +8,16 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("config.options")
 
+local cwd = vim.fn.getcwd()
+local lockfile
+if cwd:sub(-#"config") == "config" then
+  lockfile = cwd .. "/nvim/lazy-lock.json"
+else
+  lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
+end
+
+print(lockfile)
+
 require("lazy").setup({
   spec = {
     { import = "plugins" },
@@ -16,6 +26,7 @@ require("lazy").setup({
     lazy = true,
     version = false,
   },
+  lockfile = lockfile,
   checker = { enabled = false },
   change_detection = { enabled = false },
   performance = {
