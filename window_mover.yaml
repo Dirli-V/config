@@ -42,6 +42,13 @@ commands:
             top: 0
             width: 2518
             height: 1396
+        - window_names:
+            - cs2
+          position:
+            left: 1280
+            top: -28
+            width: 2560
+            height: 1440
       default:
         left: 1299
         top: -29
