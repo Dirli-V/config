@@ -11,7 +11,7 @@ in {
   xdg.configFile =
     configFiles
     // {
-      "nushell/history.txt".source = config.lib.file.mkOutOfStoreSymlink "/home/dirli/.local/share/nushell/history.txt";
+      "nushell/history.txt".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/nushell/history.txt";
       atuin.source = ../atuin;
     };
 
