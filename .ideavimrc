@@ -131,3 +131,5 @@ nmap <a-f> <Action>(GotoHarpoon4)
 nmap <a-g> <Action>(GotoHarpoon5)
 nmap <leader>h <Action>(ShowHarpoon)
 nmap <leader>m <Action>(AddToHarpoon)
+
+nmap H :e #<cr>
