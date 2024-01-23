@@ -133,3 +133,4 @@ nmap <leader>h <Action>(ShowHarpoon)
 nmap <leader>m <Action>(AddToHarpoon)
 
 nmap H :e #<cr>
+nmap L <Action>(RecentFiles)
