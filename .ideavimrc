@@ -43,7 +43,7 @@ sethandler <c-t> a:ide
 sethandler <c-u> a:vim
 sethandler <c-v> a:vim
 sethandler <c-w> a:vim
-sethandler <c-x> a:ide
+sethandler <c-x> a:vim
 sethandler <c-y> a:ide
 sethandler <c-z> a:ide
 
