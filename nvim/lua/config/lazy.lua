@@ -16,8 +16,6 @@ else
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
 end
 
-print(lockfile)
-
 require("lazy").setup({
   spec = {
     { import = "plugins" },
