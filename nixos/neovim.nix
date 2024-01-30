@@ -8,7 +8,7 @@
     neovim = {
       enable = true;
       defaultEditor = true;
-      extraPython3Packages = ps: with ps; [pynvim requests simple-websocket-server python-slugify];
+      extraPython3Packages = ps: with ps; [simple-websocket-server python-slugify];
     };
   };
 }
