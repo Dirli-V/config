@@ -10,7 +10,7 @@ require("config.options")
 
 local cwd = vim.fn.getcwd()
 local lockfile
-if cwd:sub(-#"config") == "config" then
+if cwd:sub(-#"/config") == "/config" then
   lockfile = cwd .. "/nvim/lazy-lock.json"
 else
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
