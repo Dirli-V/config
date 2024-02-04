@@ -54,6 +54,10 @@ return {
       follow_current_file = true,
       use_libuv_file_watcher = true,
     },
+    sources = {
+      "filesystem",
+      "netman.ui.neo-tree",
+    },
     window = {
       mappings = {
         ["<space>"] = "none",
