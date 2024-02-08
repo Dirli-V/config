@@ -1,5 +1,6 @@
 return {
   "L3MON4D3/LuaSnip",
+  version = "v2.*",
   opts = {
     history = true,
     delete_check_events = "TextChanged",
