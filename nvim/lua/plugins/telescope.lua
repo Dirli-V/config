@@ -38,12 +38,10 @@ return {
   keys = {
     { "<leader>sb", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
     { "L", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-    { "<leader>/", telescope_with_cwd("live_grep"), desc = "Grep (root dir)" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
     { "<leader><space>", telescope_with_cwd("files"), desc = "Find Files (root dir)" },
     -- find
     { "<leader>F", telescope_with_cwd("files"), desc = "Find Files (root dir)" },
-    { "<leader>f", telescope_with_cwd("files", { cwd = false }), desc = "Find Files (cwd)" },
     -- git
     { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
     { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
@@ -101,7 +99,6 @@ return {
       }),
       desc = "Goto Symbol (Workspace)",
     },
-    { "R", "<cmd>Telescope resume<cr>", desc = "Resume search" },
   },
   opts = {
     defaults = {
