@@ -12,7 +12,7 @@ return {
     {
       "<leader>dr",
       function()
-        vim.cmd("w")
+        vim.cmd("up")
         require("neotest").run.run({
           vim.fn.expand("%"),
           cwd = require("helpers").get_root(),
@@ -24,7 +24,7 @@ return {
     {
       "<leader>dd",
       function()
-        vim.cmd("w")
+        vim.cmd("up")
         require("neotest").run.run({
           vim.fn.expand("%"),
           strategy = "dap",
@@ -37,7 +37,7 @@ return {
     {
       "<leader>dj",
       function()
-        vim.cmd("w")
+        vim.cmd("up")
         require("neotest").run.run({
           cwd = require("helpers").get_root(),
           suite = false,
@@ -48,7 +48,7 @@ return {
     {
       "<leader>dJ",
       function()
-        vim.cmd("w")
+        vim.cmd("up")
         require("neotest").run.run({
           strategy = "dap",
           cwd = require("helpers").get_root(),
