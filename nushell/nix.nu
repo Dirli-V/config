@@ -12,7 +12,12 @@ alias nsp = nix-shell -p
 def nfua [] {
   fd flake.nix ~/personal_config/ |
   lines |
-  each {|it| nix flake update (echo $it | path dirname) | echo "✔ " $it | str join }
+  each {|it|
+    let path = (echo $it | path dirname)
+    nix flake update $path
+    let message = (echo "echo" "✔ " $it | str join)
+    nix develop $path --command $message
+  }
 }
 
 def nd [name = "", --silent] {
