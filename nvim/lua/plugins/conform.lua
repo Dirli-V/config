@@ -7,6 +7,7 @@ return {
       -- python = { "isort", "black" },
       javascript = { "prettierd" },
       typescript = { "prettierd" },
+      typescriptreact = { "prettierd" },
       nix = { "alejandra" },
       json = { "fixjson" },
       kotlin = { "ktlint" },
