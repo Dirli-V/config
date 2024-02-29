@@ -205,6 +205,7 @@ return {
             if file_path then
               local root_dir = server_opts["root_dir"]
               server_opts["root_dir"] = function()
+                ---@diagnostic disable-next-line: redundant-parameter
                 return root_dir(vim.fs.dirname(file_path))
               end
             end
