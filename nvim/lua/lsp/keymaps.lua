@@ -85,7 +85,7 @@ local function definition_or_reference()
   end)
 end
 
-LspKeys = {
+local lsp_keys = {
   { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
   { "gd", definition_or_reference, desc = "Goto Definition" },
   { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
@@ -113,31 +113,15 @@ LspKeys = {
   },
   { "<leader>.", vim.lsp.buf.code_action, desc = "Open code actions" },
   { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" },
-  {
-    "<leader>yc",
-    function()
-      vim.fn.setreg("+", vim.fn.expand("%"))
-    end,
-    desc = "Copy filename to clipboard",
-  },
-  {
-    "<leader>yC",
-    function()
-      vim.fn.setreg("+", vim.fn.expand("%:p"))
-    end,
-    desc = "Copy full filename to clipboard",
-  },
 }
 
 function M.on_attach(_, buffer)
-  local Keys = require("lazy.core.handler.keys")
-
-  for _, keys in pairs(LspKeys) do
-    local parsedKeys = Keys.parse(keys)
-    local opts = Keys.opts(parsedKeys)
+  for _, keys in pairs(lsp_keys) do
+    local opts = {}
+    opts.desc = keys.opts or ""
     opts.silent = opts.silent ~= false
     opts.buffer = buffer
-    vim.keymap.set(parsedKeys.mode or "n", parsedKeys.lhs, parsedKeys.rhs, opts)
+    vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
   end
 end
 

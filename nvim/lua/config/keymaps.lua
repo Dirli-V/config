@@ -177,3 +177,15 @@ map("n", "<leader>yY", "", {
     helpers.copy_git_file_to_clipboard(true)
   end,
 })
+map("n", "<leader>yc", "", {
+  desc = "Copy filename to clipboard",
+  callback = function()
+    vim.fn.setreg("+", vim.fn.expand("%"))
+  end,
+})
+map("n", "<leader>yC", "", {
+  desc = "Copy full filename to clipboard",
+  callback = function()
+    vim.fn.setreg("+", vim.fn.expand("%:p"))
+  end,
+})
