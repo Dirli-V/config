@@ -28,6 +28,7 @@ end
 local active_workspaces = {}
 -- the last activated workspace choice
 local current_workspace_choice = nil
+local previous_workspace_choice = nil
 
 local function save_current_workspaces()
 	local sink = io.open(workspaces_path, "w")
@@ -196,6 +197,30 @@ local keys = {
 			)
 		end),
 	},
+	-- go to previous workspace
+	{
+		key = "h",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			if not previous_workspace_choice or not current_workspace_choice then
+				return
+			end
+
+			local tmp = current_workspace_choice
+			current_workspace_choice = previous_workspace_choice
+			previous_workspace_choice = tmp
+
+			window:perform_action(
+				wezterm.action.SwitchToWorkspace({
+					name = previous_workspace_choice.id,
+					spawn = {
+						cwd = previous_workspace_choice.id,
+					},
+				}),
+				pane
+			)
+		end),
+	},
 	{ key = "z", mods = "LEADER|CTRL", action = wezterm.action.SendKey({ key = "z", mods = "CTRL" }) },
 	{ key = "+", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
 	{ key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
@@ -230,6 +255,8 @@ end
 local function open_workspace(window, pane, i)
 	-- activate workspace for this slot if there is one
 	if active_workspaces[i] then
+		previous_workspace_choice = current_workspace_choice
+		current_workspace_choice = active_workspaces[i]
 		window:perform_action(
 			wezterm.action.SwitchToWorkspace({
 				name = active_workspaces[i].id,
