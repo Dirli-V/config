@@ -141,6 +141,13 @@ commands:
             top: 0
             width: 1300
             height: 1440
+        - window_names:
+            - thunderbird
+          position:
+            left: 3775
+            top: -50
+            width: 1390
+            height: 1535
       default:
         left: 3819
         top: -29
