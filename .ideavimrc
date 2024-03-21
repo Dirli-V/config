@@ -69,7 +69,9 @@ nnoremap x d
 vnoremap x d
 nnoremap xx dd
 nnoremap X D
-xnoremap p pgvy
+
+xnoremap p \"+pgvy
+nnoremap p \"+p
 
 let mapleader = " "
 
