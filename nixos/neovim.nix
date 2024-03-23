@@ -3,6 +3,8 @@
   home.packages = with pkgs; [
     ripgrep
     libgccjit
+    fzf
+    bat
   ];
   programs = {
     neovim = {
