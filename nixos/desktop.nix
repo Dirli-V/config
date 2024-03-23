@@ -8,6 +8,7 @@
   imports = [
     ./desktop-hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.stylix.nixosModules.stylix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -83,7 +84,6 @@
       #   ];
       # };
       #
-      videoDrivers = ["modesetting"];
     };
 
     fwupd.enable = true;
@@ -137,6 +137,9 @@
     keyMap = "de";
   };
 
+  stylix.image = ./wallpaper.jpg;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+
   # Don't forget to set a password with ‘passwd’.
   users.users.dirli = {
     isNormalUser = true;
@@ -149,8 +152,16 @@
     pam.services.dirli.gnupg.enable = true;
   };
   hardware = {
-    opengl.enable = true;
-    opengl.driSupport32Bit = true;
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        amdvlk
+      ];
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
+    };
     bluetooth.enable = true;
   };
   fonts.packages = with pkgs; [
@@ -174,6 +185,8 @@
         ./starship.nix
         ./wezterm.nix
         ./k9s.nix
+        ./helix.nix
+        ./eww.nix
         ./btop.nix
         ./dev-tools.nix
         ./ideavim.nix
@@ -192,11 +205,17 @@
           terraform
           spotify
           steam
-          wine
           _1password-gui
           signal-desktop
           thunderbird
           lutris
+          (wineWowPackages.full.override {
+            wineRelease = "staging";
+            mingwSupport = true;
+          })
+          winetricks
+          bottles
+          heroic
           # x things
           xdotool
           xorg.xdpyinfo
@@ -219,6 +238,8 @@
           # urlview
           # end of neomutt
           sops
+          helvum
+          playerctl
         ];
 
         stateVersion = "22.11";
@@ -239,7 +260,6 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "qt";
     };
   };
 

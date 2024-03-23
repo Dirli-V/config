@@ -9,6 +9,8 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     sops.url = "github:Mic92/sops-nix";
     sops.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -48,6 +50,7 @@
       btop = ./btop.nix;
       dev-tools = ./dev-tools.nix;
       ideavim = ./ideavim.nix;
+      eww = ./eww.nix;
     };
   };
 }
