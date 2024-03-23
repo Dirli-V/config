@@ -164,9 +164,9 @@ commands:
             height: 1440
       default:
         left: 0
-        top: 0
-        width: 0
-        height: 0
+        top: -29
+        width: 5120
+        height: 1440
   3440x1440:
     - name: right
       window_positions:
