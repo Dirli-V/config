@@ -97,10 +97,15 @@ nmap <leader>nc <Action>(NewClass)
 nmap <leader>nd <Action>(NewDir)
 
 nmap <leader>rr <Action>(RefactoringMenu)
+xmap <leader>rr <Action>(RefactoringMenu)
 nmap <leader>rm <Action>(ExtractMethod)
+xmap <leader>rm <Action>(ExtractMethod)
 nmap <leader>rc <Action>(IntroduceConstant)
+xmap <leader>rc <Action>(IntroduceConstant)
 nmap <leader>rv <Action>(IntroduceVariable)
+xmap <leader>rv <Action>(IntroduceVariable)
 nmap <leader>ri <Action>(Inline)
+xmap <leader>ri <Action>(Inline)
 
 nmap <leader>dd gg<Action>(DebugClass)``
 nmap <leader>dm <Action>(RunMenu)
