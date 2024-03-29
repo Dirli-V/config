@@ -10,6 +10,9 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
   ];
+  nixpkgs.overlays = [
+    inputs.wired-notify.overlays.default
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -150,6 +153,7 @@
     rtkit.enable = true;
     polkit.enable = true;
     pam.services.dirli.gnupg.enable = true;
+    pam.services.swaylock = {};
   };
   hardware = {
     opengl = {
@@ -179,6 +183,7 @@
       personal-config-files = config.lib.file.mkOutOfStoreSymlink "/home/dirli/personal_config";
     in {
       imports = [
+        inputs.wired-notify.homeManagerModules.default
         ./neovim.nix
         ./alacritty.nix
         ./nushell.nix
@@ -190,6 +195,7 @@
         ./btop.nix
         ./dev-tools.nix
         ./ideavim.nix
+        ./wired-notify.nix
       ];
 
       xdg.configFile = {
@@ -240,6 +246,9 @@
           sops
           helvum
           playerctl
+          libnotify
+          swaylock
+          inputs.scape.packages.x86_64-linux.default
         ];
 
         stateVersion = "22.11";
