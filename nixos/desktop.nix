@@ -200,7 +200,6 @@
 
       xdg.configFile = {
         "window_mover.yaml".source = "${config-files}/window_mover.yaml";
-        mutt.source = "${personal-config-files}/mutt";
       };
       home = {
         packages = with pkgs; [
@@ -233,16 +232,6 @@
           stremio
           joplin-desktop
           sniffnet
-          # neomutt
-          neomutt
-          isync
-          msmtp
-          pass
-          mutt-wizard
-          lynx
-          notmuch
-          # urlview
-          # end of neomutt
           sops
           helvum
           playerctl
@@ -269,26 +258,6 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-  };
-
-  systemd.timers."mw-mailsync" = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnBootSec = "5m";
-      OnUnitActiveSec = "5m";
-      Unit = "mw-mailsync.service";
-    };
-  };
-
-  systemd.services."mw-mailsync" = {
-    script = ''
-      set -eu
-      ${pkgs.mutt-wizard}/bin/mailsync
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "dirli";
     };
   };
 
