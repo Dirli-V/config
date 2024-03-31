@@ -208,7 +208,7 @@
           discord
           packer
           hcloud
-          terraform
+          opentofu
           spotify
           steam
           _1password-gui
