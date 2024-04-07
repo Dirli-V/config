@@ -45,16 +45,6 @@
         specialArgs = {inherit inputs;};
         modules = [./surface.nix];
       };
-      nas = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          disko.nixosModules.disko
-          sops.nixosModules.sops
-          ./nas-disk-config.nix
-          ./nas.nix
-        ];
-      };
     };
     nixosModules = {
       neovim = ./neovim.nix;
