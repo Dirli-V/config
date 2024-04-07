@@ -52,6 +52,7 @@ return {
       update_in_insert = true,
     },
     servers = {
+      bashls = {},
       jsonls = {
         cmd = { "vscode-json-languageserver", "--stdio" },
       },
@@ -68,14 +69,6 @@ return {
         },
       },
       ltex = {},
-      rust_analyzer = {
-        settings = {
-          ["rust-analyzer"] = {
-            -- cargo = { features = "all" },
-            -- procMacro = { enable = true },
-          },
-        },
-      },
       tsserver = {},
       nil_ls = {},
       taplo = {},
@@ -120,10 +113,6 @@ return {
       },
     },
     setup = {
-      rust_analyzer = function(_, opts)
-        require("rust-tools").setup({ server = opts })
-        return true
-      end,
       tsserver = function(_, opts)
         require("typescript-tools").setup({
           server = opts,

@@ -3,7 +3,6 @@ return {
   dependencies = {
     "mfussenegger/nvim-dap",
     "nvim-neotest/neotest-python",
-    "rouge8/neotest-rust",
     "nvim-neotest/neotest-vim-test",
     "vim-test/vim-test",
     "nvim-neotest/neotest-jest",
@@ -100,7 +99,7 @@ return {
     require("neotest").setup(vim.tbl_extend("force", opts, {
       adapters = {
         require("neotest-python"),
-        require("neotest-rust"),
+        require("rustaceanvim.neotest"),
         require("neotest-jest"),
         require("neotest-vim-test")({
           allow_file_types = { "java", "kotlin" },
