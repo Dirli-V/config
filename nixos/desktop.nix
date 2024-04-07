@@ -62,32 +62,32 @@
       pkgs.hplip
       pkgs.hplipWithPlugin
     ];
-    xserver = {
-      enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+    # xserver = {
+    #   enable = true;
+    #   displayManager.sddm.enable = true;
+    #   desktopManager.plasma5.enable = true;
 
-      # systemd.services.lemurs = {
-      #   description = "Lemurs";
-      #   after = [
-      #     "systemd-user-sessions.service"
-      #     "plymouth-quit-wait.service"
-      #     "getty@tty3.service"
-      #   ];
-      #   serviceConfig = {
-      #     ExecStart = "${pkgs.lemurs}/bin/lemurs";
-      #     StandardInput = "tty";
-      #     TTYPath = "/dev/tty3";
-      #     TTYReset = "yes";
-      #     TTYVHangup = "yes";
-      #     Type = "idle";
-      #   };
-      #   aliases = [
-      #     "display-manager.service"
-      #   ];
-      # };
-      #
-    };
+    # systemd.services.lemurs = {
+    #   description = "Lemurs";
+    #   after = [
+    #     "systemd-user-sessions.service"
+    #     "plymouth-quit-wait.service"
+    #     "getty@tty3.service"
+    #   ];
+    #   serviceConfig = {
+    #     ExecStart = "${pkgs.lemurs}/bin/lemurs";
+    #     StandardInput = "tty";
+    #     TTYPath = "/dev/tty3";
+    #     TTYReset = "yes";
+    #     TTYVHangup = "yes";
+    #     Type = "idle";
+    #   };
+    #   aliases = [
+    #     "display-manager.service"
+    #   ];
+    # };
+    #
+    # };
 
     fwupd.enable = true;
 
@@ -124,7 +124,10 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
+      ];
+      configPackages = with pkgs; [
+        xdg-desktop-portal-wlr
+        # xdg-desktop-portal-gtk
       ];
     };
   };
@@ -142,6 +145,13 @@
 
   stylix.image = ./wallpaper.jpg;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+
+  systemd.user.targets."scape-session" = {
+    description = "Scape graphical session init service";
+    bindsTo = ["graphical-session.target"];
+    wants = ["graphical-session-pre.target"];
+    after = ["graphical-session-pre.target"];
+  };
 
   # Don't forget to set a password with ‘passwd’.
   users.users.dirli = {
@@ -172,6 +182,7 @@
     (nerdfonts.override {fonts = ["FiraCode"];})
   ];
   home-manager = {
+    extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
     useGlobalPkgs = true;
     users.dirli = {
@@ -180,7 +191,7 @@
       ...
     }: let
       config-files = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config";
-      personal-config-files = config.lib.file.mkOutOfStoreSymlink "/home/dirli/personal_config";
+      # personal-config-files = config.lib.file.mkOutOfStoreSymlink "/home/dirli/personal_config";
     in {
       imports = [
         inputs.wired-notify.homeManagerModules.default
@@ -196,6 +207,7 @@
         ./dev-tools.nix
         ./ideavim.nix
         ./wired-notify.nix
+        ./scape.nix
       ];
 
       xdg.configFile = {
@@ -237,7 +249,23 @@
           playerctl
           libnotify
           swaylock
-          inputs.scape.packages.x86_64-linux.default
+          grim
+          slurp
+          swappy
+          (writeShellApplication
+            {
+              name = "make-screenshot";
+              runtimeInputs = [
+                grim
+                slurp
+                swappy
+              ];
+              text = ''
+                grim -g "$(slurp)" - | swappy -f -
+              '';
+            })
+          # onagre
+          wl-clipboard-rs
         ];
 
         stateVersion = "22.11";
@@ -265,6 +293,7 @@
     vim
     wget
     btop
+    htop
     cmake
     gnumake
     gcc
