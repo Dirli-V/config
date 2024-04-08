@@ -247,5 +247,5 @@ scape.window_rule({
 
 scape.window_rule({
 	app_id = "discord",
-	zone = "right",
+	zone = "left",
 })
