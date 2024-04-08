@@ -40,7 +40,7 @@ def nd [name = "", --silent] {
 }
 
 def download_nixpkgs_cache_index [] {
-  let filename = $"index-(uname -m | sed 's/^arm64$/aarch64/')-(uname | tr A-Z a-z)"
+  let filename = $"index-(uname | get machine | sed 's/^arm64$/aarch64/')-(uname | get kernel-name | tr A-Z a-z)"
   mkdir ~/.cache/nix-index
   cd ~/.cache/nix-index
   wget -q -N $"https://github.com/Mic92/nix-index-database/releases/latest/download/($filename)"
