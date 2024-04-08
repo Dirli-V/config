@@ -15,7 +15,11 @@
     (metric :label "💾"
             :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
             :onchange "")
-    (button :onclick "eww -c /home/dirli/config/eww/ open cal --toggle" time)))
+    (button :onclick "eww open cal --toggle"
+      (box :orientation "v"
+           :class "date-time"
+        time
+        date))))
 
 (defwidget workspaces []
   (box :class "workspaces"
@@ -60,26 +64,26 @@
 (defpoll volume :interval "1s"
   "echo 1")
 
-(defpoll time :interval "10s"
-  "date '+%H:%M %b %d, %Y'")
+(defpoll time :interval "1s"
+  "date '+%H:%M'")
+(defpoll date :interval "1s"
+  "date '+%m.%d.%Y'")
 
 (defwindow bar
   :monitor 0
-  :windowtype "dock"
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "100%"
-                      :height "10px"
-                      :anchor "top center")
-  :reserve (struts :side "top" :distance "4%")
+                      :height "47px"
+                      :anchor "bottom center")
+  :stacking "bg"
   (bar))
 
 (defwindow cal
   :monitor 0
-  :windowtype "dock"
   :geometry (geometry :x "0%"
-                      :y "40px"
+                      :y "47px"
                       :width "400px"
                       :height "0px" ; sets height automatically
-                      :anchor "top right")
+                      :anchor "bottom right")
   (calendar))

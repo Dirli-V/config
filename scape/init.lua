@@ -10,9 +10,18 @@ scape.on_startup(function()
 	scape.spawn({
 		command = "wezterm",
 	})
+	scape.spawn({
+		command = "eww",
+		args = { "daemon", "--force-wayland" },
+	})
+	scape.spawn({
+		command = "eww",
+		args = { "open", "bar" },
+	})
 end)
 
 local space = "main"
+local bar_height = 47
 
 scape.on_connector_change(function(outputs)
 	local main_output = outputs[1]
@@ -35,14 +44,14 @@ scape.on_connector_change(function(outputs)
 			x = 0,
 			y = 0,
 			width = outputs[1].width / 4,
-			height = outputs[1].height,
+			height = outputs[1].height - bar_height,
 		},
 		{
 			name = "mid",
 			x = outputs[1].width / 4,
 			y = 0,
 			width = outputs[1].width / 2,
-			height = outputs[1].height,
+			height = outputs[1].height - bar_height,
 			default = true,
 		},
 		{
@@ -50,7 +59,7 @@ scape.on_connector_change(function(outputs)
 			x = outputs[1].width / 4 * 3,
 			y = 0,
 			width = outputs[1].width / 4,
-			height = outputs[1].height,
+			height = outputs[1].height - bar_height,
 		},
 		{
 			name = "wezterm",
@@ -229,4 +238,14 @@ scape.map_key({
 scape.window_rule({
 	app_id = "org.wezfurlong.wezterm",
 	zone = "wezterm",
+})
+
+scape.window_rule({
+	app_id = "Spotify",
+	zone = "right",
+})
+
+scape.window_rule({
+	app_id = "discord",
+	zone = "right",
 })
