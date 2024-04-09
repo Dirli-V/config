@@ -67,7 +67,7 @@
 (defpoll time :interval "1s"
   "date '+%H:%M'")
 (defpoll date :interval "1s"
-  "date '+%m.%d.%Y'")
+  "date '+%d.%m.%Y'")
 
 (defwindow bar
   :monitor 0

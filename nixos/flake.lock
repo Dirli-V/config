@@ -490,11 +490,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712526301,
-        "narHash": "sha256-6tonTQfOlRiH8CU1EbCtaT7d0DBDx8hXFc0FI7fyJMA=",
+        "lastModified": 1712693649,
+        "narHash": "sha256-IKV+LSNkcD8LyyCv3YO1q6NJdHJ1bHDcGj2WpBEbD9Q=",
         "owner": "Dirli-V",
         "repo": "scape",
-        "rev": "67baa8a7010862334653e9d24e19d774039ca99d",
+        "rev": "6833805fdd1a339999925de03ba0d400fa6d87f9",
         "type": "github"
       },
       "original": {

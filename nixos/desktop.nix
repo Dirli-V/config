@@ -148,6 +148,7 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     cursor = {
       name = "Breeze";
+      size = 24;
       package = pkgs.runCommand "Breeze_Dark_Default-package" {} ''
         mkdir -p $out/share/icons/Breeze
         cp -r ${../cursor/Breeze_Dark_Default}/* $out/share/icons/Breeze

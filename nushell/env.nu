@@ -41,3 +41,5 @@ $env.PROMPT_COMMAND_RIGHT = ""
 $env.PATH = ($env.PATH | append ("~" | path expand | path join ".cargo/bin"))
 $env.EDITOR = "nvim"
 $env.BROWSER = "brave"
+$env.XCURSOR_THEME = "default"
+$env.XCURSOR_SIZE = "24"
