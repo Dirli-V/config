@@ -124,10 +124,11 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
       ];
       configPackages = with pkgs; [
         xdg-desktop-portal-wlr
-        # xdg-desktop-portal-gtk
+        xdg-desktop-portal-gtk
       ];
     };
   };
@@ -276,6 +277,7 @@
             })
           # onagre
           wl-clipboard-rs
+          xwaylandvideobridge
         ];
 
         stateVersion = "22.11";
