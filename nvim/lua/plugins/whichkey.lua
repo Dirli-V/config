@@ -19,6 +19,7 @@ return {
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
       ["<leader>n"] = { name = "+note" },
       ["<leader>y"] = { name = "+misc" },
+      ["<leader>p"] = { name = "+perf" },
     })
   end,
 }
