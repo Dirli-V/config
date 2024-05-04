@@ -22,11 +22,11 @@
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
-    # gc = {
-    #   automatic = true;
-    #   dates = "weekly";
-    #   options = "--delete-older-than 30d";
-    # };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
 
   networking = {
@@ -52,6 +52,39 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+      wireplumber = {
+        enable = true;
+        extraConfig = {
+          "10-activate_bose" = {
+            "monitor.alsa.rules" = [
+              {
+                "matches" = [
+                  {
+                    "node.nick" = "BoseMiniSoundLink";
+                  }
+                ];
+                "actions" = {
+                  "update-props" = {
+                    "priority.session" = 1010;
+                  };
+                };
+              }
+              {
+                "matches" = [
+                  {
+                    "node.nick" = "Stealth Pro Xbox";
+                  }
+                ];
+                "actions" = {
+                  "update-props" = {
+                    "priority.session" = 1011;
+                  };
+                };
+              }
+            ];
+          };
+        };
+      };
     };
 
     printing.enable = true;
@@ -62,32 +95,6 @@
       pkgs.hplip
       pkgs.hplipWithPlugin
     ];
-    # xserver = {
-    #   enable = true;
-    #   displayManager.sddm.enable = true;
-    #   desktopManager.plasma5.enable = true;
-
-    # systemd.services.lemurs = {
-    #   description = "Lemurs";
-    #   after = [
-    #     "systemd-user-sessions.service"
-    #     "plymouth-quit-wait.service"
-    #     "getty@tty3.service"
-    #   ];
-    #   serviceConfig = {
-    #     ExecStart = "${pkgs.lemurs}/bin/lemurs";
-    #     StandardInput = "tty";
-    #     TTYPath = "/dev/tty3";
-    #     TTYReset = "yes";
-    #     TTYVHangup = "yes";
-    #     Type = "idle";
-    #   };
-    #   aliases = [
-    #     "display-manager.service"
-    #   ];
-    # };
-    #
-    # };
 
     fwupd.enable = true;
 
@@ -236,6 +243,8 @@
           _1password-gui
           signal-desktop
           thunderbird
+          yazi
+          nix-inspect
           lutris
           (wineWowPackages.full.override {
             wineRelease = "staging";
@@ -299,6 +308,10 @@
       enable = true;
       enableSSHSupport = true;
     };
+    steam = {
+      enable = true;
+      extest.enable = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -319,6 +332,7 @@
     # lemurs
     gnupg
     pinentry-qt
+    config.boot.kernelPackages.perf
   ];
 
   # Keep a list of all installed packages in /etc/current-systempackages
