@@ -21,7 +21,7 @@ scape.on_startup(function()
 end)
 
 local space = "main"
-local bar_height = 47
+local bar_height = 34
 
 scape.on_connector_change(function(outputs)
 	local main_output = outputs[1]
