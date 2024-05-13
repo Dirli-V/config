@@ -46,18 +46,6 @@
         modules = [./surface.nix];
       };
     };
-    nixosModules = {
-      neovim = ./neovim.nix;
-      alacritty = ./alacritty.nix;
-      nushell = ./nushell.nix;
-      starship = ./starship.nix;
-      wezterm = ./wezterm.nix;
-      k9s = ./k9s.nix;
-      btop = ./btop.nix;
-      dev-tools = ./dev-tools.nix;
-      ideavim = ./ideavim.nix;
-      eww = ./eww.nix;
-    };
     homeManagerModules = {
       default = ./default.nix;
     };

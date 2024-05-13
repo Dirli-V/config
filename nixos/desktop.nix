@@ -213,20 +213,24 @@
     in {
       imports = [
         inputs.wired-notify.homeManagerModules.default
-        ./neovim.nix
-        ./alacritty.nix
-        ./nushell.nix
-        ./starship.nix
-        ./wezterm.nix
-        ./k9s.nix
-        ./helix.nix
-        ./eww.nix
-        ./btop.nix
-        ./dev-tools.nix
-        ./ideavim.nix
-        ./wired-notify.nix
-        ./scape.nix
+        ./default.nix
       ];
+
+      shared-config = {
+        alacritty.enable = true;
+        btop.enable = true;
+        dev-tools.enable = true;
+        eww.enable = true;
+        helix.enable = true;
+        ideavim.enable = true;
+        k9s.enable = true;
+        neovim.enable = true;
+        nushell.enable = true;
+        scape.enable = true;
+        starship.enable = true;
+        wezterm.enable = true;
+        wired.enable = true;
+      };
 
       xdg.configFile = {
         "window_mover.yaml".source = "${config-files}/window_mover.yaml";
