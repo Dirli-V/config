@@ -1,10 +1,12 @@
 # credit to https://github.com/oddlama/nix-config
-{
+wired-notify: {
   config,
   lib,
   pkgs,
   ...
 }: {
+  imports = [wired-notify.homeManagerModules.default];
+
   options.shared-config.wired.enable = lib.mkEnableOption "Enable shared wired config";
 
   config = lib.mkIf config.shared-config.wired.enable {
