@@ -72,10 +72,11 @@ end
 
 -- add all subfolders to the list of workspaces
 local function add_subfolders_to_workspaces(dir, workspace_choices, known_workspaces)
-	local dir_list = io.popen("dir -1 " .. dir)
+	local dir_list = io.popen("fd --exact-depth 1 -t d --base-directory " .. dir)
 	if dir_list ~= nil then
 		for subdir in dir_list:lines() do
-			add_to_workspaces(subdir, dir .. "/" .. subdir, workspace_choices, known_workspaces)
+			local subdirname = subdir:sub(1, -2) --remove trailing /
+			add_to_workspaces(subdirname, dir .. "/" .. subdirname, workspace_choices, known_workspaces)
 		end
 		dir_list:close()
 	end
