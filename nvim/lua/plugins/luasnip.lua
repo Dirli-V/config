@@ -17,6 +17,11 @@ return {
         end
         if ls.expandable() then
           ls.expand()
+        else
+          local is_ok, suggestion = pcall(require, "supermaven-nvim.completion_preview")
+          if is_ok and suggestion.has_suggestion() then
+            suggestion.on_accept_suggestion()
+          end
         end
       end,
       mode = { "i", "s" },
