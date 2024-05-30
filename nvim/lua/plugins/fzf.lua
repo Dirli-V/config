@@ -5,7 +5,7 @@ return {
 
   keys = {
     { "<leader>f", "<cmd>FzfLua files<cr>", desc = "Find Files (cwd)" },
-    { "<leader>/", "<cmd>FzfLua grep search=<cr>", desc = "Grep (root dir)" },
+    { "<leader>/", "<cmd>FzfLua grep<cr><cr>", desc = "Grep (root dir)" },
     { "R", "<cmd>Fzf resume<cr>", desc = "Resume search" },
   },
   config = function()
