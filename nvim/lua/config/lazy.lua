@@ -22,7 +22,7 @@ require("lazy").setup({
   },
   defaults = {
     lazy = true,
-    version = false,
+    version = "*",
   },
   lockfile = lockfile,
   checker = { enabled = false },
