@@ -9,7 +9,7 @@ return {
       typescript = { "prettierd" },
       typescriptreact = { "prettierd" },
       nix = { "alejandra" },
-      json = { "fixjson" },
+      json = { "jq" },
       kotlin = { "ktlint" },
     },
     format_on_save = false,
@@ -18,11 +18,6 @@ return {
         command = "alejandra",
         stdin = true,
         args = { "--quiet" },
-      },
-      fixjson = {
-        command = "fixjson",
-        args = { "--stdin-filename", "$FILENAME" },
-        stdin = true,
       },
       ktlint = {
         command = "ktlint",
