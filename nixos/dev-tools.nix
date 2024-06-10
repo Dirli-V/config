@@ -8,23 +8,13 @@
 
   config = lib.mkIf config.shared-config.dev-tools.enable {
     home.packages = with pkgs; [
-      nodejs
-      nodePackages.cspell
-      nodePackages.jsonlint
-      nodePackages.stylelint
-      nodePackages.vscode-json-languageserver
       nodePackages.bash-language-server
-      ruff
       taplo
-      ltex-ls
       nil
       alejandra
       deadnix
       statix
       python3
-      python3Packages.autopep8
-      python3Packages.debugpy
-      luajitPackages.jsregexp
       sumneko-lua-language-server
       stylua
       fd
@@ -32,9 +22,6 @@
       bandwhich
       kubectl
       kubernetes-helm
-      proselint
-      codespell
-      inlyne
       du-dust
       p7zip
       mpv
