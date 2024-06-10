@@ -1,7 +1,6 @@
 {wired-notify, ...}: {
   imports = [
     ./alacritty.nix
-    ./btop.nix
     ./dev-tools.nix
     ./eww.nix
     ./helix.nix
