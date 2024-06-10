@@ -13,7 +13,6 @@
       nodePackages.jsonlint
       nodePackages.stylelint
       nodePackages.vscode-json-languageserver
-      nodePackages.fixjson
       nodePackages.bash-language-server
       ruff
       taplo
