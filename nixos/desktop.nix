@@ -65,7 +65,7 @@
                 ];
                 "actions" = {
                   "update-props" = {
-                    "priority.session" = 1010;
+                    "priority.session" = 1011;
                   };
                 };
               }
@@ -77,7 +77,7 @@
                 ];
                 "actions" = {
                   "update-props" = {
-                    "priority.session" = 1011;
+                    "priority.session" = 1010;
                   };
                 };
               }
