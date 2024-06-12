@@ -60,12 +60,12 @@
               {
                 "matches" = [
                   {
-                    "node.nick" = "BoseMiniSoundLink";
+                    "node.description" = "Bose Mini SoundLink";
                   }
                 ];
                 "actions" = {
                   "update-props" = {
-                    "priority.session" = 1011;
+                    "priority.session" = 1010;
                   };
                 };
               }
@@ -77,7 +77,7 @@
                 ];
                 "actions" = {
                   "update-props" = {
-                    "priority.session" = 1010;
+                    "priority.session" = 1009;
                   };
                 };
               }
