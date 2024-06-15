@@ -234,6 +234,14 @@ scape.map_key({
 	end,
 })
 
+scape.map_key({
+	key = "d",
+	mods = "super",
+	callback = function()
+		scape.toggle_debug_ui()
+	end,
+})
+
 -- fix wezterm initial window issue
 scape.window_rule({
 	app_id = "org.wezfurlong.wezterm",
