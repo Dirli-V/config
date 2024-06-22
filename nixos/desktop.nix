@@ -305,11 +305,11 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    htop
-    killall
+  environment.systemPackages = [
+    pkgs.vim
+    pkgs.wget
+    pkgs.htop
+    pkgs.killall
     config.boot.kernelPackages.perf
   ];
 
