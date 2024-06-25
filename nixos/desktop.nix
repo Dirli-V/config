@@ -220,6 +220,9 @@
         (import ./default.nix inputs)
       ];
 
+      stylix.targets.hyprpaper.enable = lib.mkForce false;
+      stylix.targets.hyprland.enable = lib.mkForce false;
+
       shared-config = {
         alacritty.enable = true;
         dev-tools.enable = true;
