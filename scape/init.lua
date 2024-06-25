@@ -117,7 +117,7 @@ scape.map_key({
 	key = "7",
 	mods = "super",
 	callback = function()
-		scape.focus_or_spawn("signal-desktop", "signal")
+		scape.focus_or_spawn("signal-desktop", "Signal")
 	end,
 })
 scape.map_key({
@@ -131,7 +131,7 @@ scape.map_key({
 	key = "j",
 	mods = "super",
 	callback = function()
-		scape.focus_or_spawn("joplin-desktop", "joplin")
+		scape.focus_or_spawn("joplin-desktop", "Joplin")
 	end,
 })
 scape.map_key({
