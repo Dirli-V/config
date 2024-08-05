@@ -242,10 +242,20 @@ local keys = {
 		key = "Space",
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.QuickSelectArgs({
-			action = wezterm.action.CopyTo("Clipboard"),
+			action = wezterm.action_callback(function(window, pane)
+				local text = window:get_selection_text_for_pane(pane)
+				wezterm.open_with(text, "wl-copy")
+			end),
 		}),
 	},
-	{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("Clipboard") },
+	{
+		key = "c",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			local text = window:get_selection_text_for_pane(pane)
+			wezterm.open_with(text, "wl-copy")
+		end),
+	},
 	{ key = "PageUp", mods = "", action = wezterm.action.ScrollByPage(-0.5) },
 	{ key = "PageDown", mods = "", action = wezterm.action.ScrollByPage(0.5) },
 	{ key = "PageUp", mods = "CTRL", action = wezterm.action.ScrollToPrompt(-1) },
