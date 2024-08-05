@@ -16,6 +16,7 @@ alias go = git checkout
 alias gob = git checkout -b
 alias gg = git pull
 alias gi = git stash
+alias giu = git stash -u
 alias gip = git stash pop
 alias gj = git fetch
 alias gjo = git fetch origin
