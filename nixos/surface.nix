@@ -9,7 +9,7 @@
     ./surface-hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
-    ./nixos-default.nix inputs
+    (import ./nixos-default.nix inputs)
   ];
   nixpkgs.overlays = [
     inputs.wired-notify.overlays.default

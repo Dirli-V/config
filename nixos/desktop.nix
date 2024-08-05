@@ -9,11 +9,23 @@
     ./desktop-hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
-    ./nixos-default.nix inputs
+    (import ./nixos-default.nix inputs)
   ];
   nixpkgs.overlays = [
     inputs.wired-notify.overlays.default
   ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "1password"
+      "android-studio-stable"
+      "discord"
+      "hplip"
+      "spotify"
+      "steam"
+      "steam-original"
+      "steam-run"
+    ];
 
   shared-config.base.enable = true;
 
