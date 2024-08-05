@@ -6,44 +6,44 @@ local next_entry = function()
   else
     local success = pcall(vim.cmd.cnext)
     if not success then
-      Util.info("End of list. Going to first.", { title = "Quickfix" })
-      vim.cmd.crewind()
+      local not_empty = pcall(vim.cmd.crewind)
+      if not_empty then
+        Util.info("End of list. Going to first.", { title = "Quickfix" })
+      end
     end
   end
 end
 
 local previous_entry = function()
   if require("trouble").is_open() then
-    require("trouble").previous({ skip_groups = true, jump = true })
+    require("trouble").prev({ skip_groups = true, jump = true })
   else
     local success = pcall(vim.cmd.cprev)
     if not success then
-      Util.info("Start of list. Going to last.", { title = "Quickfix" })
-      vim.cmd.clast()
+      local not_empty = pcall(vim.cmd.clast)
+      if not_empty then
+        Util.info("Start of list. Going to last.", { title = "Quickfix" })
+      end
     end
   end
 end
 
 return {
   "folke/trouble.nvim",
-  cmd = { "TroubleToggle", "Trouble" },
-  opts = { use_diagnostic_signs = true },
+  cmd = { "Trouble" },
+  opts = {},
   keys = {
-    { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-    { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-    { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-    { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
     {
-      "[q",
-      previous_entry,
-      desc = "Previous trouble/quickfix item",
+      "<leader>q",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Open diagnostics (Trouble)",
     },
     {
-      "]q",
-      next_entry,
-      desc = "Next trouble/quickfix item",
+      "<leader>xx",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Open diagnostics (Trouble)",
     },
-    { "<leader>q", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+    { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Open local diagnostics (Trouble)" },
     {
       "<c-j>",
       next_entry,
@@ -54,6 +54,6 @@ return {
       previous_entry,
       desc = "Trouble previous entry",
     },
-    { "<c-q>", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+    { "<c-q>", "<cmd>Trouble quickfix toggle<cr>", desc = "Quickfix List (Trouble)" },
   },
 }
