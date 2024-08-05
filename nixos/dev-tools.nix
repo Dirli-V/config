@@ -14,6 +14,8 @@
       alejandra
       deadnix
       statix
+      nix-inspect
+      nix-index
       python3
       sumneko-lua-language-server
       stylua

@@ -247,27 +247,11 @@
           signal-desktop
           thunderbird
           yazi
-          nix-inspect
-          lutris
-          (wineWowPackages.full.override {
-            wineRelease = "staging";
-            mingwSupport = true;
-          })
-          winetricks
           bottles
-          heroic
-          # x things
-          xdotool
-          xorg.xdpyinfo
-          wmctrl
-          xclip
-          # end of x things
           android-studio
           qalculate-qt
-          stremio
           joplin-desktop
           sniffnet
-          sops
           helvum
           playerctl
           libnotify
@@ -320,21 +304,8 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    btop
     htop
-    cmake
-    gnumake
-    gcc
-    unzip
-    zip
-    lldb
-    nixos-option
     killall
-    nix-index
-    libGL
-    # lemurs
-    gnupg
-    pinentry-qt
     config.boot.kernelPackages.perf
   ];
 
