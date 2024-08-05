@@ -56,7 +56,6 @@ return {
     },
     sources = {
       "filesystem",
-      "netman.ui.neo-tree",
     },
     window = {
       mappings = {
