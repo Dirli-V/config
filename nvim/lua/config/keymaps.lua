@@ -53,7 +53,7 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- save all files
-map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save file" })
+map("n", "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save file" })
 
 -- format file
 local format = require("config.format").format
