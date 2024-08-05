@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  config,
+  lib,
   ...
 }: let
   start_scape_systemd_session =
@@ -15,10 +17,14 @@
       '';
     };
 in {
-  xdg.configFile.scape.source = ../scape;
-  home.packages = [
-    inputs.scape.packages.x86_64-linux.default
-    start_scape_systemd_session
-    pkgs.xwayland
-  ];
+  options.shared-config.scape.enable = lib.mkEnableOption "Enable shared scape config";
+
+  config = lib.mkIf config.shared-config.scape.enable {
+    xdg.configFile.scape.source = ../scape;
+    home.packages = [
+      inputs.scape.packages.x86_64-linux.default
+      start_scape_systemd_session
+      pkgs.xwayland
+    ];
+  };
 }
