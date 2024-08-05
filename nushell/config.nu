@@ -20,3 +20,5 @@ source ~/.config/nushell/killall.nu
 source ~/.config/nushell/atuin.nu
 source ~/.config/nushell/atuin_completion.nu
 source ~/personal_config/scripts/config.nu
+
+alias ssh = env TERM=xterm ssh
