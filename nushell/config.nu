@@ -1,6 +1,5 @@
 $env.config = {
     edit_mode: vi,
-    shell_integration: true,
     show_banner: false,
     highlight_resolved_externals: true,
 }
