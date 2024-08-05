@@ -120,6 +120,9 @@
       # Wally Flashing rules for the Moonlander and Planck EZ
       SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11",     MODE:="0666",     SYMLINK+="stm32_dfu"
     '';
+
+    flatpak.enable = true;
+    gvfs.enable = true;
   };
 
   xdg = {
@@ -193,11 +196,7 @@
     extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.dirli = {
-      config,
-      pkgs,
-      ...
-    }: {
+    users.dirli = {pkgs, ...}: {
       imports = [
         (import ./hm-default.nix inputs)
       ];
@@ -206,9 +205,9 @@
       stylix.targets.hyprland.enable = lib.mkForce false;
 
       shared-config = {
+        ags.enable = true;
         alacritty.enable = true;
         dev-tools.enable = true;
-        eww.enable = true;
         helix.enable = true;
         ideavim.enable = true;
         k9s.enable = true;
@@ -217,7 +216,6 @@
         scape.enable = true;
         starship.enable = true;
         wezterm.enable = true;
-        wired.enable = true;
       };
 
       home = {
@@ -227,20 +225,10 @@
           spotify
           steam
           gamemode
-          wineWowPackages.full
-          (
-            lutris.override {
-              extraPkgs = pkgs: [
-                pkgs.libnghttp2
-                pkgs.winetricks
-              ];
-            }
-          )
           _1password-gui
           signal-desktop
           thunderbird
           yazi
-          bottles
           android-studio
           qalculate-qt
           joplin-desktop
@@ -264,7 +252,7 @@
                 grim -g "$(slurp)" - | swappy -f -
               '';
             })
-          # onagre
+          onagre
           wl-clipboard-rs
           xwaylandvideobridge
         ];
@@ -291,6 +279,10 @@
     steam = {
       enable = true;
       extest.enable = true;
+    };
+    appimage = {
+      enable = true;
+      binfmt = true;
     };
   };
 

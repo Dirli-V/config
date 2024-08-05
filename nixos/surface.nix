@@ -63,11 +63,7 @@
     (nerdfonts.override {fonts = ["FiraCode"];})
   ];
   home-manager = {
-    users.dirli = {
-      config,
-      pkgs,
-      ...
-    }: {
+    users.dirli = {pkgs, ...}: {
       imports = [
         (import ./hm-default.nix inputs)
       ];
@@ -78,7 +74,6 @@
       shared-config = {
         alacritty.enable = true;
         dev-tools.enable = true;
-        eww.enable = true;
         helix.enable = true;
         ideavim.enable = true;
         k9s.enable = true;
@@ -86,7 +81,6 @@
         nushell.enable = true;
         starship.enable = true;
         wezterm.enable = true;
-        wired.enable = true;
       };
 
       home.packages = with pkgs; [

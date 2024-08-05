@@ -24,12 +24,13 @@
       url = "github:Dirli-V/scape";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    nixpkgs,
-    ...
-  } @ inputs: {
+  outputs = {nixpkgs, ...} @ inputs: {
     nixosConfigurations = {
       dirli-nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};

@@ -11,12 +11,10 @@ scape.on_startup(function()
 		command = "wezterm",
 	})
 	scape.spawn({
-		command = "eww",
-		args = { "daemon", "--force-wayland" },
+		command = "spotify",
 	})
 	scape.spawn({
-		command = "eww",
-		args = { "open", "bar" },
+		command = "ags",
 	})
 end)
 
@@ -42,14 +40,14 @@ scape.on_connector_change(function(outputs)
 		{
 			name = "left",
 			x = 0,
-			y = 0,
+			y = bar_height,
 			width = outputs[1].width / 4,
 			height = outputs[1].height - bar_height,
 		},
 		{
 			name = "mid",
 			x = outputs[1].width / 4,
-			y = 0,
+			y = bar_height,
 			width = outputs[1].width / 2,
 			height = outputs[1].height - bar_height,
 			default = true,
@@ -57,7 +55,7 @@ scape.on_connector_change(function(outputs)
 		{
 			name = "right",
 			x = outputs[1].width / 4 * 3,
-			y = 0,
+			y = bar_height,
 			width = outputs[1].width / 4,
 			height = outputs[1].height - bar_height,
 		},
@@ -67,13 +65,6 @@ scape.on_connector_change(function(outputs)
 			y = 0,
 			width = outputs[1].width,
 			height = outputs[1].height,
-		},
-		{
-			name = "wezterm",
-			x = 10,
-			y = 10,
-			width = 500,
-			height = 500,
 		},
 	})
 end)
@@ -247,12 +238,6 @@ scape.map_key({
 	callback = function()
 		scape.toggle_debug_ui()
 	end,
-})
-
--- fix wezterm initial window issue
-scape.window_rule({
-	app_id = "org.wezfurlong.wezterm",
-	zone = "wezterm",
 })
 
 scape.window_rule({

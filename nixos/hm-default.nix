@@ -1,8 +1,8 @@
-{wired-notify, ...}: {
+{ags, ...}: {
   imports = [
+    (import ./ags.nix ags)
     ./alacritty.nix
     ./dev-tools.nix
-    ./eww.nix
     ./helix.nix
     ./ideavim.nix
     ./k9s.nix
@@ -11,6 +11,5 @@
     ./scape.nix
     ./starship.nix
     ./wezterm.nix
-    (import ./wired-notify.nix wired-notify)
   ];
 }
