@@ -81,7 +81,7 @@ return {
         },
       },
       tsserver = {},
-      nil_ls = {},
+      nixd = {},
       taplo = {},
       pyright = {
         root_dir = { "requirements.txt" },

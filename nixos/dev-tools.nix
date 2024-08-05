@@ -10,7 +10,7 @@
     home.packages = with pkgs; [
       nodePackages.bash-language-server
       taplo
-      nil
+      nixd
       alejandra
       deadnix
       statix
