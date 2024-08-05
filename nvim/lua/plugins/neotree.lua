@@ -51,7 +51,9 @@ return {
         hide_dotfiles = false,
       },
       bind_to_cwd = false,
-      follow_current_file = true,
+      follow_current_file = {
+        enable = true,
+      },
       use_libuv_file_watcher = true,
     },
     sources = {
