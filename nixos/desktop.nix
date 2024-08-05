@@ -130,12 +130,16 @@
     portal = {
       enable = true;
       extraPortals = with pkgs; [
+        xdg-desktop-portal
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
       ];
       configPackages = with pkgs; [
+        xdg-desktop-portal
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
       ];
     };
   };
@@ -185,7 +189,7 @@
     pam.services.swaylock = {};
   };
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
