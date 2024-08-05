@@ -15,8 +15,8 @@ def nfua [] {
   each {|it|
     let path = (echo $it | path dirname)
     nix flake update --flake $path
-    let message = (echo "echo" "✔ " $it | str join)
-    nix develop $path --command $message
+    # let message = (echo "echo" "✔ " $it | str join)
+    # nix develop $path --command $message
   }
 }
 
