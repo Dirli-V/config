@@ -217,7 +217,6 @@
 
       shared-config = {
         alacritty.enable = true;
-        btop.enable = true;
         dev-tools.enable = true;
         eww.enable = true;
         helix.enable = true;
