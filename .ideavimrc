@@ -108,7 +108,7 @@ xmap <leader>rv <Action>(IntroduceVariable)
 nmap <leader>ri <Action>(Inline)
 xmap <leader>ri <Action>(Inline)
 
-nmap <leader>dd <Action>(ContextDebug)
+nmap <leader>dd gg<Action>(ContextDebug)<c-o>
 nmap <leader>dm <Action>(RunMenu)
 nmap <leader>db <Action>(ToggleLineBreakpoint)
 nmap <leader>dB <Action>(Debugger.RemoveAllBreakpointsInFile)
