@@ -31,7 +31,7 @@ sethandler <c-h> a:ide
 sethandler <c-i> a:vim
 sethandler <c-j> a:ide
 sethandler <c-k> a:vim
-sethandler <c-l> a:ide
+sethandler <c-l> a:vim
 sethandler <c-m> a:ide
 sethandler <c-n> a:ide
 sethandler <c-o> a:vim
@@ -151,3 +151,5 @@ nmap <leader>m <Action>(AddToHarpoon)
 
 nmap H :e #<cr>
 nmap L <Action>(RecentFiles)
+
+imap <c-l> <Action>(InsertInlineCompletionAction)
