@@ -3,5 +3,5 @@ return {
   opts = {
     insert_mode = true,
   },
-  event = "VeryLazy",
+  event = { "CursorMoved", "WinScrolled" },
 }
