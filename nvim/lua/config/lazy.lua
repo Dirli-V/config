@@ -44,8 +44,6 @@ require("lazy").setup({
   },
 })
 
-pcall(require, "netman")
-
 require("config.autocmds")
 require("config.keymaps")
 
