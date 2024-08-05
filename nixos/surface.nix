@@ -7,17 +7,39 @@
     # Include the results of the hardware scan.
     ./surface-hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.stylix.nixosModules.stylix
   ];
+  nixpkgs.overlays = [
+    inputs.wired-notify.overlays.default
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+  nix = {
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      auto-optimise-store = true;
+    };
+    # gc = {
+    #   automatic = true;
+    #   dates = "weekly";
+    #   options = "--delete-older-than 30d";
+    # };
+  };
+
+  networking = {
+    hostName = "dirli-surface";
+    networkmanager.enable = true;
+  };
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot/efi";
+      timeout = 0;
     };
   };
-
-  networking.hostName = "dirli-surface"; # Define your hostname.
-  networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true;
 
@@ -74,10 +96,6 @@
     shell = pkgs.nushell;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
   # List packages installed in system profile. To search, run:
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode"];})
@@ -100,7 +118,6 @@
         nodePackages.stylelint
         nodePackages.vscode-json-languageserver
         ltex-ls
-        rustup
         cargo-nextest
         ripgrep
         python3
@@ -119,9 +136,7 @@
         proselint
         codespell
         inlyne
-        rust-analyzer
         spotify
-        spotify-tui
         _1password-gui
         helix
         lm_sensors
@@ -135,6 +150,7 @@
         xclip
         # end of x things
         p7zip
+        zoxide
       ];
       xdg.configFile = {
         nushell.source = "${config-files}/nushell";
