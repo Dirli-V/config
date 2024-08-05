@@ -80,7 +80,6 @@ return {
           },
         },
       },
-      ltex = {},
       tsserver = {},
       nil_ls = {},
       taplo = {},
@@ -135,19 +134,6 @@ return {
         })
         return true
       end,
-      ruff_lsp = function(_, opts)
-        local project_path = os.getenv("RUFF_LSP_PROJECT_PATH")
-        if project_path then
-          opts["init_options"] = {
-            settings = {
-              args = {
-                "--config=" .. project_path,
-              },
-            },
-          }
-        end
-        return false
-      end,
       -- Use the java plugin when it no longer requires mason
       -- jdtls = function(_, _)
       --   local java_ok, java = pcall(require, "java")
@@ -161,17 +147,7 @@ return {
       --   return false
       -- end,
     },
-    additional_keys = {
-      ruff_lsp = {
-        {
-          "<a-o>",
-          function()
-            require("helpers").execute_code_action("source.organizeImports")
-          end,
-          desc = "Organize Imports",
-        },
-      },
-    },
+    additional_keys = {},
   },
   config = function(_, opts)
     local on_attach = function(client, buffer)
