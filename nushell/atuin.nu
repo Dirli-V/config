@@ -38,7 +38,7 @@ def _atuin_search_cmd [...flags: string] {
             (if $nu_version.0 <= 0 and $nu_version.1 <= 90 { 'commandline' } else { 'commandline edit' }),
             `(ATUIN_LOG=error run-external atuin search`,
             ($flags | append [--interactive, --] | each {|e| $'"($e)"'}),
-            `(commandline) | complete | $in.stderr | str substring ..-1)`,
+            `(commandline) | complete | try { $in.stderr } catch { "" } | str substring ..-1)`,
         ] | flatten | str join ' '),
     ] | str join "\n"
 }
