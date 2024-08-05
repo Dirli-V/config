@@ -212,8 +212,7 @@
       # personal-config-files = config.lib.file.mkOutOfStoreSymlink "/home/dirli/personal_config";
     in {
       imports = [
-        inputs.wired-notify.homeManagerModules.default
-        ./default.nix
+        (import ./default.nix inputs.wired-notify)
       ];
 
       shared-config = {

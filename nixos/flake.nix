@@ -32,8 +32,7 @@
 
   outputs = {
     nixpkgs,
-    disko,
-    sops,
+    wired-notify,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -47,7 +46,7 @@
       };
     };
     homeManagerModules = {
-      default = ./default.nix;
+      default = import ./default.nix inputs;
     };
   };
 

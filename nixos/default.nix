@@ -1,4 +1,4 @@
-{
+{wired-notify, ...}: {
   imports = [
     ./alacritty.nix
     ./btop.nix
@@ -12,6 +12,6 @@
     ./scape.nix
     ./starship.nix
     ./wezterm.nix
-    ./wired-notify.nix
+    (import ./wired-notify.nix wired-notify)
   ];
 }
