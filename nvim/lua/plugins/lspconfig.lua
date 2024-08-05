@@ -36,6 +36,18 @@ return {
         }
       end,
     },
+    -- Use the java plugin when it no longer requires mason
+    -- {
+    --   "nvim-java/nvim-java",
+    --   dependencies = {
+    --     "nvim-java/lua-async-await",
+    --     "nvim-java/nvim-java-core",
+    --     "nvim-java/nvim-java-test",
+    --     "nvim-java/nvim-java-dap",
+    --     "MunifTanjim/nui.nvim",
+    --     "mfussenegger/nvim-dap",
+    --   },
+    -- },
   },
   keys = {
     { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
@@ -98,6 +110,7 @@ return {
         },
       },
       gopls = {},
+      jdtls = {},
       intelephense = {},
       kotlin_language_server = {
         root_dir = { "settings.gradle.kts", "settings.gradle" },
@@ -133,7 +146,20 @@ return {
             },
           }
         end
+        return false
       end,
+      -- Use the java plugin when it no longer requires mason
+      -- jdtls = function(_, _)
+      --   local java_ok, java = pcall(require, "java")
+      --   if java_ok then
+      --     pcall(java.setup, {
+      --       jdk = {
+      --         auto_install = false,
+      --       },
+      --     })
+      --   end
+      --   return false
+      -- end,
     },
     additional_keys = {
       ruff_lsp = {
