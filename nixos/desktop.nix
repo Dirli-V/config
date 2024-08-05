@@ -212,7 +212,7 @@
       # personal-config-files = config.lib.file.mkOutOfStoreSymlink "/home/dirli/personal_config";
     in {
       imports = [
-        (import ./default.nix inputs.wired-notify)
+        (import ./default.nix inputs)
       ];
 
       shared-config = {
