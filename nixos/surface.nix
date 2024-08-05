@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   ...
 }: {
@@ -8,58 +9,20 @@
     ./surface-hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
+    ./nixos-default.nix inputs
   ];
   nixpkgs.overlays = [
     inputs.wired-notify.overlays.default
   ];
 
-  nixpkgs.config.allowUnfree = true;
-  nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-      auto-optimise-store = true;
-    };
-    # gc = {
-    #   automatic = true;
-    #   dates = "weekly";
-    #   options = "--delete-older-than 30d";
-    # };
-  };
+  shared-config.base.enable = true;
 
   networking = {
     hostName = "dirli-surface";
-    networkmanager.enable = true;
-  };
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
-      timeout = 0;
-    };
   };
 
   hardware.bluetooth.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Vienna";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_AT.UTF-8";
-    LC_IDENTIFICATION = "de_AT.UTF-8";
-    LC_MEASUREMENT = "de_AT.UTF-8";
-    LC_MONETARY = "de_AT.UTF-8";
-    LC_NAME = "de_AT.UTF-8";
-    LC_NUMERIC = "de_AT.UTF-8";
-    LC_PAPER = "de_AT.UTF-8";
-    LC_TELEPHONE = "de_AT.UTF-8";
-    LC_TIME = "de_AT.UTF-8";
-  };
   services = {
     xserver = {
       enable = true;
@@ -96,7 +59,6 @@
     shell = pkgs.nushell;
   };
 
-  # List packages installed in system profile. To search, run:
   fonts.fonts = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode"];})
   ];
@@ -105,92 +67,46 @@
       config,
       pkgs,
       ...
-    }: let
-      config-files = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config";
-    in {
+    }: {
+      imports = [
+        (import ./hm-default.nix inputs)
+      ];
+
+      stylix.targets.hyprpaper.enable = lib.mkForce false;
+      stylix.targets.hyprland.enable = lib.mkForce false;
+
+      shared-config = {
+        alacritty.enable = true;
+        dev-tools.enable = true;
+        eww.enable = true;
+        helix.enable = true;
+        ideavim.enable = true;
+        k9s.enable = true;
+        neovim.enable = true;
+        nushell.enable = true;
+        starship.enable = true;
+        wezterm.enable = true;
+        wired.enable = true;
+      };
+
       home.packages = with pkgs; [
-        alacritty
         brave
         discord
-        nodejs
-        nodePackages.cspell
-        nodePackages.jsonlint
-        nodePackages.stylelint
-        nodePackages.vscode-json-languageserver
-        ltex-ls
         cargo-nextest
-        ripgrep
-        python3
-        python3Packages.autopep8
-        python3Packages.debugpy
-        sumneko-lua-language-server
-        stylua
-        fd
-        xplr
-        nushell
-        starship
-        wezterm
-        bandwhich
-        docker
-        k9s
-        proselint
-        codespell
-        inlyne
         spotify
         _1password-gui
-        helix
-        lm_sensors
-        du-dust
         signal-desktop
         thunderbird
-        # x things
-        xdotool
-        xorg.xdpyinfo
-        wmctrl
-        xclip
-        # end of x things
-        p7zip
-        zoxide
       ];
-      xdg.configFile = {
-        nushell.source = "${config-files}/nushell";
-        helix.source = "${config-files}/helix";
-        "starship.toml".source = "${config-files}/starship.toml";
-        wezterm.source = "${config-files}/wezterm";
-        sway.source = "${config-files}/sway";
-        k9s.source = "${config-files}/k9s";
-        "window_mover.yaml".source = "${config-files}/window_mover.yaml";
-        ".ideavimrc".source = "${config-files}/.ideavimrc";
-        nvim.source = "${config-files}/nvim";
-        btop.source = "${config-files}/btop";
-      };
 
       home.stateVersion = "22.11";
       programs = {
         home-manager.enable = true;
 
         git = {
-          enable = true;
           userName = "Dirli-V";
           userEmail = "github@dirli.net";
-          extraConfig = {
-            core = {
-              editor = "nvim";
-            };
-            push.autoSetupRemote = true;
-            init.defaultBranch = "main";
-          };
-          difftastic = {
-            enable = true;
-          };
-          lfs.enable = true;
         };
-
-        neovim = {
-          enable = true;
-        };
-
-        fzf.enable = true;
       };
     };
     useUserPackages = true;
@@ -198,9 +114,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    btop
     cmake
     gnumake
     gcc
@@ -208,7 +121,6 @@
     zip
     lldb
     nixos-option
-    killall
     nix-index
     libGL
   ];

@@ -9,42 +9,26 @@
     ./desktop-hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
+    ./nixos-default.nix inputs
   ];
   nixpkgs.overlays = [
     inputs.wired-notify.overlays.default
   ];
 
-  nixpkgs.config.allowUnfree = true;
-  nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
-  };
+  shared-config.base.enable = true;
 
   networking = {
     hostName = "dirli-nixos";
-    networkmanager.enable = true;
   };
+
   boot = {
-    loader = {
-      # boot.kernelPackages = pkgs.linuxPackages_latest;
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      timeout = 0;
-    };
     kernelModules = ["kvm-amd" "kvm-intel"];
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
+
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
+
   services = {
     pipewire = {
       enable = true;
@@ -144,17 +128,6 @@
     };
   };
 
-  time.timeZone = "Europe/Vienna";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_TIME = "de_AT.UTF-8";
-  };
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de";
-  };
-
   stylix = {
     enable = true;
     image = ./wallpaper.jpg;
@@ -212,12 +185,9 @@
       config,
       pkgs,
       ...
-    }: let
-      config-files = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/config";
-      # personal-config-files = config.lib.file.mkOutOfStoreSymlink "/home/dirli/personal_config";
-    in {
+    }: {
       imports = [
-        (import ./default.nix inputs)
+        (import ./hm-default.nix inputs)
       ];
 
       stylix.targets.hyprpaper.enable = lib.mkForce false;
@@ -238,16 +208,10 @@
         wired.enable = true;
       };
 
-      xdg.configFile = {
-        "window_mover.yaml".source = "${config-files}/window_mover.yaml";
-      };
       home = {
         packages = with pkgs; [
           brave
           discord
-          packer
-          hcloud
-          opentofu
           spotify
           steam
           _1password-gui
@@ -309,20 +273,8 @@
   };
 
   environment.systemPackages = [
-    pkgs.vim
-    pkgs.wget
-    pkgs.htop
-    pkgs.killall
     config.boot.kernelPackages.perf
   ];
-
-  # Keep a list of all installed packages in /etc/current-systempackages
-  # environment.etc."current-systempackages".text = let
-  #   packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
-  #   sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
-  #   formatted = builtins.concatStringsSep "\n" sortedUnique;
-  # in
-  #   formatted;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

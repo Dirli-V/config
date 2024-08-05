@@ -7,10 +7,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +28,6 @@
 
   outputs = {
     nixpkgs,
-    wired-notify,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -45,8 +40,11 @@
         modules = [./surface.nix];
       };
     };
+    nixosModules = {
+      default = import ./nixos-default.nix inputs;
+    };
     homeManagerModules = {
-      default = import ./default.nix inputs;
+      default = import ./hm-default.nix inputs;
     };
   };
 
