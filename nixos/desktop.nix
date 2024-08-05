@@ -226,6 +226,16 @@
           discord
           spotify
           steam
+          gamemode
+          wineWowPackages.full
+          (
+            lutris.override {
+              extraPkgs = pkgs: [
+                pkgs.libnghttp2
+                pkgs.winetricks
+              ];
+            }
+          )
           _1password-gui
           signal-desktop
           thunderbird

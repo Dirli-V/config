@@ -62,6 +62,13 @@ scape.on_connector_change(function(outputs)
 			height = outputs[1].height - bar_height,
 		},
 		{
+			name = "full",
+			x = 0,
+			y = 0,
+			width = outputs[1].width,
+			height = outputs[1].height,
+		},
+		{
 			name = "wezterm",
 			x = 10,
 			y = 10,
@@ -255,5 +262,15 @@ scape.window_rule({
 
 scape.window_rule({
 	app_id = "discord",
+	zone = "left",
+})
+
+scape.window_rule({
+	app_id = "steam_app_1286830",
+	zone = "full",
+})
+
+scape.window_rule({
+	app_id = "scape.Scape",
 	zone = "left",
 })
