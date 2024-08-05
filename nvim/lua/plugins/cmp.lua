@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
+  version = false,
   event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
@@ -7,7 +8,6 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
-    "Saecki/crates.nvim",
   },
   init = function()
     local cmp = require("cmp")
@@ -53,8 +53,6 @@ return {
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "crates" },
-        { name = "neorg" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
