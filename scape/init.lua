@@ -259,3 +259,13 @@ scape.window_rule({
 	app_id = "scape.Scape",
 	zone = "left",
 })
+
+scape.window_rule({
+	app_id = "Signal",
+	zone = "left",
+})
+
+scape.window_rule({
+	app_id = "Joplin",
+	zone = "left",
+})
