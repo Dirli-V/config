@@ -66,10 +66,10 @@ vnoremap d \"_d
 xnoremap d \"_d
 nnoremap dd \"_dd
 nnoremap D \"_D
-nnoremap x d
-vnoremap x d
-nnoremap xx dd
-nnoremap X D
+nnoremap x \"+d
+vnoremap x \"+d
+nnoremap xx \"+dd
+nnoremap X \"+D
 
 xnoremap p \"+pgvy
 nnoremap p \"+p
