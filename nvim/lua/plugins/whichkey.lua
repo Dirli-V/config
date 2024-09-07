@@ -1,25 +1,24 @@
 return {
   "folke/which-key.nvim",
-  config = function(_, opts)
-    local wk = require("which-key")
-    wk.setup(opts)
-    wk.register({
+  event = "VeryLazy",
+  opts = {
+    {
       mode = { "n", "v" },
-      ["g"] = { name = "+goto" },
-      ["gz"] = { name = "+surround" },
-      ["]"] = { name = "+next" },
-      ["["] = { name = "+prev" },
-      ["<leader><tab>"] = { name = "+tabs" },
-      ["<leader>b"] = { name = "+buffer" },
-      ["<leader>c"] = { name = "+code" },
-      ["<leader>g"] = { name = "+git" },
-      ["<leader>s"] = { name = "+search" },
-      ["<leader>d"] = { name = "+debug" },
-      ["<leader>u"] = { name = "+ui" },
-      ["<leader>x"] = { name = "+diagnostics/quickfix" },
-      ["<leader>n"] = { name = "+note" },
-      ["<leader>y"] = { name = "+misc" },
-      ["<leader>p"] = { name = "+perf" },
-    })
-  end,
+      { "g", group = "goto" },
+      { "gz", group = "surround" },
+      { "]", group = "next" },
+      { "[", group = "prev" },
+      { "<leader><tab>", group = "tabs" },
+      { "<leader>b", group = "buffer" },
+      { "<leader>c", group = "code" },
+      { "<leader>g", group = "git" },
+      { "<leader>s", group = "search" },
+      { "<leader>d", group = "debug" },
+      { "<leader>u", group = "ui" },
+      { "<leader>x", group = "diagnostics/quickfix" },
+      { "<leader>n", group = "note" },
+      { "<leader>y", group = "misc" },
+      { "<leader>p", group = "perf" },
+    },
+  },
 }
