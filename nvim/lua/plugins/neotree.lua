@@ -1,18 +1,23 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons",
+    "MunifTanjim/nui.nvim",
+  },
   cmd = "Neotree",
   keys = {
     {
       "<leader>E",
       function()
-        require("neo-tree.command").execute({ toggle = true, dir = require("helpers").get_root() })
+        require("neo-tree.command").execute({ toggle = true, dir = require("helpers").get_root(), reveal = true })
       end,
       desc = "Explorer NeoTree (root dir)",
     },
     {
       "<leader>e",
       function()
-        require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+        require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd(), reveal = true })
       end,
       desc = "Explorer NeoTree (cwd)",
     },
