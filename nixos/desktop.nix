@@ -240,6 +240,7 @@
           grim
           slurp
           swappy
+          zed-editor
           (writeShellApplication
             {
               name = "make-screenshot";
