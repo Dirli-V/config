@@ -50,5 +50,6 @@ require("config.keymaps")
 vim.filetype.add({
   filename = {
     ["Jenkinsfile"] = "groovy",
+    [".kube/config"] = "yaml",
   },
 })
