@@ -6,7 +6,7 @@
 }: {
   imports = [
     # Include the results of the hardware scan.
-    ./surface-hardware-configuration.nix
+    ./laptop-hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.stylix.nixosModules.stylix
     (import ./nixos-default.nix inputs)
@@ -18,7 +18,7 @@
   shared-config.base.enable = true;
 
   networking = {
-    hostName = "dirli-surface";
+    hostName = "dirli-laptop";
   };
 
   hardware.bluetooth.enable = true;

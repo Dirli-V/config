@@ -40,6 +40,10 @@
         specialArgs = {inherit inputs;};
         modules = [./surface.nix];
       };
+      dirli-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [./laptop.nix];
+      };
     };
     nixosModules = {
       default = import ./nixos-default.nix inputs;
