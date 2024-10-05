@@ -11,7 +11,9 @@ return {
     },
     "hrsh7th/cmp-nvim-lsp",
     "simrat39/rust-tools.nvim",
-    "aznhe21/actions-preview.nvim",
+    { "Chaitanyabsprip/fastaction.nvim", opts = {
+      dismiss_keys = { "q", "<esc>" },
+    } },
     "pmizio/typescript-tools.nvim",
     "nvim-lua/plenary.nvim",
     {

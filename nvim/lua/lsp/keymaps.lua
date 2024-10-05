@@ -106,7 +106,7 @@ local lsp_keys = {
   {
     "<c-.>",
     function()
-      require("actions-preview").code_actions()
+      require("fastaction").code_action()
     end,
     mode = { "n", "i" },
     desc = "Open code actions",
