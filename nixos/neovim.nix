@@ -13,6 +13,7 @@
       libgccjit
       fzf
       bat
+      harper
     ];
     programs = {
       neovim = {

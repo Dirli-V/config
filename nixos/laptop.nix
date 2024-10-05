@@ -15,6 +15,13 @@
     inputs.wired-notify.overlays.default
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "1password"
+      "discord"
+      "spotify"
+    ];
+
   shared-config.base.enable = true;
 
   networking = {
@@ -45,7 +52,6 @@
   virtualisation.libvirtd.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   security.rtkit.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).

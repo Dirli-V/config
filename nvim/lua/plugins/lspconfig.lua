@@ -109,6 +109,9 @@ return {
         },
       },
       gopls = {},
+      harper_ls = {
+        filetypes = { "*" },
+      },
       jdtls = {},
       intelephense = {},
       kotlin_language_server = {
