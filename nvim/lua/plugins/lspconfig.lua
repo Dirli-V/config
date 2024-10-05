@@ -3,8 +3,11 @@ return {
   event = "VeryLazy",
   dependencies = {
     {
-      "folke/neodev.nvim",
-      opts = {}, -- opts needs to be specified for working plugin
+      "folke/lazydev.nvim",
+      ft = "lua",
+      opts = {
+        library = {},
+      },
     },
     "hrsh7th/cmp-nvim-lsp",
     "simrat39/rust-tools.nvim",
