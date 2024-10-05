@@ -29,6 +29,7 @@
   };
 
   hardware.bluetooth.enable = true;
+  powerManagement.powertop.enable = true;
 
   services = {
     xserver = {
