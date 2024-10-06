@@ -98,15 +98,23 @@ local function toggle_option(option, silent, values)
   end
 end
 
-local diagnostics_enabled = true
 local function toggle_diagnostics()
-  diagnostics_enabled = not diagnostics_enabled
+  local diagnostics_enabled = not vim.diagnostic.is_enabled()
+  vim.diagnostic.enable(diagnostics_enabled)
   if diagnostics_enabled then
-    vim.diagnostic.enable()
     Util.info("Enabled diagnostics", { title = "Diagnostics" })
   else
-    vim.diagnostic.disable()
     Util.warn("Disabled diagnostics", { title = "Diagnostics" })
+  end
+end
+
+local function toggle_inlay_hints()
+  local inlay_hints_enabled = not vim.lsp.inlay_hint.is_enabled()
+  vim.lsp.inlay_hint.enable(inlay_hints_enabled)
+  if inlay_hints_enabled then
+    Util.info("Enabled inlay hints", { title = "Inlay Hints enabled" })
+  else
+    Util.warn("Disabled inlay hints", { title = "Inlay Hints disabled" })
   end
 end
 
@@ -122,6 +130,7 @@ map("n", "<leader>uL", function()
   toggle_option("number")
 end, { desc = "Toggle Line Numbers" })
 map("n", "<leader>ud", toggle_diagnostics, { desc = "Toggle Diagnostics" })
+map("n", "<leader>uh", toggle_inlay_hints, { desc = "Toggle Inlay Hints" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 map("n", "<leader>uc", function()
   toggle_option("conceallevel", false, { 0, conceallevel })
