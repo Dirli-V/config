@@ -12,10 +12,11 @@ function M.copy_git_file_to_clipboard(include_line)
 
   if not git_dir then
     print("Not in a git directory")
+    return
   end
 
   ---@diagnostic disable-next-line: undefined-field
-  local output = vim.api.nvim_exec("!git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'", true)
+  local output = vim.fn.execute("git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'")
   local lines = {}
   for line in output:gmatch("([^\n]*)\n?") do
     table.insert(lines, line)
@@ -25,7 +26,7 @@ function M.copy_git_file_to_clipboard(include_line)
   local file_path = string.sub(file_abs, string.len(git_dir) + 1)
 
   ---@diagnostic disable-next-line: undefined-field
-  local origin = vim.api.nvim_exec("!git config --get remote.origin.url", true)
+  local origin = vim.fn.execute("git config --get remote.origin.url", true)
   local at_index = string.find(origin, "@", 1, true)
   local origin_clean = string.sub(origin, at_index + 1, string.len(origin) - 5)
   local protocol = "https://"
@@ -33,6 +34,10 @@ function M.copy_git_file_to_clipboard(include_line)
   local is_bitbucket = string.find(origin_clean, "bitbucket", 1, true)
   if is_bitbucket then
     local project_index = string.find(origin_clean, "/", 1, true)
+    if not project_index then
+      print("Bitbucket project could not be parsed from origin" .. origin_clean)
+      return
+    end
     local repo_index = string.find(origin_clean, "/", project_index + 1, true)
     local bitbucket_path = "/projects"
       .. string.sub(origin_clean, project_index, repo_index)
@@ -117,7 +122,7 @@ function M.get_root()
   ---@type string[]
   local roots = {}
   if path then
-    for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+    for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
       local workspace = client.config.workspace_folders
       local paths = workspace and vim.tbl_map(function(ws)
         return vim.uri_to_fname(ws.uri)
