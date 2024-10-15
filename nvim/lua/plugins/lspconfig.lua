@@ -10,37 +10,14 @@ return {
       },
     },
     "hrsh7th/cmp-nvim-lsp",
-    "simrat39/rust-tools.nvim",
-    { "Chaitanyabsprip/fastaction.nvim", opts = {
-      dismiss_keys = { "q", "<esc>" },
-    } },
+    {
+      "Chaitanyabsprip/fastaction.nvim",
+      opts = {
+        dismiss_keys = { "q", "<esc>" },
+      },
+    },
     "pmizio/typescript-tools.nvim",
     "nvim-lua/plenary.nvim",
-    {
-      "SmiteshP/nvim-navbuddy",
-      dependencies = {
-        "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim",
-      },
-      opts = function()
-        return {
-          window = {
-            size = "90%",
-          },
-          mappings = {
-            ["t"] = require("nvim-navbuddy.actions").telescope({
-              layout_config = {
-                height = 0.90,
-                width = 0.90,
-              },
-            }),
-          },
-          lsp = {
-            auto_attach = true,
-          },
-        }
-      end,
-    },
     -- Use the java plugin when it no longer requires mason
     -- {
     --   "nvim-java/nvim-java",
