@@ -64,10 +64,6 @@ function M.copy_git_file_to_clipboard(include_line)
   vim.fn.setreg("+", result)
 end
 
-function M.trim(str)
-  return (str:gsub("^%s*(.-)%s*$", "%1"))
-end
-
 local make_code_action_params = function()
   local params = vim.lsp.util.make_range_params()
   params.context = {
