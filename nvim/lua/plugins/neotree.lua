@@ -21,6 +21,11 @@ return {
       end,
       desc = "Explorer NeoTree (cwd)",
     },
+    {
+      "<leader>cs",
+      "<cmd>Neotree document_symbols<cr>",
+      desc = "Symbol tree",
+    },
   },
   init = function()
     vim.g.neo_tree_remove_legacy_commands = 1
@@ -63,6 +68,7 @@ return {
     },
     sources = {
       "filesystem",
+      "document_symbols",
     },
     window = {
       mappings = {
@@ -71,15 +77,4 @@ return {
       width = "fit_content",
     },
   },
-  config = function(_, opts)
-    require("neo-tree").setup(opts)
-    vim.api.nvim_create_autocmd("TermClose", {
-      pattern = "*lazygit",
-      callback = function()
-        if package.loaded["neo-tree.sources.git_status"] then
-          require("neo-tree.sources.git_status").refresh()
-        end
-      end,
-    })
-  end,
 }

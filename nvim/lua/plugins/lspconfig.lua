@@ -33,7 +33,6 @@ return {
   },
   keys = {
     { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
-    { "<leader>cs", "<cmd>Navbuddy<cr>", desc = "Symbol tree" },
   },
   opts = {
     diagnostics = {
