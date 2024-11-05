@@ -168,7 +168,15 @@
   # Don't forget to set a password with ‘passwd’.
   users.users.dirli = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker" "video" "libvirtd" "adbusers" "plugdev"];
+    extraGroups = [
+      "wheel"
+      "docker"
+      "video"
+      "libvirtd"
+      "adbusers"
+      "plugdev"
+      "corectrl"
+    ];
     shell = pkgs.nushell;
   };
   security = {
@@ -272,7 +280,7 @@
     };
   };
   programs = {
-    kdeconnect.enable = true;
+    corectrl.enable = true;
     adb.enable = true;
     gnupg.agent = {
       enable = true;
