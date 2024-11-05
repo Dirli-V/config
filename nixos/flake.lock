@@ -400,16 +400,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1729281554,
-        "narHash": "sha256-Pmp6HzttuL/EGNXxPDycf/zfkMjtKHLSVxqRLTocqe4=",
-        "owner": "Dirli-V",
+        "lastModified": 1726869022,
+        "narHash": "sha256-bW6rrcAXJsv9iftNwl7PNJpvM1CIAxSDwTJ8GwTseS0=",
+        "owner": "scape-wm",
         "repo": "scape",
-        "rev": "e906fba9529571ebf5e5bbc3fefe9429b50be395",
+        "rev": "323397065beb2cdc3db765799c1e33ec7fd2d1df",
         "type": "github"
       },
       "original": {
-        "owner": "Dirli-V",
+        "owner": "scape-wm",
         "repo": "scape",
+        "rev": "323397065beb2cdc3db765799c1e33ec7fd2d1df",
         "type": "github"
       }
     },

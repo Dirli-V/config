@@ -25,6 +25,7 @@
       "steam"
       "steam-original"
       "steam-run"
+      "steam-unwrapped"
     ];
 
   shared-config.base.enable = true;

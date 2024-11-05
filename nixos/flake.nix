@@ -21,7 +21,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     scape = {
-      url = "github:Dirli-V/scape";
+      url = "github:scape-wm/scape/323397065beb2cdc3db765799c1e33ec7fd2d1df";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags = {
