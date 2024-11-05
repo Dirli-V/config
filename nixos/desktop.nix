@@ -177,7 +177,6 @@
       "plugdev"
       "corectrl"
     ];
-    shell = pkgs.nushell;
   };
   security = {
     rtkit.enable = true;
