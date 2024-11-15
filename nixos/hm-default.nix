@@ -1,4 +1,8 @@
-{ags, ...}: {
+{
+  ags,
+  scape,
+  ...
+}: {
   imports = [
     (import ./ags.nix ags)
     ./alacritty.nix
@@ -8,7 +12,7 @@
     ./k9s.nix
     ./neovim.nix
     ./nushell.nix
-    ./scape.nix
+    (import ./scape.nix scape)
     ./starship.nix
     ./wezterm.nix
   ];

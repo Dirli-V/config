@@ -1,6 +1,5 @@
-{
+scape: {
   pkgs,
-  inputs,
   config,
   lib,
   ...
@@ -22,7 +21,7 @@ in {
   config = lib.mkIf config.shared-config.scape.enable {
     xdg.configFile.scape.source = ../scape;
     home.packages = [
-      inputs.scape.packages.x86_64-linux.default
+      scape.packages.x86_64-linux.default
       start_scape_systemd_session
       pkgs.xwayland
     ];
