@@ -1,6 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  version = false,
   build = ":TSUpdate",
+  branch = "master",
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "HiPhish/rainbow-delimiters.nvim",
