@@ -5,7 +5,6 @@
 }: {
   imports = [
     (import ./ags.nix ags)
-    ./alacritty.nix
     ./dev-tools.nix
     ./helix.nix
     ./ideavim.nix
