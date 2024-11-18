@@ -2,6 +2,28 @@ $env.config = {
     edit_mode: vi,
     show_banner: false,
     highlight_resolved_externals: true,
+    keybindings: [
+        {
+            name: insert-path
+            modifier: control
+            keycode: char_f
+            mode: [emacs, vi_normal, vi_insert]
+            event: {
+                send: executehostcommand
+                cmd: "commandline edit --insert (fzf)"
+            }
+        }
+        {
+            name: insert-directory
+            modifier: control
+            keycode: char_x
+            mode: [emacs, vi_normal, vi_insert]
+            event: {
+                send: executehostcommand
+                cmd: "commandline edit --insert (x)"
+            }
+        }
+    ]
 }
 
 source ~/.config/nushell/paru.nu
