@@ -20,12 +20,15 @@ def nfua [] {
   }
 }
 
-def nd [name = "", --silent] {
+def use_cwd_flake_if_exists [] {
   if ("./flake.nix" | path exists) {
-    nix develop --command "nu"
-    return
+    nix develop --command nu
   }
+}
+
+def nd [name = "", --silent] {
   if (do { git rev-parse --is-inside-work-tree } | complete | get exit_code) == 128 {
+    use_cwd_flake_if_exists
     return
   }
   let repo_path = (git rev-parse --show-toplevel)
@@ -35,7 +38,9 @@ def nd [name = "", --silent] {
   if ($flake_path | path join "flake.nix" | path exists) {
     nix develop (echo $flake_path "#" $name | str join) --command nu
   } else if not $silent {
-    echo $"Flake at ($flake_path) not found"
+    nix develop --command nu
+  } else {
+    use_cwd_flake_if_exists
   }
 }
 
