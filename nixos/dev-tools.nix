@@ -28,6 +28,7 @@
       p7zip
       mpv
       lm_sensors
+      dive
     ];
 
     programs = {
