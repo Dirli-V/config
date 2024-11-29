@@ -1,7 +1,6 @@
 alias nfu = nix flake update
 def nr [] {
-  cd ~/config
-  sudo nixos-rebuild switch --flake $"./nixos#(hostname)"
+  sudo nixos-rebuild switch --flake $"($env.HOME)/personal_config/nixos#(hostname)"
 }
 def nn [] {
   cd ~/config
