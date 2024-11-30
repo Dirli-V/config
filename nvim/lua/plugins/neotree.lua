@@ -54,6 +54,89 @@ return {
           require("neo-tree").close_all()
         end,
       },
+      -- Adaption of https://github.com/folke/snacks.nvim/blob/main/lua/snacks/rename.lua
+      {
+        event = "before_file_move",
+        handler = function(data)
+          local changes = {
+            files = {
+              {
+                oldUri = vim.uri_from_fname(data.source),
+                newUri = vim.uri_from_fname(data.destination),
+              },
+            },
+          }
+
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            if client.supports_method("workspace/willRenameFiles") then
+              local resp = client.request_sync("workspace/willRenameFiles", changes, 1000, 0)
+              if resp and resp.result ~= nil then
+                vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
+              end
+            end
+          end
+        end,
+      },
+      {
+        event = "before_file_rename",
+        handler = function(data)
+          local changes = {
+            files = {
+              {
+                oldUri = vim.uri_from_fname(data.source),
+                newUri = vim.uri_from_fname(data.destination),
+              },
+            },
+          }
+
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            if client.supports_method("workspace/willRenameFiles") then
+              local resp = client.request_sync("workspace/willRenameFiles", changes, 1000, 0)
+              if resp and resp.result ~= nil then
+                vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
+              end
+            end
+          end
+        end,
+      },
+      {
+        event = "file_moved",
+        handler = function(data)
+          local changes = {
+            files = {
+              {
+                oldUri = vim.uri_from_fname(data.source),
+                newUri = vim.uri_from_fname(data.destination),
+              },
+            },
+          }
+
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            if client.supports_method("workspace/didRenameFiles") then
+              client.notify("workspace/didRenameFiles", changes)
+            end
+          end
+        end,
+      },
+      {
+        event = "file_renamed",
+        handler = function(data)
+          local changes = {
+            files = {
+              {
+                oldUri = vim.uri_from_fname(data.source),
+                newUri = vim.uri_from_fname(data.destination),
+              },
+            },
+          }
+
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            if client.supports_method("workspace/didRenameFiles") then
+              client.notify("workspace/didRenameFiles", changes)
+            end
+          end
+        end,
+      },
     },
     filesystem = {
       filtered_items = {
