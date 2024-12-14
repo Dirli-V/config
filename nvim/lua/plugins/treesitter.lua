@@ -13,6 +13,7 @@ return {
   keys = {
     { "<bs>", desc = "Increment selection" },
     { "<del>", desc = "Decrement selection", mode = "x" },
+    { "<leader>ux", "<cmd>TSContextToggle<cr>", desc = "Toggle TS context" },
   },
   opts = {
     ensure_installed = {
@@ -98,7 +99,7 @@ return {
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
-    require("treesitter-context").setup()
+    require("treesitter-context").setup({ max_lines = 5 })
     require("ts_context_commentstring").setup({
       enable_autocmd = false,
     })
