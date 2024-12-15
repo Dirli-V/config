@@ -45,7 +45,7 @@ local function definition_or_reference()
     local flattened_results = {}
     if result then
       -- textDocument/definition can return Location or Location[]
-      if not vim.tbl_islist(result) then
+      if not vim.islist(result) then
         flattened_results = { result }
       end
 
