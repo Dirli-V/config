@@ -5,5 +5,9 @@ return {
     keymap = {
       preset = "enter",
     },
+
+    signature = {
+      enabled = true,
+    },
   },
 }
