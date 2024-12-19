@@ -14,6 +14,7 @@
       fzf
       bat
       harper
+      jq
     ];
     programs = {
       neovim = {

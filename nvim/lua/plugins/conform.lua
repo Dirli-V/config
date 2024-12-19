@@ -8,6 +8,8 @@ return {
       javascript = { "prettierd" },
       typescript = { "prettierd" },
       typescriptreact = { "prettierd" },
+      html = { "prettierd" },
+      htmldjango = { "prettierd" },
       nix = { "alejandra" },
       json = { "jq" },
       kotlin = { "ktlint" },
