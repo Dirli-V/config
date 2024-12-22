@@ -1,10 +1,6 @@
-{
-  astal,
-  scape,
-  ...
-}: {
+{scape, ...} @ inputs: {
   imports = [
-    (import ./astal.nix astal)
+    (import ./astal.nix inputs)
     ./dev-tools.nix
     ./helix.nix
     ./ideavim.nix
