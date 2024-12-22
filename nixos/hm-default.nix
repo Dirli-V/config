@@ -1,10 +1,10 @@
 {
-  ags,
+  astal,
   scape,
   ...
 }: {
   imports = [
-    (import ./ags.nix ags)
+    (import ./astal.nix astal)
     ./dev-tools.nix
     ./helix.nix
     ./ideavim.nix
