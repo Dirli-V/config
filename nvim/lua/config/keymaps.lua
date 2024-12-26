@@ -29,9 +29,10 @@ map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Buffers
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<S-h>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bf", require("helpers").close_all_floating_windows, { desc = "Close all floating windows" })
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete current buffer" })
+map("n", "<leader>bD", "<cmd>bdelete!<cr>", { desc = "Delete (force) current buffer" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
