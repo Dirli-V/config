@@ -115,13 +115,34 @@ local lsp_keys = {
   { "<leader>c.", require("helpers").list_code_action_kinds, desc = "List code action kinds" },
 }
 
-function M.on_attach(_, buffer)
+local rust_analyzer_keys = {
+  { "J", "<cmd>RustLsp joinLines<cr>", mode = { "n", "x" }, desc = "Join lines" },
+  {
+    "K",
+    function()
+      vim.cmd.RustLsp({ "hover", "actions" })
+    end,
+    desc = "Hover actions",
+  },
+}
+
+function M.on_attach(client, buffer)
   for _, keys in pairs(lsp_keys) do
     local opts = {}
     opts.desc = keys.opts or ""
     opts.silent = opts.silent ~= false
     opts.buffer = buffer
     vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
+  end
+
+  if client.name == "rust-analyzer" then
+    for _, keys in pairs(rust_analyzer_keys) do
+      local opts = {}
+      opts.desc = keys.opts or ""
+      opts.silent = opts.silent ~= false
+      opts.buffer = buffer
+      vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
+    end
   end
 end
 
