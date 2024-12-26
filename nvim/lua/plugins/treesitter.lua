@@ -54,6 +54,7 @@ return {
       "markdown",
       "markdown_inline",
       "nix",
+      "nu",
       "php",
       "proto",
       "python",
