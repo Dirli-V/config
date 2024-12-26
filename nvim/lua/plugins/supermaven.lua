@@ -8,9 +8,9 @@ return {
   event = "VeryLazy",
   opts = {
     keymaps = {
-      accept_suggestion = nil,
-      clear_suggestion = nil,
-      accept_word = nil,
+      accept_suggestion = "<C-l>",
+      clear_suggestion = "<C-h>",
+      accept_word = "<C-j>",
     },
   },
   config = function(_, opts)
