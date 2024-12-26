@@ -100,7 +100,7 @@ return {
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
-    require("treesitter-context").setup({ max_lines = 5 })
+    require("treesitter-context").setup({ max_lines = 3 })
     require("ts_context_commentstring").setup({
       enable_autocmd = false,
     })
