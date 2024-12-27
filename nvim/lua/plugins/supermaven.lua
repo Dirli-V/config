@@ -9,8 +9,8 @@ return {
   opts = {
     keymaps = {
       accept_suggestion = "<C-l>",
-      clear_suggestion = "<C-h>",
-      accept_word = "<C-o>",
+      clear_suggestion = "<C-o>",
+      accept_word = "<C-h>",
     },
   },
   config = function(_, opts)

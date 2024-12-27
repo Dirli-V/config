@@ -23,6 +23,24 @@ $env.config = {
                 cmd: "commandline edit --insert (x)"
             }
         }
+        {
+            name: complete-word
+            modifier: control
+            keycode: char_h
+            mode: [emacs, vi_normal, vi_insert]
+            event: {
+                send: HistoryHintWordComplete
+            }
+        }
+        {
+            name: complete-word
+            modifier: control
+            keycode: char_j
+            mode: [emacs, vi_normal, vi_insert]
+            event: {
+                send: HistoryHintComplete
+            }
+        }
     ]
 }
 
