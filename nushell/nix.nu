@@ -21,9 +21,7 @@ def nfua [] {
 
 def use_cwd_flake_if_exists [] {
   if ("./flake.nix" | path exists) {
-    if (do { nix develop --command nu } | complete | get exit_code) == 1 {
-        echo "No devshell in flake"
-    }
+    nix develop --command nu
   }
 }
 
