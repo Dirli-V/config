@@ -5,6 +5,8 @@ return {
     require("lint").linters_by_ft = {
       nix = { "statix" },
       kotlin = { "ktlint" },
+      html = { "djlint" },
+      htmldjango = { "djlint" },
     }
 
     vim.api.nvim_create_autocmd({ "BufWritePost" }, {
