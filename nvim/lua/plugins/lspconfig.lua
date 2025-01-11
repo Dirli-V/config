@@ -90,8 +90,10 @@ return {
         },
       },
       gopls = {},
-      harper_ls = {
-        filetypes = { "*" },
+      typos_lsp = {
+        init_options = {
+          diagnosticSeverity = "Info",
+        },
       },
       jdtls = {},
       intelephense = {},

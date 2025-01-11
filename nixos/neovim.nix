@@ -13,7 +13,7 @@
       libgccjit
       fzf
       bat
-      harper
+      typos-lsp
       jq
     ];
     programs = {
