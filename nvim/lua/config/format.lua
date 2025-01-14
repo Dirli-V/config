@@ -2,15 +2,21 @@ local Util = require("lazy.core.util")
 
 local M = {}
 
-M.autoformat = true
+M.autoformat = {}
 
 function M.toggle()
-  M.autoformat = not M.autoformat
+  local ft = vim.bo.filetype
+  if M.autoformat[ft] == nil then
+    M.autoformat[ft] = true
+  end
+  local current = M.autoformat[ft]
+  local next = not current
+  M.autoformat[ft] = next
 
-  if M.autoformat then
-    Util.info("Enabled format on save", { title = "Format" })
+  if next then
+    Util.info("Enabled format on save for " .. ft, { title = "Format" })
   else
-    Util.warn("Disabled format on save", { title = "Format" })
+    Util.warn("Disabled format on save for " .. ft, { title = "Format" })
   end
 end
 
@@ -22,7 +28,8 @@ end
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("FormatOnSave", {}),
   callback = function()
-    if M.autoformat then
+    local ft = vim.bo.filetype
+    if M.autoformat[ft] == nil or M.autoformat[ft] then
       M.format()
     end
   end,
