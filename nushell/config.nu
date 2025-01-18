@@ -26,19 +26,22 @@ $env.config = {
         {
             name: complete-word
             modifier: control
-            keycode: char_h
+            keycode: char_j
             mode: [emacs, vi_normal, vi_insert]
             event: {
                 send: HistoryHintWordComplete
             }
         }
         {
-            name: complete-word
+            name: complete-line
             modifier: control
-            keycode: char_j
+            keycode: char_l
             mode: [emacs, vi_normal, vi_insert]
             event: {
-                send: HistoryHintComplete
+                until: [
+                    { send: HistoryHintComplete }
+                    { send: ClearScreen }
+                ]
             }
         }
     ]
