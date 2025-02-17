@@ -64,3 +64,7 @@ source ~/.config/nushell/atuin_completion.nu
 source ~/personal_config/scripts/config.nu
 
 alias ssh = env TERM=xterm ssh
+def background [cmd: string] {
+    sh -c $"($cmd) &"
+}
+alias '&' = background
