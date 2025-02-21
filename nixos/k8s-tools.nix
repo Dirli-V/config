@@ -9,7 +9,6 @@
   config = lib.mkIf config.shared-config.k8s-tools.enable {
     home.packages = with pkgs; [
       taplo
-      bandwhich
       kubectl
       kubernetes-helm
       du-dust
