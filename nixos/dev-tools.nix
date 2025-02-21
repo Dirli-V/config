@@ -9,26 +9,12 @@
   config = lib.mkIf config.shared-config.dev-tools.enable {
     home.packages = with pkgs; [
       nodePackages.bash-language-server
-      taplo
-      nixd
-      alejandra
-      deadnix
-      statix
-      nix-inspect
-      nix-index
       python3
       sumneko-lua-language-server
       stylua
-      fd
-      xplr
       bandwhich
-      kubectl
-      kubernetes-helm
       du-dust
       p7zip
-      mpv
-      lm_sensors
-      dive
     ];
 
     programs = {

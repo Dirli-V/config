@@ -18,10 +18,12 @@ in {
         atuin.source = ../atuin;
       };
 
-    home.packages = [
-      pkgs.nushell
-      pkgs.zoxide
-      pkgs.atuin
+    home.packages = with pkgs; [
+      nushell
+      zoxide
+      atuin
+      fd
+      xplr
     ];
   };
 }
