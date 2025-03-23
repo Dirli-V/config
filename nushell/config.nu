@@ -68,3 +68,4 @@ def background [cmd: string] {
     sh -c $"($cmd) &"
 }
 alias '&' = background
+alias fg = job unfreeze
