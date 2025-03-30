@@ -14,8 +14,6 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("config.options")
-
 local cwd = vim.fn.getcwd()
 local lockfile
 if cwd:sub(-#"/config") == "/config" then
@@ -47,26 +45,6 @@ require("lazy").setup({
         "tutor",
         "zipPlugin",
       },
-    },
-  },
-})
-
-require("config.autocmds")
-require("config.keymaps")
-
-vim.filetype.add({
-  filename = {
-    ["Jenkinsfile"] = "groovy",
-    [".kube/config"] = "yaml",
-  },
-  pattern = {
-    [".*"] = {
-      function(path, buf)
-        -- Adaptation of https://github.com/folke/snacks.nvim/blob/main/lua/snacks/bigfile.lua
-        if vim.bo[buf] and vim.bo[buf].filetype ~= "large_file" and path and vim.fn.getfsize(path) > 1024 * 1024 then
-          return "large_file"
-        end
-      end,
     },
   },
 })

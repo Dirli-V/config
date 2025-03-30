@@ -146,4 +146,34 @@ function M.on_attach(client, buffer)
   end
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "Setup LSP keymaps",
+  callback = function(args)
+    local buffer = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    M.on_attach(client, buffer)
+  end,
+})
+
+local capabilities = {
+  textDocument = {
+    foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    },
+  },
+}
+
+capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+
+vim.lsp.config("*", {
+  capabilities = capabilities,
+  root_markers = { ".git" },
+})
+
+vim.lsp.enable({
+  "luals",
+  "nixd",
+})
+
 return M

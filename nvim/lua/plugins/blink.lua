@@ -3,7 +3,6 @@ return {
   lazy = false,
   opts = {
     keymap = {
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
       ["<C-e>"] = { "hide", "fallback" },
       ["<C-j>"] = { "accept" },
 
@@ -18,6 +17,12 @@ return {
 
     signature = {
       enabled = true,
+    },
+
+    completion = {
+      documentation = {
+        auto_show = true,
+      },
     },
   },
 }
