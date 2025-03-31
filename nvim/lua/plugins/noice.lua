@@ -40,7 +40,9 @@ return {
     },
     {
       "<leader>ua",
-      "<cmd>Noice telescope<cr>",
+      function()
+        Snacks.picker.notifications()
+      end,
       desc = "Noice History",
     },
     {

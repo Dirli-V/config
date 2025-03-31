@@ -15,6 +15,8 @@
       bat
       typos-lsp
       jq
+      gnumake
+      lazygit
     ];
     programs = {
       neovim = {

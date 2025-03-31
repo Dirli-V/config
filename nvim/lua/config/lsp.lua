@@ -87,11 +87,11 @@ end
 
 local lsp_keys = {
   { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-  { "gd", definition_or_reference, desc = "Goto Definition" },
-  { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-  { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-  { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
-  { "gy", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
+  { "gd", Snacks.picker.lsp_definitions, desc = "Goto Definition" },
+  { "gr", Snacks.picker.lsp_references, desc = "References" },
+  { "gD", Snacks.picker.lsp_declarations, desc = "Goto Declaration" },
+  { "gi", Snacks.picker.lsp_implementations, desc = "Goto Implementation" },
+  { "gy", Snacks.picker.lsp_type_definitions, desc = "Goto Type Definition" },
   { "K", vim.lsp.buf.hover, desc = "Hover" },
   { "gk", vim.lsp.buf.signature_help, desc = "Signature Help" },
   { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help" },
