@@ -8,6 +8,7 @@ set NERDTree
 set commentary
 set highlightedyank
 set sneak
+set visualbell
 
 "" -- Suggested options --
 " Show a few lines of context around the cursor. Note that this makes the
