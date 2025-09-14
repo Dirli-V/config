@@ -199,3 +199,8 @@ map("n", "<leader>yC", "", {
     vim.fn.setreg("+", vim.fn.expand("%:p"))
   end,
 })
+
+-- AI integration
+map("n", "<C-a>", function()
+  require("config.ai").toggle_ai_window()
+end, { desc = "Toggle AI Agent" })
