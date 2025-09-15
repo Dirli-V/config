@@ -52,11 +52,11 @@ local function get_or_create_buffer()
   end
 
   ai_state.buf = vim.api.nvim_create_buf(false, true)
-  
-  -- Set buffer options (buftype will be set automatically by termopen)
+
+  -- Set buffer options (buftype will be set automatically by jobstart with term=true)
   vim.bo[ai_state.buf].swapfile = false
   vim.bo[ai_state.buf].buflisted = false
-  
+
   return ai_state.buf
 end
 
@@ -67,26 +67,23 @@ local function start_ai_agent(buf)
     return false
   end
 
-  -- Save current buffer and switch to AI buffer
-  local current_buf = vim.api.nvim_get_current_buf()
-  vim.api.nvim_set_current_buf(buf)
-  
-  -- Start terminal job
-  ai_state.job_id = vim.fn.termopen(ai_command, {
-    on_exit = function(job_id, exit_code, event_type)
-      ai_state.job_id = nil
-      if exit_code ~= 0 then
-        vim.notify(
-          string.format("AI agent exited with code %d", exit_code),
-          vim.log.levels.WARN,
-          { title = "AI Module" }
-        )
-      end
-    end,
-  })
-
-  -- Restore original buffer
-  vim.api.nvim_set_current_buf(current_buf)
+  -- Use jobstart with term option instead of deprecated termopen
+  vim.api.nvim_buf_call(buf, function()
+    -- Start terminal job using jobstart (termopen replacement)
+    ai_state.job_id = vim.fn.jobstart(ai_command, {
+      term = true,
+      on_exit = function(_, exit_code, _)
+        ai_state.job_id = nil
+        if exit_code ~= 0 then
+          vim.notify(
+            string.format("AI agent exited with code %d", exit_code),
+            vim.log.levels.WARN,
+            { title = "AI Module" }
+          )
+        end
+      end,
+    })
+  end)
 
   if ai_state.job_id <= 0 then
     vim.notify("Failed to start AI agent", vim.log.levels.ERROR, { title = "AI Module" })
@@ -103,7 +100,10 @@ local function open_ai_window()
   end
 
   local buf = get_or_create_buffer()
-  
+  if not buf then
+    return
+  end
+
   -- Start AI agent if not already running
   if not ai_state.job_id then
     if not start_ai_agent(buf) then
@@ -120,18 +120,12 @@ local function open_ai_window()
 
   -- Set up key mappings for the AI window
   local opts = { buffer = buf, nowait = true, silent = true }
-  
-  -- Close window with Escape or q in normal mode
-  vim.keymap.set("n", "<Esc>", function()
-    M.toggle_ai_window()
-  end, opts)
-  
-  vim.keymap.set("n", "q", function()
-    M.toggle_ai_window()
-  end, opts)
-  
-  -- Close window with Ctrl-A in terminal mode (this will work while in the terminal)
-  vim.keymap.set("t", "<C-a>", function()
+
+  -- Go to normal mode with Escape in terminal mode
+  vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
+
+  -- Close window with Ctrl-A
+  vim.keymap.set({ "t", "n" }, "<C-a>", function()
     M.toggle_ai_window()
   end, opts)
 
