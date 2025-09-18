@@ -11,7 +11,7 @@ return {
       "<leader>gd",
       function()
         local branch = vim.fn.input("Diff with origin: ")
-        vim.api.nvim_exec("!git fetch origin " .. branch, false)
+        vim.api.nvim_exec2("!git fetch origin " .. branch, {})
         vim.api.nvim_command("DiffviewOpen origin/" .. branch)
       end,
       desc = "Diff with origin ...",
