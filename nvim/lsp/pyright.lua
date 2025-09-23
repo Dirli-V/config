@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { "pyright-langserver", "--stdio" },
+  cmd = { "basedpyright-langserver", "--stdio" },
   filetypes = { "python" },
   single_file_support = true,
   root_markers = {
