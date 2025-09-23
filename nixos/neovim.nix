@@ -14,6 +14,12 @@
       fzf
       bat
       typos-lsp
+      gopls
+      intelephense
+      vscode-json-languageserver
+      taplo
+      yaml-language-server
+      basedpyright
       jq
       gnumake
       lazygit
