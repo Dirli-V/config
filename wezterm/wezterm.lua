@@ -349,7 +349,6 @@ for i = 1, 9 + 12 do
 end
 
 return {
-  enable_wayland = false,
   front_end = "WebGpu", -- fix for https://github.com/wez/wezterm/issues/5990
   default_cwd = home_path .. "/repos",
   default_prog = { "nu", "-e", "nd --silent" },
