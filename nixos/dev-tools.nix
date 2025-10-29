@@ -20,17 +20,18 @@
     programs = {
       git = {
         enable = true;
-        extraConfig = {
+        settings = {
           core = {
             editor = "nvim";
           };
           push.autoSetupRemote = true;
           init.defaultBranch = "main";
         };
-        difftastic = {
-          enable = true;
-        };
         lfs.enable = true;
+      };
+
+      difftastic = {
+        enable = true;
       };
 
       fzf.enable = true;
