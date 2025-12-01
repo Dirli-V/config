@@ -13,7 +13,7 @@
       lua-language-server
       stylua
       bandwhich
-      du-dust
+      dust
       p7zip
     ];
 
