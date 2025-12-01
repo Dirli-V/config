@@ -10,7 +10,7 @@
     home.packages = with pkgs; [
       nodePackages.bash-language-server
       python3
-      sumneko-lua-language-server
+      lua-language-server
       stylua
       bandwhich
       du-dust
