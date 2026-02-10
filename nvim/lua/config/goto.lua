@@ -66,12 +66,13 @@ local function generate_shortcuts(word_count)
   return shortcuts
 end
 
--- Scan a single buffer for words
-local function scan_single_buffer(bufnr)
-  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+-- Scan a single window for words (only visible lines)
+local function scan_single_window(win, bufnr, first_line, last_line)
+  local lines = vim.api.nvim_buf_get_lines(bufnr, first_line, last_line + 1, false)
   local words = {}
 
-  for line_num, line in ipairs(lines) do
+  for i, line in ipairs(lines) do
+    local line_num = first_line + i
     local pos = 1
     while pos <= #line do
       local word_start, word_end = string.find(line, "[%w]+", pos)
@@ -84,6 +85,7 @@ local function scan_single_buffer(bufnr)
 
       table.insert(words, {
         word = word,
+        win = win,
         bufnr = bufnr,
         line = line_num - 1, -- Convert to 0-based
         start_col = word_start - 1, -- Convert to 0-based
@@ -102,28 +104,42 @@ end
 local function scan_current_tab()
   local all_words = {}
   local word_count = 0
+  local current_win = vim.api.nvim_get_current_win()
 
-  -- Get all visible buffers in the current tab (visible windows)
-  local visible_buffers = {}
+  -- Get all visible windows in the current tab with their visible line ranges
+  local windows_info = {}
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
     local win_config = vim.api.nvim_win_get_config(win)
     if win_config.relative ~= "" then -- Skip floating windows
       goto continue
     end
     local bufnr = vim.api.nvim_win_get_buf(win)
-    if not visible_buffers[bufnr] then
-      visible_buffers[bufnr] = true
-      table.insert(visible_buffers, bufnr)
+    local first_line = vim.fn.line("w0", win) - 1 -- Convert to 0-based
+    local last_line = vim.fn.line("w$", win) - 1  -- Convert to 0-based
+    local info = { win = win, bufnr = bufnr, first_line = first_line, last_line = last_line }
+    -- Insert current window at front so it gets priority for overlapping positions
+    if win == current_win then
+      table.insert(windows_info, 1, info)
+    else
+      table.insert(windows_info, info)
     end
     ::continue::
   end
 
-  -- Scan each visible buffer in current tab
-  for _, bufnr in ipairs(visible_buffers) do
-    local buffer_words = scan_single_buffer(bufnr)
-    for _, word_info in ipairs(buffer_words) do
-      table.insert(all_words, word_info)
-      word_count = word_count + 1
+  -- Track which buffer positions already have shortcuts (to handle same buffer in multiple windows)
+  local seen_positions = {}
+
+  -- Scan each visible window's visible lines
+  for _, info in ipairs(windows_info) do
+    local window_words = scan_single_window(info.win, info.bufnr, info.first_line, info.last_line)
+    for _, word_info in ipairs(window_words) do
+      -- Create unique key for this position in the buffer
+      local pos_key = string.format("%d:%d:%d", word_info.bufnr, word_info.line, word_info.start_col)
+      if not seen_positions[pos_key] then
+        seen_positions[pos_key] = true
+        table.insert(all_words, word_info)
+        word_count = word_count + 1
+      end
     end
   end
 
@@ -135,6 +151,7 @@ local function scan_current_tab()
     table.insert(word_map, {
       word = word_info.word,
       shortcut = shortcuts[i],
+      win = word_info.win,
       bufnr = word_info.bufnr,
       line = word_info.line,
       start_col = word_info.start_col,
@@ -178,25 +195,15 @@ local function jump_to_word(shortcut)
   for _, highlight in ipairs(goto_state.highlights) do
     if highlight.word_info.shortcut == shortcut then
       local word_info = highlight.word_info
-      local bufnr = word_info.bufnr
+      local target_win = word_info.win
 
-      -- Find the window that contains this buffer
-      local target_win = nil
-      for _, win in ipairs(vim.api.nvim_list_wins()) do
-        if vim.api.nvim_win_get_buf(win) == bufnr then
-          target_win = win
-          break
-        end
-      end
-
-      if target_win then
-        -- Switch to the window containing the target buffer
+      if vim.api.nvim_win_is_valid(target_win) then
+        -- Switch to the specific window and set cursor position
         vim.api.nvim_set_current_win(target_win)
-        -- Set cursor position
         vim.api.nvim_win_set_cursor(target_win, { word_info.line + 1, word_info.start_col })
       else
-        -- If no window found, switch to the buffer in current window
-        vim.api.nvim_set_current_buf(bufnr)
+        -- Fallback: if window is no longer valid, use buffer in current window
+        vim.api.nvim_set_current_buf(word_info.bufnr)
         vim.api.nvim_win_set_cursor(0, { word_info.line + 1, word_info.start_col })
       end
 
