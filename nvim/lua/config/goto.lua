@@ -197,14 +197,16 @@ local function jump_to_word(shortcut)
       local word_info = highlight.word_info
       local target_win = word_info.win
 
+      local jump_cmd = ("normal! %dG%d|"):format(word_info.line + 1, word_info.start_col + 1)
+
       if vim.api.nvim_win_is_valid(target_win) then
-        -- Switch to the specific window and set cursor position
+        -- Switch to the specific window and jump using normal mode to update jumplist
         vim.api.nvim_set_current_win(target_win)
-        vim.api.nvim_win_set_cursor(target_win, { word_info.line + 1, word_info.start_col })
+        vim.cmd(jump_cmd)
       else
         -- Fallback: if window is no longer valid, use buffer in current window
         vim.api.nvim_set_current_buf(word_info.bufnr)
-        vim.api.nvim_win_set_cursor(0, { word_info.line + 1, word_info.start_col })
+        vim.cmd(jump_cmd)
       end
 
       return true
