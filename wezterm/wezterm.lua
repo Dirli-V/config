@@ -30,6 +30,27 @@ local active_workspaces = {}
 local current_workspace_choice = nil
 local previous_workspace_choice = nil
 
+local function switch_to_workspace(window, pane, choice, update_history)
+  if not choice then
+    return
+  end
+
+  if update_history == nil or update_history == true then
+    previous_workspace_choice = current_workspace_choice
+    current_workspace_choice = choice
+  end
+
+  window:perform_action(
+    wezterm.action.SwitchToWorkspace({
+      name = choice.id,
+      spawn = {
+        cwd = choice.id,
+      },
+    }),
+    pane
+  )
+end
+
 local function save_current_workspaces()
   local sink = io.open(workspaces_path, "w")
   if not sink then
@@ -141,16 +162,8 @@ local keys = {
             if not id or not label then
               return
             end
-            current_workspace_choice = { id = id, label = label }
-            inner_window:perform_action(
-              wezterm.action.SwitchToWorkspace({
-                name = id,
-                spawn = {
-                  cwd = id,
-                },
-              }),
-              inner_pane
-            )
+            local choice = { id = id, label = label }
+            switch_to_workspace(inner_window, inner_pane, choice)
           end),
           title = "Switch to workspace",
           choices = choices,
@@ -211,15 +224,7 @@ local keys = {
       current_workspace_choice = previous_workspace_choice
       previous_workspace_choice = tmp
 
-      window:perform_action(
-        wezterm.action.SwitchToWorkspace({
-          name = previous_workspace_choice.id,
-          spawn = {
-            cwd = previous_workspace_choice.id,
-          },
-        }),
-        pane
-      )
+      switch_to_workspace(window, pane, current_workspace_choice, false)
     end),
   },
   { key = "z", mods = "LEADER|CTRL", action = wezterm.action.SendKey({ key = "z", mods = "CTRL" }) },
@@ -274,17 +279,7 @@ end
 local function open_workspace(window, pane, i)
   -- activate workspace for this slot if there is one
   if active_workspaces[i] then
-    previous_workspace_choice = current_workspace_choice
-    current_workspace_choice = active_workspaces[i]
-    window:perform_action(
-      wezterm.action.SwitchToWorkspace({
-        name = active_workspaces[i].id,
-        spawn = {
-          cwd = active_workspaces[i].id,
-        },
-      }),
-      pane
-    )
+    switch_to_workspace(window, pane, active_workspaces[i])
     return
   end
 
@@ -297,18 +292,11 @@ local function open_workspace(window, pane, i)
           return
         end
 
-        current_workspace_choice = { id = id, label = label }
+        local choice = { id = id, label = label }
+        switch_to_workspace(inner_window, inner_pane, choice)
+        current_workspace_choice = choice
         active_workspaces[i] = current_workspace_choice
         save_current_workspaces()
-        inner_window:perform_action(
-          wezterm.action.SwitchToWorkspace({
-            name = id,
-            spawn = {
-              cwd = id,
-            },
-          }),
-          inner_pane
-        )
       end),
       title = "Switch to workspace",
       choices = choices,
