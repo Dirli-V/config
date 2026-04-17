@@ -49,7 +49,6 @@ $env.config = {
 
 source ~/.config/nushell/git.nu
 source ~/.config/nushell/bluetooth.nu
-source ~/.config/nushell/systemd.nu
 source ~/.config/nushell/cargo.nu
 source ~/.config/nushell/nix.nu
 source ~/.config/nushell/zoxide.nu
