@@ -8,7 +8,7 @@
 
   config = lib.mkIf config.shared-config.dev-tools.enable {
     home.packages = with pkgs; [
-      nodePackages.bash-language-server
+      bash-language-server
       python3
       lua-language-server
       stylua
