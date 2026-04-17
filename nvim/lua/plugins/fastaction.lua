@@ -1,6 +1,1 @@
-return {
-  "Chaitanyabsprip/fastaction.nvim",
-  opts = {
-    dismiss_keys = { "q", "<esc>" },
-  },
-}
+require("fastaction").setup({ dismiss_keys = { "q", "<esc>" } })

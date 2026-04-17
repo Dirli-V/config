@@ -1,17 +1,7 @@
-return {
-  "echasnovski/mini.comment",
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter",
+require("mini.comment").setup({
+  hooks = {
+    pre = function()
+      require("ts_context_commentstring.internal").update_commentstring()
+    end,
   },
-  event = "VeryLazy",
-  opts = {
-    hooks = {
-      pre = function()
-        require("ts_context_commentstring.internal").update_commentstring()
-      end,
-    },
-  },
-  config = function(_, opts)
-    require("mini.comment").setup(opts)
-  end,
-}
+})

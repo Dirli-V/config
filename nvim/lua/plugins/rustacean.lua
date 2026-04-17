@@ -1,4 +1,1 @@
-return {
-  "mrcjkb/rustaceanvim",
-  ft = { "rust" },
-}
+-- rustaceanvim sets itself up automatically via its plugin files when ft=rust

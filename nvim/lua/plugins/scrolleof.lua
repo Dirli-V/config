@@ -1,7 +1,1 @@
-return {
-  "Aasim-A/scrollEOF.nvim",
-  opts = {
-    insert_mode = true,
-  },
-  event = { "CursorMoved", "WinScrolled" },
-}
+require("scrollEOF").setup({ insert_mode = true })

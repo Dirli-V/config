@@ -1,5 +1,12 @@
-local Util = require("lazy.core.util")
 local helpers = require("helpers")
+
+local function info(msg, opts)
+  vim.notify(msg, vim.log.levels.INFO, opts)
+end
+
+local function warn(msg, opts)
+  vim.notify(msg, vim.log.levels.WARN, opts)
+end
 
 vim.g.maplocalleader = ","
 
@@ -65,8 +72,8 @@ map("x", "<a-l>", format, { desc = "Format Range" })
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- lazy
-map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+-- plugin manager
+map("n", "<leader>l", function() vim.pack.update() end, { desc = "Update plugins" })
 
 -- new file
 map("n", "<leader>cn", "<cmd>enew<cr>", { desc = "New File" })
@@ -87,14 +94,14 @@ local function toggle_option(option, silent, values)
     else
       vim.opt_local[option] = values[1]
     end
-    return Util.info("Set " .. option .. " to " .. vim.opt_local[option]:get(), { title = "Option" })
+    return info("Set " .. option .. " to " .. vim.opt_local[option]:get(), { title = "Option" })
   end
   vim.opt_local[option] = not vim.opt_local[option]:get()
   if not silent then
     if vim.opt_local[option]:get() then
-      Util.info("Enabled " .. option, { title = "Option" })
+      info("Enabled " .. option, { title = "Option" })
     else
-      Util.warn("Disabled " .. option, { title = "Option" })
+      warn("Disabled " .. option, { title = "Option" })
     end
   end
 end
@@ -103,9 +110,9 @@ local function toggle_diagnostics()
   local diagnostics_enabled = not vim.diagnostic.is_enabled()
   vim.diagnostic.enable(diagnostics_enabled)
   if diagnostics_enabled then
-    Util.info("Enabled diagnostics", { title = "Diagnostics" })
+    info("Enabled diagnostics", { title = "Diagnostics" })
   else
-    Util.warn("Disabled diagnostics", { title = "Diagnostics" })
+    warn("Disabled diagnostics", { title = "Diagnostics" })
   end
 end
 
@@ -113,9 +120,9 @@ local function toggle_inlay_hints()
   local inlay_hints_enabled = not vim.lsp.inlay_hint.is_enabled()
   vim.lsp.inlay_hint.enable(inlay_hints_enabled)
   if inlay_hints_enabled then
-    Util.info("Enabled inlay hints", { title = "Inlay Hints enabled" })
+    info("Enabled inlay hints", { title = "Inlay Hints enabled" })
   else
-    Util.warn("Disabled inlay hints", { title = "Inlay Hints disabled" })
+    warn("Disabled inlay hints", { title = "Inlay Hints disabled" })
   end
 end
 

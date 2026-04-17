@@ -1,4 +1,1 @@
-return {
-  "monkoose/matchparen.nvim",
-  event = "VeryLazy",
-}
+require("matchparen").setup()

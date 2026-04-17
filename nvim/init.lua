@@ -1,7 +1,7 @@
 vim.loader.enable()
 require("config.options")
 require("config.diagnostics")
-require("config.lazy")
+require("config.pack")
 require("config.autocmds")
 require("config.keymaps")
 require("config.lsp")

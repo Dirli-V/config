@@ -9,17 +9,9 @@ local toggle = function()
   end
 end
 
-return {
-  "github/copilot.vim",
-  lazy = false,
-  keys = {
-    { "<C-l>", toggle, desc = "Toggle Copilot" },
-  },
-  config = function()
-    vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
-      expr = true,
-      replace_keycodes = false,
-    })
-    vim.g.copilot_no_tab_map = true
-  end,
-}
+vim.keymap.set("n", "<C-l>", toggle, { desc = "Toggle Copilot" })
+vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
