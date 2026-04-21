@@ -3,6 +3,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(ev)
     if ev.data.spec.name == "nvim-treesitter" and (ev.data.kind == "install" or ev.data.kind == "update") then
       if not ev.data.active then
+        pcall(vim.cmd.packadd, "treesitter-parser-registry")
         vim.cmd.packadd("nvim-treesitter")
       end
       vim.cmd("TSUpdate")
@@ -25,11 +26,12 @@ vim.pack.add({
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/Chaitanyabsprip/fastaction.nvim",
 
-  -- Treesitter
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+  -- Treesitter (neovim-treesitter org: registry + installer; not lazy-loaded)
+  "https://github.com/neovim-treesitter/treesitter-parser-registry",
+  { src = "https://github.com/neovim-treesitter/nvim-treesitter", version = "main" },
   "https://github.com/HiPhish/rainbow-delimiters.nvim",
   "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
-  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
 
   -- Git

@@ -10,6 +10,7 @@
     xdg.configFile.nvim.source = ../nvim;
     home.packages = with pkgs; [
       ripgrep
+      tree-sitter
       libgccjit
       fzf
       bat
