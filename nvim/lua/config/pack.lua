@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
 vim.pack.add({
   -- UI / Colors
-  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+  { src = "https://github.com/ember-theme/nvim", name = "ember" },
   "https://github.com/nvim-lualine/lualine.nvim",
   "https://github.com/arkav/lualine-lsp-progress",
   "https://github.com/nvim-tree/nvim-web-devicons",
@@ -90,7 +90,7 @@ require("vim._core.ui2").enable({})
 -- snacks and blink first: Snacks global and LSP capabilities are needed by config.lsp
 require("plugins.snacks")
 require("plugins.blink")
-require("plugins.catppuccin")
+require("plugins.ember")
 
 require("plugins.blame")
 require("plugins.conform")

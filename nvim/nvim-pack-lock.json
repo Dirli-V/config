@@ -8,9 +8,9 @@
       "rev": "c573a15a62bd0bfd4006ee0849b24f5404395500",
       "src": "https://github.com/Saghen/blink.cmp"
     },
-    "catppuccin": {
-      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
-      "src": "https://github.com/catppuccin/nvim"
+    "ember": {
+      "rev": "7365b8dede43a82ed1df741275b75333422e5402",
+      "src": "https://github.com/ember-theme/nvim"
     },
     "colorful-menu.nvim": {
       "rev": "b51a659459df8d078201aefc995db8175ed55e84",

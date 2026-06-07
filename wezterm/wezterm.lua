@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local ember = require("ember-colors")
 local home_path = os.getenv("HOME") or ""
 local workspaces_path = home_path .. "/.local/share/workspaces.txt"
 
@@ -347,7 +348,10 @@ return {
   term = "wezterm",
   font = wezterm.font("FiraCode Nerd Font"),
   font_size = 17.0,
-  color_scheme = "Catppuccin Mocha",
+  color_scheme = "Ember",
+  color_schemes = {
+    Ember = ember,
+  },
   tab_bar_at_bottom = true,
   leader = { key = "z", mods = "CTRL", timeout_milliseconds = 1000 },
   keys = keys,
@@ -359,25 +363,8 @@ return {
   },
   harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
   window_frame = {
-    active_titlebar_bg = "#1E1E2E",
-    inactive_titlebar_bg = "#1E1E2E",
-  },
-  colors = {
-    tab_bar = {
-      inactive_tab_edge = "#B4BEFE",
-      active_tab = {
-        bg_color = "#97CD94",
-        fg_color = "#24283b",
-      },
-      inactive_tab = {
-        bg_color = "#89B4FA",
-        fg_color = "#24283b",
-      },
-      new_tab = {
-        bg_color = "#89B4FA",
-        fg_color = "#24283b",
-      },
-    },
+    active_titlebar_bg = ember.background,
+    inactive_titlebar_bg = ember.background,
   },
   enable_csi_u_key_encoding = true,
   check_for_updates = false,
