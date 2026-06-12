@@ -1,6 +1,5 @@
 {scape, ...} @ inputs: {
   imports = [
-    (import ./astal.nix inputs)
     ./dev-tools.nix
     ./ai-tools.nix
     ./k8s-tools.nix
