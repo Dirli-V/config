@@ -100,7 +100,7 @@ vim.lsp.enable({
   "bashls",
   "gopls",
   "intelephense",
-  "jdtls",
+  "intellij-server",
   "jsonls",
   "luals",
   "nixd",
