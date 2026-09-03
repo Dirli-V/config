@@ -19,7 +19,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://download.jetbrains.com/language-server/intellij-server/${version}/intellij-server-${version}.tar.gz";
-    sha256 = "1arv3i0p12axz6kq6p5jxvkdrv9pmx91113dk6iw719hnlnrpwwn";
+    hash = "sha256-yqTRISNs5ciQRpWoe+N1po+tqbnKQjFFB3P5/Z14w8M=";
   };
 
   nativeBuildInputs = [
