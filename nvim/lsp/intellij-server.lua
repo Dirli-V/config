@@ -31,7 +31,7 @@ local function find_jdk_home()
 end
 
 return {
-  cmd = { "intellij-server", "--stdio", "--data-sharing=none" },
+  cmd = { "intellij-server", "--stdio", "--data-sharing=none", "--eula=" .. find_eula_hash() },
   filetypes = { "java", "kotlin" },
   root_markers = {
     ".idea",
@@ -44,6 +44,5 @@ return {
   },
   init_options = {
     defaultSdk = find_jdk_home(),
-    eulaHash = find_eula_hash(),
   },
 }
