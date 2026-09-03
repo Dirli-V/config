@@ -1,13 +1,18 @@
-local function find_eula_hash()
+local function server_root()
   local bin = vim.fn.exepath("intellij-server")
   if bin == "" then
+    return nil
+  end
+  -- The binary is a wrapProgram shell script; strip /bin/intellij-server to get package root
+  return bin:gsub("/bin/intellij%-server$", "")
+end
+
+local function find_eula_hash()
+  local root = server_root()
+  if not root then
     return ""
   end
-  -- Follow symlink to real binary location to find the eula directory
-  local real = vim.fn.resolve(bin)
-  local root = real:gsub("/bin/intellij%-server$", "")
-  local eula_path = root .. "/eula/EULA.txt"
-  local f = io.open(eula_path, "r")
+  local f = io.open(root .. "/EULA.txt", "r")
   if not f then
     return ""
   end
@@ -17,13 +22,12 @@ local function find_eula_hash()
 end
 
 local function find_jdk_home()
-  local java = vim.fn.exepath("java")
-  if java == "" then
+  local root = server_root()
+  if not root then
     return ""
   end
-  local real = vim.fn.resolve(java)
-  -- Strip /bin/java to get JDK home
-  return real:gsub("/bin/java$", "")
+  -- Use the bundled JBR
+  return root .. "/jbr"
 end
 
 return {

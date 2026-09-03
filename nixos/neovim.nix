@@ -28,9 +28,8 @@ in {
         gnumake
         lazygit
       ]
-      ++ lib.optionals (pkgs.stdenv.hostPlatform.system == "x86_64-linux") [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
         intellij-server
-        jdk25
       ];
     programs = {
       neovim = {

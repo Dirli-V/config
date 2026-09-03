@@ -8,7 +8,6 @@
   makeWrapper,
   maven,
   gradle,
-  jdk25,
 }:
 let
   version = "263.3533.0";
@@ -39,9 +38,8 @@ stdenv.mkDerivation {
     runHook preInstall
     mkdir -p $out
     cp -r . $out/
-    mkdir -p $out/bin
-    makeWrapper $out/intellij-server $out/bin/intellij-server \
-      --prefix PATH : ${lib.makeBinPath [ maven gradle jdk25 ]}
+    wrapProgram $out/bin/intellij-server \
+      --prefix PATH : ${lib.makeBinPath [ maven gradle ]}
     runHook postInstall
   '';
 
