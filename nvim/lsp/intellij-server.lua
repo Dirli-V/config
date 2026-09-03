@@ -31,7 +31,7 @@ local function find_jdk_home()
 end
 
 return {
-  cmd = { "intellij-server", "--stdio", "--data-sharing=none", "--region=not_set" },
+  cmd = { "intellij-server", "--stdio", "--data-sharing=none" },
   filetypes = { "java", "kotlin" },
   root_markers = {
     ".idea",
