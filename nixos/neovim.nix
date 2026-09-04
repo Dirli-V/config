@@ -35,6 +35,8 @@ in {
       neovim = {
         enable = true;
         defaultEditor = true;
+        withRuby = false;
+        withPython3 = true;
         extraPython3Packages = ps: with ps; [simple-websocket-server python-slugify];
       };
     };

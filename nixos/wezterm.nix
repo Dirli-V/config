@@ -8,7 +8,7 @@
   # use input wezterm if available
   wezterm =
     if builtins.hasAttr "wezterm" inputs
-    then inputs.wezterm.packages.${pkgs.system}.default
+    then inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default
     else pkgs.wezterm;
 in {
   options.shared-config.wezterm.enable = lib.mkEnableOption "Enable shared wezterm config";
