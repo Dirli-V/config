@@ -18,6 +18,20 @@ in {
         atuin.source = ../atuin;
       };
 
+    # `nd` (nushell/nix.nu) drives direnv directly via `direnv exec`; it does not
+    # use the shell hook, so the auto-load integrations stay off.
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableBashIntegration = false;
+      enableZshIntegration = false;
+      # Hide the routine "loading .envrc / using flake / Using cached dev shell"
+      # chatter -- `nd` runs on every new wezterm tab. Only messages matching this
+      # filter are shown, so failures, blocked .envrc files and cold-cache
+      # rebuilds still surface.
+      config.global.log_filter = "(failed|error|denied|invalidated|not allowed|Renewed)";
+    };
+
     home.packages = with pkgs; [
       nushell
       zoxide

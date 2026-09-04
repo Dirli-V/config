@@ -19,9 +19,28 @@ def nfua [] {
   }
 }
 
+# Enter a nix dev shell via direnv/nix-direnv so the evaluated shell is cached.
+#
+# The .envrc lives in $nu.cache-dir/nd/<hash of flake ref>, never in the repo, so no
+# project gets polluted with .envrc/.direnv. `direnv exec` loads that .envrc but
+# runs the command in the *current* directory.
+def nd-enter [flake_ref: string] {
+  let cache = ($nu.cache-dir | path join "nd" ($flake_ref | hash sha256))
+  let envrc = ($cache | path join ".envrc")
+  let content = $"use flake ($flake_ref)\n"
+  if not (($envrc | path exists) and ((open --raw $envrc) == $content)) {
+    mkdir $cache
+    $content | save -f $envrc
+    direnv allow $cache
+  }
+  # nix-direnv keeps its gcroot next to the .envrc, so the dev shell also
+  # survives `nix store gc` -- unlike a plain `nix develop`.
+  direnv exec $cache nu
+}
+
 def use_cwd_flake_if_exists [] {
   if ("./flake.nix" | path exists) {
-    nix develop --command nu
+    nd-enter (pwd)
   }
 }
 
@@ -35,9 +54,9 @@ def nd [name = "", --silent] {
   let path = (echo (pwd) | path relative-to $repo_path)
   let flake_path = ("~/personal_config/flakes" | path join $repo_name | path join $path | path expand)
   if ($flake_path | path join "flake.nix" | path exists) {
-    nix develop (echo $flake_path "#" $name | str join) --command nu
+    nd-enter (if ($name | is-empty) { $flake_path } else { $"($flake_path)#($name)" })
   } else if not $silent {
-    nix develop --command nu
+    nd-enter (pwd)
   } else {
     use_cwd_flake_if_exists
   }
