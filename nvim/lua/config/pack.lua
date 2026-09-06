@@ -77,10 +77,6 @@ vim.pack.add({
   -- Diagnostics / UI
   "https://github.com/folke/trouble.nvim",
   "https://github.com/folke/which-key.nvim",
-
-  -- AI
-  "https://github.com/github/copilot.vim",
-  "https://github.com/supermaven-inc/supermaven-nvim",
 })
 
 -- Enable the builtin ui2 (replaces noice.nvim and nvim-notify)
@@ -94,7 +90,6 @@ require("plugins.ember")
 
 require("plugins.blame")
 require("plugins.conform")
-require("plugins.copilot")
 require("plugins.dap")
 require("plugins.dapui")
 require("plugins.diffview")
@@ -112,7 +107,6 @@ require("plugins.neotest")
 require("plugins.neotree")
 require("plugins.scrolleof")
 require("plugins.spectre")
-require("plugins.supermaven")
 require("plugins.textobjects")
 require("plugins.treesitter")
 require("plugins.trouble")
