@@ -10,7 +10,7 @@
   gradle,
 }:
 let
-  version = "263.3533.0";
+  version = "263.4702.0";
 in
 stdenv.mkDerivation {
   pname = "intellij-server";
@@ -18,7 +18,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://download.jetbrains.com/language-server/intellij-server/${version}/intellij-server-${version}.tar.gz";
-    hash = "sha256-yqTRISNs5ciQRpWoe+N1po+tqbnKQjFFB3P5/Z14w8M=";
+    hash = "sha256-j6eWRzbULkSVLR/qelR4o7xugOJxA57mKm22xA/pWXA=";
   };
 
   nativeBuildInputs = [
