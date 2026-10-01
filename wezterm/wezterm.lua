@@ -347,7 +347,7 @@ return {
   },
   term = "wezterm",
   font = wezterm.font("FiraCode Nerd Font"),
-  font_size = 17.0,
+  font_size = 16.0,
   color_scheme = "Ember",
   color_schemes = {
     Ember = ember,
