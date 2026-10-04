@@ -1,4 +1,8 @@
-{scape, ...} @ inputs: {
+{
+  scape,
+  dms,
+  ...
+} @ inputs: {
   imports = [
     ./dev-tools.nix
     ./ai-tools.nix
@@ -12,6 +16,8 @@
     ./neovim.nix
     ./nushell.nix
     (import ./scape.nix scape)
+    (import ./dms.nix dms)
+    ./lumalla-lanes.nix
     ./starship.nix
     ./wezterm.nix
   ];
