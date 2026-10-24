@@ -1,0 +1,15 @@
+{
+  "id": "githubReviews",
+  "name": "GitHub Reviews",
+  "description": "List open pull requests that request your review",
+  "version": "1.0.0",
+  "author": "dirli",
+  "icon": "rate_review",
+  "type": "launcher",
+  "capabilities": ["command-execution"],
+  "component": "./GitHubReviewsLauncher.qml",
+  "settings": "./GitHubReviewsSettings.qml",
+  "trigger": "r ",
+  "viewMode": "list",
+  "permissions": ["settings_read", "settings_write"]
+}
