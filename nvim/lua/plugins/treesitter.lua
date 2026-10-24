@@ -65,18 +65,6 @@ local parsers = {
 
 nvim_ts.install(parsers)
 
-local ok_rd, rainbow_delimiters = pcall(require, "rainbow-delimiters")
-if ok_rd then
-  vim.g.rainbow_delimiters = {
-    strategy = {
-      [""] = rainbow_delimiters.strategy["global"],
-    },
-    query = {
-      [""] = "rainbow-delimiters",
-    },
-  }
-end
-
 local inc = require("config.treesitter_incremental")
 
 local function should_skip_treesitter(buf)

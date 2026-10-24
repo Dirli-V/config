@@ -29,7 +29,6 @@ vim.pack.add({
   -- Treesitter (neovim-treesitter org: registry + installer; not lazy-loaded)
   "https://github.com/neovim-treesitter/treesitter-parser-registry",
   { src = "https://github.com/neovim-treesitter/nvim-treesitter", version = "main" },
-  "https://github.com/HiPhish/rainbow-delimiters.nvim",
   "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
   "https://github.com/nvim-treesitter/nvim-treesitter-context",

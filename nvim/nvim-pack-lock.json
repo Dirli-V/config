@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "alabaster.nvim": {
+      "rev": "b902c73fabefc13583bfc0c18b28950ea8f6244f",
+      "src": "https://github.com/p00f/alabaster.nvim"
+    },
     "blame.nvim": {
       "rev": "179da7aaacce7c52874af636255ede72dd6fe796",
       "src": "https://github.com/FabijanZulj/blame.nvim"
@@ -7,10 +11,6 @@
     "blink.cmp": {
       "rev": "c573a15a62bd0bfd4006ee0849b24f5404395500",
       "src": "https://github.com/Saghen/blink.cmp"
-    },
-    "ember": {
-      "rev": "7365b8dede43a82ed1df741275b75333422e5402",
-      "src": "https://github.com/ember-theme/nvim"
     },
     "colorful-menu.nvim": {
       "rev": "b51a659459df8d078201aefc995db8175ed55e84",
@@ -27,6 +27,10 @@
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
+    },
+    "ember": {
+      "rev": "7365b8dede43a82ed1df741275b75333422e5402",
+      "src": "https://github.com/ember-theme/nvim"
     },
     "fastaction.nvim": {
       "rev": "b147d91727cb35be4f722f17e7d4ed5b4a5801d8",
