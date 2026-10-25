@@ -212,15 +212,18 @@ local function define_lane_zones(lane, output, is_current)
     cursor = cursor + width
   end
 
+  -- Full-width zones (and their *_decorated variants) use the whole lane,
+  -- including the top-bar band, so cover_overlays / true fullscreen can fill
+  -- the panel. Partial slices stay below the bar.
   for _, zone in ipairs(full) do
     local is_default = is_current == true and zone.default == true
     add_zone_pair(
       lane,
       zone.name,
       ox,
-      zone_y,
+      oy,
       w,
-      content_h,
+      h,
       opts.decoration_height_extra,
       is_default
     )
