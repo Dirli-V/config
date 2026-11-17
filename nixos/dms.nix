@@ -23,8 +23,37 @@ dms: {
       enable = true;
       systemd.enable = true;
       settings = {
-        dankBarSpacing = 0;
-        dankBarSquareCorners = true;
+        barConfigs = [
+          {
+            id = "default";
+            name = "Main Bar";
+            enabled = true;
+            position = 0;
+            screenPreferences = ["all"];
+            showOnLastDisplay = true;
+            leftWidgets = [
+              "launcherButton"
+              "workspaceSwitcher"
+              "focusedWindow"
+            ];
+            centerWidgets = [
+              "music"
+              "clock"
+              "weather"
+            ];
+            rightWidgets = [
+              "systemTray"
+              "clipboard"
+              "cpuUsage"
+              "memUsage"
+              "notificationButton"
+              "battery"
+              "controlCenterButton"
+            ];
+            spacing = 0;
+            squareCorners = true;
+          }
+        ];
       };
     };
   };
